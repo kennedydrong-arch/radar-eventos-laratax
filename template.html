@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Radar de Eventos · LaraTAX</title>
+
+<meta name="description" content="Radar inteligente de eventos tributários, contábeis e fiscais — atualizado todos os dias.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Radar Eventos LaraTAX">
+<meta name="theme-color" content="#012e43">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#012e43;
+  --navy2:#013a55;
+  --navy3:#01233a;
+  --teal:#035a7a;
+  --cyan:#35b9d7;
+  --cyan2:#2aa8c7;
+  --cyan3:#5ed3ed;
+  --cyan-soft:#d6f0f7;
+  --cyan-pale:#eaf7fb;
+  --gold:#e8a838;
+  --green:#00c853;
+  --red:#ef5350;
+  --purple:#7b61ff;
+  --orange:#ff7043;
+  --pink:#ff5a92;
+  --bg:#f4f7f9;
+  --bg2:#edf1f4;
+  --card:#ffffff;
+  --text:#012e43;
+  --text2:rgba(1,46,67,0.65);
+  --text3:rgba(1,46,67,0.4);
+  --border:rgba(1,46,67,0.08);
+  --border2:rgba(1,46,67,0.15);
+  --shadow-xs:0 1px 3px rgba(1,46,67,0.04);
+  --shadow:0 4px 16px rgba(1,46,67,0.07);
+  --shadow-md:0 8px 24px rgba(1,46,67,0.1);
+  --shadow-lg:0 16px 48px rgba(1,46,67,0.14);
+  --shadow-cyan:0 8px 32px rgba(53,185,215,0.25);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:14px;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+.mono{font-family:'JetBrains Mono',monospace}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--cyan2);border-radius:4px}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(53,185,215,0.5)}50%{box-shadow:0 0 0 10px rgba(53,185,215,0)}}
+@keyframes slideRight{from{transform:translateX(-12px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes scaleIn{from{transform:scale(0.92);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes shimmer{0%{background-position:-200px 0}100%{background-position:calc(200px + 100%) 0}}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ NAVBAR ━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar{background:linear-gradient(90deg,var(--navy3) 0%,var(--navy) 50%,var(--navy2) 100%);position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(53,185,215,0.2);box-shadow:0 4px 24px rgba(0,0,0,0.15)}
+.nav-wrap{max-width:1480px;margin:0 auto;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-logo{height:26px;filter:brightness(0) invert(1);opacity:.95}
+.nav-sep{width:1px;height:22px;background:rgba(255,255,255,0.15)}
+.nav-tag{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--cyan3);text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-clock{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cyan3);font-weight:600}
+.nav-live{display:inline-flex;align-items:center;gap:7px;background:rgba(0,200,83,0.15);border:1px solid rgba(0,200,83,0.35);padding:6px 14px;border-radius:999px}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:glow 2s infinite}
+.nav-live-txt{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.nav-date{font-size:11px;color:rgba(255,255,255,0.55);font-weight:500}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━ */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--teal) 60%,var(--cyan2) 130%);padding:36px 32px 32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 15% 30%,rgba(53,185,215,0.18) 0%,transparent 45%),radial-gradient(circle at 85% 70%,rgba(123,97,255,0.12) 0%,transparent 45%);pointer-events:none}
+.hero-pattern{position:absolute;inset:0;opacity:.05;background-image:linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.hero-wrap{max-width:1480px;margin:0 auto;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.hero-left{display:flex;flex-direction:column;gap:8px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(53,185,215,0.2);border:1px solid rgba(53,185,215,0.4);padding:6px 14px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan3);width:fit-content;margin-bottom:6px}
+.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan3);animation:pulse 1.8s infinite}
+.hero-title{font-size:34px;font-weight:800;color:#fff;letter-spacing:-.025em;line-height:1.05}
+.hero-title span{background:linear-gradient(90deg,var(--cyan3),var(--cyan-pale));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.7);font-weight:400;display:flex;align-items:center;gap:10px;flex-wrap:wrap;max-width:600px}
+.hero-sub-tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan3);background:rgba(53,185,215,0.15);padding:3px 8px;border-radius:4px;border:1px solid rgba(53,185,215,0.25)}
+.hero-mini{display:flex;gap:10px;flex-wrap:wrap}
+.hmini{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px 18px;min-width:130px;backdrop-filter:blur(10px);transition:all .25s}
+.hmini:hover{transform:translateY(-3px);border-color:rgba(53,185,215,0.5);background:rgba(53,185,215,0.12)}
+.hmini-l{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px}
+.hmini-v{font-size:24px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.hmini-s{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ VIEW SWITCHER ━━━━━━━━━━━━━━━━━━━━━━━ */
+.view-switcher{background:var(--card);border-bottom:1px solid var(--border);padding:14px 32px;position:sticky;top:68px;z-index:100;box-shadow:var(--shadow-xs)}
+.vs-wrap{max-width:1480px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.vs-tabs{display:flex;gap:4px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:4px}
+.vs-tab{padding:10px 18px;border:none;background:transparent;font-family:inherit;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;border-radius:8px;transition:all .2s;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.vs-tab:hover{color:var(--text);background:rgba(53,185,215,0.06)}
+.vs-tab.active{background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#fff;box-shadow:0 4px 12px rgba(53,185,215,0.4)}
+.vs-tab-icon{font-size:14px}
+.vs-search{flex:1;max-width:340px;position:relative}
+.vs-search input{width:100%;padding:10px 14px 10px 38px;border:1px solid var(--border);border-radius:10px;font-size:13px;font-family:inherit;background:var(--bg);outline:none;transition:all .2s}
+.vs-search input:focus{border-color:var(--cyan);background:#fff;box-shadow:0 0 0 3px rgba(53,185,215,0.12)}
+.vs-search::before{content:'🔍';position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.6}
+.vs-actions{display:flex;gap:8px;align-items:center}
+.vs-btn{padding:9px 16px;background:var(--bg);border:1px solid var(--border);border-radius:10px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;transition:all .2s}
+.vs-btn:hover{border-color:var(--cyan);color:var(--text);background:#fff}
+.vs-btn.toggle.active{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+.vs-counter{background:var(--cyan-pale);color:var(--cyan2);font-size:11px;font-weight:800;font-family:'JetBrains Mono',monospace;padding:3px 9px;border-radius:999px}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ FILTERS PANEL ━━━━━━━━━━━━━━━━━━━━━━━ */
+.filters-panel{background:var(--card);border-bottom:1px solid var(--border);padding:0 32px;max-height:0;overflow:hidden;transition:all .35s ease}
+.filters-panel.open{max-height:600px;padding:20px 32px}
+.fp-wrap{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.fp-group{display:flex;flex-direction:column;gap:8px}
+.fp-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:6px}
+.fp-grp{display:flex;gap:3px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:3px;flex-wrap:wrap}
+.fp-btn{padding:7px 12px;border:none;border-radius:7px;font-size:11px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;background:transparent;color:var(--text2);white-space:nowrap;flex:1;min-width:0;text-align:center}
+.fp-btn:hover{color:var(--text);background:rgba(53,185,215,0.08)}
+.fp-btn.active{background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#fff;box-shadow:0 2px 8px rgba(53,185,215,0.35)}
+.fp-select{padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;background:var(--bg);outline:none;transition:all .2s;cursor:pointer}
+.fp-select:focus{border-color:var(--cyan);background:#fff}
+.fp-slider-wrap{display:flex;flex-direction:column;gap:4px}
+.fp-slider{-webkit-appearance:none;width:100%;height:5px;border-radius:3px;background:var(--bg2);outline:none}
+.fp-slider::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--cyan);cursor:pointer;box-shadow:0 2px 6px rgba(53,185,215,0.5)}
+.fp-slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--cyan);cursor:pointer;border:none;box-shadow:0 2px 6px rgba(53,185,215,0.5)}
+.fp-slider-val{font-size:11px;color:var(--cyan2);font-weight:700;font-family:'JetBrains Mono',monospace}
+.fp-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:var(--text2);user-select:none}
+.fp-toggle input{display:none}
+.fp-toggle-box{width:36px;height:20px;background:var(--bg2);border-radius:999px;position:relative;transition:all .25s}
+.fp-toggle-box::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,0.15)}
+.fp-toggle input:checked + .fp-toggle-box{background:var(--cyan)}
+.fp-toggle input:checked + .fp-toggle-box::after{transform:translateX(16px)}
+.fp-reset{padding:8px 14px;background:transparent;border:1px solid var(--border);color:var(--text2);font-size:11px;font-weight:600;border-radius:8px;cursor:pointer;font-family:inherit;transition:all .2s;width:100%}
+.fp-reset:hover{border-color:var(--red);color:var(--red);background:rgba(239,83,80,0.06)}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ MAIN CONTAINER ━━━━━━━━━━━━━━━━━━━━━━━ */
+.wrap{max-width:1480px;margin:0 auto;padding:32px;animation:fadeIn .4s ease}
+.view{display:none}
+.view.active{display:block;animation:fadeIn .4s ease}
+.section-title{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan2);margin:0 0 18px;display:flex;align-items:center;gap:12px}
+.section-title::before{content:'';width:24px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px}
+.section-title-meta{margin-left:auto;font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:.05em}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ EVENT CARDS ━━━━━━━━━━━━━━━━━━━━━━━ */
+.events-grid{display:grid;gap:18px}
+.events-grid.cols-1{grid-template-columns:1fr}
+.events-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.events-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+
+.event-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s;animation:scaleIn .35s ease;display:flex;flex-direction:column;position:relative}
+.event-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--cyan2)}
+.event-card.featured{border:2px solid var(--cyan);box-shadow:var(--shadow-cyan)}
+.event-card.featured::before{content:'⭐ ALTA RELEVÂNCIA';position:absolute;top:-1px;right:14px;background:linear-gradient(135deg,var(--gold),#c07820);color:#fff;font-size:9px;font-weight:800;letter-spacing:.12em;padding:5px 12px;border-radius:0 0 8px 8px;z-index:2}
+
+.ec-header{padding:20px 22px 14px;border-bottom:1px solid var(--border);position:relative}
+.ec-date-strip{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ec-date-block{background:linear-gradient(135deg,var(--navy),var(--teal));color:#fff;border-radius:12px;padding:8px 12px;text-align:center;min-width:64px;box-shadow:var(--shadow-xs)}
+.ec-date-day{font-size:20px;font-weight:800;line-height:1}
+.ec-date-month{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-top:2px;color:var(--cyan3)}
+.ec-date-year{font-size:9px;font-weight:600;opacity:.6}
+.ec-date-info{flex:1;min-width:0}
+.ec-date-text{font-size:11px;color:var(--text3);font-weight:600;font-family:'JetBrains Mono',monospace;margin-bottom:3px}
+.ec-modalidade{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.ec-modalidade.presencial{background:rgba(0,200,83,0.1);color:#00695c}
+.ec-modalidade.online{background:rgba(123,97,255,0.1);color:var(--purple)}
+.ec-modalidade.hibrido{background:rgba(232,168,56,0.12);color:var(--gold)}
+
+.ec-title{font-size:17px;font-weight:800;color:var(--text);line-height:1.25;margin-bottom:8px;letter-spacing:-.01em}
+.ec-instituicao{font-size:11px;color:var(--text3);font-weight:600;display:flex;align-items:center;gap:5px;margin-bottom:6px}
+.ec-instituicao::before{content:'🏛️';font-size:11px}
+.ec-local{font-size:11px;color:var(--text3);font-weight:500;display:flex;align-items:center;gap:5px}
+.ec-local::before{content:'📍';font-size:11px}
+
+.ec-body{padding:18px 22px;flex:1;display:flex;flex-direction:column;gap:14px}
+.ec-tema{font-size:13px;color:var(--text);font-weight:500;line-height:1.5}
+.ec-tema strong{color:var(--cyan2);font-weight:700}
+
+.ec-justificativa{background:linear-gradient(135deg,var(--cyan-pale),#dbf0f7);border-left:3px solid var(--cyan);padding:11px 14px;border-radius:0 10px 10px 0;font-size:12px;color:var(--text2);line-height:1.5;font-style:italic}
+.ec-justificativa::before{content:'💡 ';font-size:13px;font-style:normal}
+
+.ec-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.ec-meta-item{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.ec-meta-l{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.ec-meta-v{font-size:13px;font-weight:700;color:var(--text)}
+.ec-meta-s{font-size:10px;color:var(--text3);font-weight:500;margin-top:2px}
+
+.ec-scoring{background:var(--bg);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.ec-score-row{display:flex;align-items:center;gap:10px}
+.ec-score-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);width:90px}
+.ec-score-bar{flex:1;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.ec-score-fill{height:100%;border-radius:3px;transition:width .8s}
+.ec-score-fill.cyan{background:linear-gradient(90deg,var(--cyan),var(--navy))}
+.ec-score-fill.gold{background:linear-gradient(90deg,var(--gold),#c07820)}
+.ec-score-fill.green{background:linear-gradient(90deg,var(--green),#00695c)}
+.ec-score-val{font-size:12px;font-weight:800;color:var(--text);font-family:'JetBrains Mono',monospace;min-width:34px;text-align:right}
+
+.ec-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ec-tag{font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:4px;letter-spacing:.04em}
+.ec-tag.green{background:rgba(0,200,83,0.1);color:#00695c}
+.ec-tag.gold{background:rgba(232,168,56,0.12);color:var(--gold)}
+.ec-tag.purple{background:rgba(123,97,255,0.1);color:var(--purple)}
+.ec-tag.pink{background:rgba(255,90,146,0.1);color:#c93874}
+.ec-tag.cyan{background:rgba(53,185,215,0.12);color:var(--cyan2)}
+.ec-tag.orange{background:rgba(255,112,67,0.1);color:#c0541b}
+
+.ec-palestrantes{font-size:11px;color:var(--text2);line-height:1.5;background:rgba(232,168,56,0.06);border-left:3px solid var(--gold);padding:9px 12px;border-radius:0 8px 8px 0}
+.ec-palestrantes-label{font-size:9px;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+
+.ec-footer{padding:14px 22px 18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--bg)}
+.ec-recommend{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);font-weight:600}
+.ec-recommend strong{color:var(--cyan2);font-weight:800}
+.ec-cta{padding:9px 16px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#fff;border:none;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .2s;box-shadow:0 4px 12px rgba(53,185,215,0.3)}
+.ec-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(53,185,215,0.5)}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ CALENDAR VIEW ━━━━━━━━━━━━━━━━━━━━━━━ */
+.cal-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:14px;flex-wrap:wrap}
+.cal-nav{display:flex;align-items:center;gap:10px}
+.cal-nav-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.cal-nav-btn:hover{border-color:var(--cyan);background:var(--cyan-pale);color:var(--cyan2)}
+.cal-month-title{font-size:18px;font-weight:800;color:var(--text);min-width:200px;text-align:center;text-transform:capitalize}
+.cal-today-btn{padding:9px 16px;border:1px solid var(--cyan);background:var(--cyan-pale);color:var(--cyan2);border-radius:9px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit}
+.cal-today-btn:hover{background:var(--cyan);color:#fff}
+
+.cal-grid{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.cal-week-header{display:grid;grid-template-columns:repeat(7,1fr);background:var(--navy);color:#fff}
+.cal-day-name{padding:14px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-right:1px solid rgba(255,255,255,0.06)}
+.cal-day-name:last-child{border-right:none}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-day{min-height:120px;padding:8px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;transition:background .2s;cursor:pointer}
+.cal-day:nth-child(7n){border-right:none}
+.cal-day:hover{background:var(--cyan-pale)}
+.cal-day.outside{background:var(--bg);opacity:.4}
+.cal-day.today{background:var(--cyan-pale)}
+.cal-day.today .cal-day-num{background:var(--cyan);color:#fff;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-weight:800}
+.cal-day-num{font-size:13px;font-weight:600;color:var(--text2);margin-bottom:6px;display:inline-block}
+.cal-event-pill{display:block;padding:3px 6px;background:linear-gradient(90deg,var(--cyan),var(--cyan2));color:#fff;border-radius:4px;font-size:9px;font-weight:700;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;transition:all .15s}
+.cal-event-pill:hover{transform:scale(1.02);box-shadow:0 2px 8px rgba(53,185,215,0.4)}
+.cal-event-pill.gold{background:linear-gradient(90deg,var(--gold),#c07820)}
+.cal-event-pill.green{background:linear-gradient(90deg,var(--green),#00695c)}
+.cal-event-pill.purple{background:linear-gradient(90deg,var(--purple),#4a3aaa)}
+.cal-event-more{font-size:9px;color:var(--cyan2);font-weight:700;cursor:pointer;margin-top:2px}
+.cal-event-more:hover{text-decoration:underline}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ DASHBOARD VIEW ━━━━━━━━━━━━━━━━━━━━━━━ */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.dash-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow-xs);transition:all .25s}
+.dash-card:hover{box-shadow:var(--shadow);border-color:var(--border2)}
+.dash-card.full{grid-column:1/-1}
+.dc-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.dc-bars{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow-y:auto}
+.dc-bar{display:flex;flex-direction:column;gap:5px}
+.dc-bar-hdr{display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.dc-bar-name{font-weight:600;color:var(--text2)}
+.dc-bar-val{font-weight:800;color:var(--text);font-family:'JetBrains Mono',monospace}
+.dc-bar-track{height:8px;background:var(--bg2);border-radius:4px;overflow:hidden}
+.dc-bar-fill{height:100%;border-radius:4px;transition:width 1s}
+.dc-bar-fill.cyan{background:linear-gradient(90deg,var(--cyan),var(--navy))}
+.dc-bar-fill.gold{background:linear-gradient(90deg,var(--gold),#c07820)}
+.dc-bar-fill.green{background:linear-gradient(90deg,var(--green),#00695c)}
+.dc-bar-fill.purple{background:linear-gradient(90deg,var(--purple),#4a3aaa)}
+
+.dc-chart{display:flex;align-items:flex-end;gap:6px;height:200px;padding:8px 0}
+.dc-cc{flex:1;min-width:24px;display:flex;flex-direction:column;align-items:center;gap:5px}
+.dc-cc-val{font-size:10px;font-weight:700;color:var(--cyan2);font-family:'JetBrains Mono',monospace}
+.dc-cc-bar{width:100%;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,var(--cyan),var(--navy));min-height:4px;transition:all .8s}
+.dc-cc-lbl{font-size:9px;color:var(--text3);font-weight:500;text-align:center;white-space:nowrap;font-family:'JetBrains Mono',monospace}
+
+.dc-rank{display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto}
+.dc-rank-item{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;background:var(--bg);transition:all .2s;border:1px solid transparent}
+.dc-rank-item:hover{background:var(--cyan-pale);border-color:var(--cyan2)}
+.dc-rank-pos{font-size:14px;font-weight:800;color:var(--cyan);width:24px;text-align:center}
+.dc-rank-pos.gold{color:var(--gold);font-size:17px}
+.dc-rank-info{flex:1;min-width:0}
+.dc-rank-name{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-rank-meta{font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:2px}
+.dc-rank-val{font-size:12px;font-weight:800;color:var(--cyan2);text-align:right}
+
+.uf-map-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px}
+.uf-tile{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center;transition:all .2s;cursor:pointer}
+.uf-tile:hover{transform:translateY(-2px);border-color:var(--cyan);background:var(--cyan-pale)}
+.uf-tile.has-events{background:linear-gradient(135deg,var(--cyan-pale),#c5e8f0);border-color:var(--cyan)}
+.uf-tile.has-events:hover{background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#fff}
+.uf-code{font-size:14px;font-weight:800;letter-spacing:.05em}
+.uf-count{font-size:11px;font-family:'JetBrains Mono',monospace;font-weight:700;margin-top:2px;color:var(--cyan2)}
+.uf-tile.has-events:hover .uf-count{color:#fff}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ MODAL ━━━━━━━━━━━━━━━━━━━━━━━ */
+.modal-bg{position:fixed;inset:0;background:rgba(1,46,67,0.7);backdrop-filter:blur(6px);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s ease}
+.modal-bg.open{display:flex}
+.modal-box{background:var(--card);border-radius:20px;max-width:680px;width:100%;max-height:88vh;overflow:hidden;display:flex;flex-direction:column;animation:scaleIn .3s ease;box-shadow:var(--shadow-lg)}
+.modal-header{padding:22px 26px 18px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card);z-index:2}
+.modal-close{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);color:var(--text2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-close:hover{background:var(--red);color:#fff}
+.modal-body{padding:24px 26px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:18px}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ EMPTY STATE ━━━━━━━━━━━━━━━━━━━━━━━ */
+.empty{text-align:center;padding:80px 20px;color:var(--text3);font-size:14px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.empty-icon{font-size:48px;opacity:.4}
+.empty-title{font-size:16px;font-weight:700;color:var(--text2)}
+.empty-text{font-size:13px;max-width:400px;line-height:1.5}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━ */
+.footer{background:var(--navy);padding:32px 32px;margin-top:48px}
+.fi{max-width:1480px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.fi p{font-size:11px;color:rgba(255,255,255,0.45)}
+.fi-logo{height:24px;filter:brightness(0) invert(1);opacity:.6}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━ MOBILE ━━━━━━━━━━━━━━━━━━━━━━━ */
+@media(max-width:1024px){
+  .events-grid.cols-3{grid-template-columns:repeat(2,1fr)}
+  .events-grid.cols-2{grid-template-columns:1fr}
+  .hero-wrap{flex-direction:column;align-items:flex-start}
+}
+
+@media(max-width:768px){
+  .nav-wrap{padding:0 14px;height:56px}
+  .nav-logo{height:22px}
+  .nav-tag{font-size:10px}
+  .nav-clock{font-size:11px}
+  .nav-date{display:none}
+  
+  .hero{padding:22px 14px 20px}
+  .hero-title{font-size:24px}
+  .hero-sub{font-size:11px}
+  .hero-mini{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%}
+  .hmini{padding:11px 13px;min-width:0}
+  .hmini-v{font-size:18px}
+  
+  .view-switcher{padding:12px 14px;top:56px}
+  .vs-wrap{gap:10px}
+  .vs-tabs{width:100%;justify-content:space-between}
+  .vs-tab{flex:1;justify-content:center;padding:9px 6px;font-size:11px}
+  .vs-tab-icon{font-size:13px}
+  .vs-search{max-width:none;width:100%}
+  .vs-actions{width:100%;justify-content:space-between}
+  
+  .filters-panel.open{padding:16px 14px;max-height:1200px}
+  .fp-wrap{grid-template-columns:1fr;gap:14px}
+  
+  .wrap{padding:20px 14px}
+  
+  .events-grid.cols-3,.events-grid.cols-2{grid-template-columns:1fr}
+  
+  .ec-meta{grid-template-columns:1fr}
+  
+  .cal-controls{flex-direction:column;align-items:stretch}
+  .cal-nav{justify-content:center}
+  .cal-day{min-height:60px;padding:4px}
+  .cal-day-num{font-size:11px}
+  .cal-event-pill{font-size:8px;padding:2px 4px}
+  .cal-day-name{padding:8px 4px;font-size:9px}
+  
+  .dash-grid{grid-template-columns:1fr}
+  
+  .modal-box{max-height:92vh}
+  .modal-header,.modal-body{padding:16px 18px}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar"><div class="nav-wrap">
+<a href="#" class="nav-brand">
+<img src="https://www.larafy.com.br/assets/images/larafy.png" class="nav-logo" alt="LaraTAX">
+<div class="nav-sep"></div>
+<span class="nav-tag">Radar de Eventos · LaraTAX</span>
+</a>
+<div class="nav-right">
+<span class="nav-clock" id="navClock">--:--</span>
+<div class="nav-live"><div class="nav-dot"></div><span class="nav-live-txt">Atualizado</span></div>
+<span class="nav-date" id="navDate"></span>
+</div></div></nav>
+
+<div class="hero">
+<div class="hero-pattern"></div>
+<div class="hero-wrap">
+<div class="hero-left">
+<div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span><span>Inteligência de Mercado</span></div>
+<h1 class="hero-title">Radar de <span>Eventos</span></h1>
+<div class="hero-sub">
+<span id="heroSub">Eventos tributários e contábeis estratégicos · atualizado todo dia útil às 8h</span>
+<span class="hero-sub-tag" id="updateBadge">v1</span>
+</div>
+</div>
+<div class="hero-mini" id="heroMini"></div>
+</div></div>
+
+<div class="view-switcher"><div class="vs-wrap">
+<div class="vs-tabs">
+<button class="vs-tab active" data-view="lista"><span class="vs-tab-icon">📋</span> Lista</button>
+<button class="vs-tab" data-view="calendario"><span class="vs-tab-icon">📅</span> Calendário</button>
+<button class="vs-tab" data-view="dashboard"><span class="vs-tab-icon">📊</span> Análise</button>
+</div>
+<div class="vs-search"><input type="text" id="searchInput" placeholder="Buscar evento, instituição, tema..."></div>
+<div class="vs-actions">
+<button class="vs-btn toggle" id="btnFilters"><span>🎯</span> Filtros <span class="vs-counter" id="filterCount" style="display:none">0</span></button>
+<select class="fp-select" id="sortSelect" style="font-weight:600">
+<option value="data">📅 Por data</option>
+<option value="relevancia">⭐ Por relevância</option>
+<option value="investimento">💰 Por investimento</option>
+<option value="publico">👥 Por público</option>
+</select>
+</div>
+</div></div>
+
+<div class="filters-panel" id="filtersPanel"><div class="fp-wrap">
+
+<div class="fp-group">
+<span class="fp-label">📅 Período</span>
+<div class="fp-grp" id="fg-periodo">
+<button class="fp-btn" data-periodo="7">7 dias</button>
+<button class="fp-btn" data-periodo="30">30 dias</button>
+<button class="fp-btn" data-periodo="90">90 dias</button>
+<button class="fp-btn active" data-periodo="0">Tudo</button>
+</div>
+</div>
+
+<div class="fp-group">
+<span class="fp-label">🌎 Estado</span>
+<select class="fp-select" id="filterEstado"><option value="todos">Todos os estados</option></select>
+</div>
+
+<div class="fp-group">
+<span class="fp-label">📡 Modalidade</span>
+<div class="fp-grp" id="fg-modalidade">
+<button class="fp-btn active" data-modalidade="todos">Todas</button>
+<button class="fp-btn" data-modalidade="Presencial">Presencial</button>
+<button class="fp-btn" data-modalidade="Online">Online</button>
+<button class="fp-btn" data-modalidade="Híbrido">Híbrido</button>
+</div>
+</div>
+
+<div class="fp-group">
+<span class="fp-label">🎯 Tipo de Evento</span>
+<select class="fp-select" id="filterTipo"><option value="todos">Todos os tipos</option></select>
+</div>
+
+<div class="fp-group">
+<span class="fp-label">🏷️ Foco do Evento</span>
+<div class="fp-grp" id="fg-categoria">
+<button class="fp-btn active" data-categoria="todos">Todos</button>
+<button class="fp-btn" data-categoria="Tributarista">Tributarista</button>
+<button class="fp-btn" data-categoria="Marca">Marca</button>
+<button class="fp-btn" data-categoria="Misto">Misto</button>
+</div>
+</div>
+
+<div class="fp-group">
+<span class="fp-label">⭐ Relevância Mínima</span>
+<div class="fp-slider-wrap">
+<input type="range" min="1" max="10" value="1" class="fp-slider" id="sliderRelevancia">
+<span class="fp-slider-val" id="sliderRelevanciaVal">≥ 1</span>
+</div>
+</div>
+
+<div class="fp-group">
+<span class="fp-label">💰 Investimento Máximo</span>
+<div class="fp-grp" id="fg-investimento">
+<button class="fp-btn active" data-investimento="todos">Todos</button>
+<button class="fp-btn" data-investimento="Baixo">Até R$ 500</button>
+<button class="fp-btn" data-investimento="Médio">Até R$ 2.000</button>
+<button class="fp-btn" data-investimento="Alto">Até R$ 5.000</button>
+</div>
+</div>
+
+<div class="fp-group">
+<span class="fp-label">👥 Público Mínimo</span>
+<div class="fp-slider-wrap">
+<input type="range" min="0" max="5000" step="100" value="0" class="fp-slider" id="sliderPublico">
+<span class="fp-slider-val" id="sliderPublicoVal">≥ 0 pessoas</span>
+</div>
+</div>
+
+<div class="fp-group">
+<span class="fp-label">🎤 Recomendações</span>
+<label class="fp-toggle">
+<input type="checkbox" id="togglePalestrar">
+<span class="fp-toggle-box"></span>
+<span>Vale palestrar</span>
+</label>
+<label class="fp-toggle">
+<input type="checkbox" id="togglePatrocinar">
+<span class="fp-toggle-box"></span>
+<span>Vale patrocinar</span>
+</label>
+<label class="fp-toggle">
+<input type="checkbox" id="toggleCelebridade">
+<span class="fp-toggle-box"></span>
+<span>Tem celebridade</span>
+</label>
+</div>
+
+<div class="fp-group" style="justify-content:flex-end">
+<span class="fp-label">&nbsp;</span>
+<button class="fp-reset" id="btnReset">↺ Limpar todos os filtros</button>
+</div>
+
+</div></div>
+
+<div class="wrap">
+
+<!-- ═══════════════ VIEW: LISTA ═══════════════ -->
+<div class="view active" id="view-lista">
+
+<div id="featuredSection">
+<div class="section-title">⭐ Destaques · Alta Relevância <span class="section-title-meta" id="featuredCount">0 eventos</span></div>
+<div class="events-grid cols-2" id="featuredGrid"></div>
+</div>
+
+<div style="margin-top:32px">
+<div class="section-title">📋 Próximos Eventos <span class="section-title-meta" id="listaCount">0 eventos</span></div>
+<div class="events-grid cols-3" id="listaGrid"></div>
+</div>
+
+</div>
+
+<!-- ═══════════════ VIEW: CALENDÁRIO ═══════════════ -->
+<div class="view" id="view-calendario">
+
+<div class="cal-controls">
+<div class="cal-nav">
+<button class="cal-nav-btn" id="calPrev">‹</button>
+<div class="cal-month-title" id="calTitle">Janeiro 2026</div>
+<button class="cal-nav-btn" id="calNext">›</button>
+</div>
+<button class="cal-today-btn" id="calToday">📅 Hoje</button>
+</div>
+
+<div class="cal-grid">
+<div class="cal-week-header">
+<div class="cal-day-name">Dom</div>
+<div class="cal-day-name">Seg</div>
+<div class="cal-day-name">Ter</div>
+<div class="cal-day-name">Qua</div>
+<div class="cal-day-name">Qui</div>
+<div class="cal-day-name">Sex</div>
+<div class="cal-day-name">Sáb</div>
+</div>
+<div class="cal-days" id="calDays"></div>
+</div>
+
+</div>
+
+<!-- ═══════════════ VIEW: DASHBOARD ═══════════════ -->
+<div class="view" id="view-dashboard">
+
+<div class="dash-grid">
+
+<div class="dash-card">
+<div class="dc-title">📊 Eventos por Mês</div>
+<div class="dc-chart" id="dashChartMes"></div>
+</div>
+
+<div class="dash-card">
+<div class="dc-title">📡 Distribuição por Modalidade</div>
+<div class="dc-bars" id="dashModalidade"></div>
+</div>
+
+<div class="dash-card full">
+<div class="dc-title">🌎 Eventos por Estado <span class="section-title-meta">clique para filtrar</span></div>
+<div class="uf-map-grid" id="dashEstados"></div>
+</div>
+
+<div class="dash-card">
+<div class="dc-title">🎯 Tipos de Evento</div>
+<div class="dc-bars" id="dashTipos"></div>
+</div>
+
+<div class="dash-card">
+<div class="dc-title">🏛️ Top Instituições</div>
+<div class="dc-rank" id="dashInstituicoes"></div>
+</div>
+
+<div class="dash-card full">
+<div class="dc-title">⭐ Top Eventos por Relevância</div>
+<div class="dc-rank" id="dashTopEventos"></div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+<div class="fi">
+<img src="https://www.larafy.com.br/assets/images/larafy.png" class="fi-logo" alt="LaraTAX">
+<p>Radar de Eventos LaraTAX · Inteligência tributária para quem decide</p>
+<p>© 2026 LaraTAX</p>
+</div>
+</footer>
+
+<!-- ═══════════════ MODAL DE DETALHES ═══════════════ -->
+<div class="modal-bg" id="modalBg">
+<div class="modal-box">
+<div class="modal-header">
+<button class="modal-close" id="modalClose">✕</button>
+<div id="modalHeader"></div>
+</div>
+<div class="modal-body" id="modalBody"></div>
+</div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════════
+// RADAR DE EVENTOS LARATAX · v1
+// ════════════════════════════════════════════════════════════
+
+const DASH_DATA = __DASH_DATA__;
+
+const F = {
+  periodo: 0,
+  estado: 'todos',
+  modalidade: 'todos',
+  tipo: 'todos',
+  categoria: 'todos',
+  relevancia: 1,
+  investimento: 'todos',
+  publico: 0,
+  palestrar: false,
+  patrocinar: false,
+  celebridade: false,
+  search: '',
+  sort: 'data'
+};
+
+let activeView = 'lista';
+let calCurrentDate = new Date();
+
+const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const mesesAbrev = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+
+const ESTADOS_BR = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+
+// ═══ HELPERS ═══
+const fmt = (n) => Number(n||0).toLocaleString('pt-BR');
+const fmtBR = (n) => 'R$ ' + Number(n||0).toLocaleString('pt-BR',{maximumFractionDigits:0});
+const trunc = (s,n) => s && s.length>n ? s.slice(0,n)+'…' : (s||'');
+const esc = (s) => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const cap = (s) => s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : '';
+
+const parseDate = (s) => {
+  if (!s) return null;
+  const d = new Date(s);
+  return isNaN(d) ? null : d;
+};
+
+const fmtDate = (s) => {
+  const d = parseDate(s);
+  if (!d) return '—';
+  return d.getDate() + ' de ' + meses[d.getMonth()].toLowerCase() + ' de ' + d.getFullYear();
+};
+
+const fmtDateShort = (s) => {
+  const d = parseDate(s);
+  if (!d) return '—';
+  return String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + d.getFullYear();
+};
+
+const isToday = (date1, date2) => {
+  return date1.getDate() === date2.getDate() &&
+         date1.getMonth() === date2.getMonth() &&
+         date1.getFullYear() === date2.getFullYear();
+};
+
+// ═══ FILTROS ═══
+function filterEvents(events) {
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  
+  return (events||[]).filter(ev => {
+    if (!ev.data_inicio) return false;
+    const dataEv = parseDate(ev.data_inicio);
+    if (!dataEv) return false;
+    
+    // Filtro de período (próximos N dias)
+    if (F.periodo > 0) {
+      const limite = new Date(hoje);
+      limite.setDate(limite.getDate() + F.periodo);
+      if (dataEv < hoje || dataEv > limite) return false;
+    } else {
+      // Filtra eventos passados (mais de 7 dias atrás)
+      const passado = new Date(hoje);
+      passado.setDate(passado.getDate() - 7);
+      if (dataEv < passado) return false;
+    }
+    
+    // Filtros de seleção
+    if (F.estado !== 'todos' && ev.local_estado !== F.estado) return false;
+    if (F.modalidade !== 'todos' && ev.modalidade !== F.modalidade) return false;
+    if (F.tipo !== 'todos' && ev.tipo_evento !== F.tipo) return false;
+    if (F.categoria !== 'todos' && ev.score_categoria !== F.categoria) return false;
+    
+    // Slider relevância
+    if ((parseInt(ev.score_relevancia)||0) < F.relevancia) return false;
+    
+    // Slider público
+    if ((parseInt(ev.publico_esperado)||0) < F.publico) return false;
+    
+    // Investimento (categoria)
+    if (F.investimento !== 'todos') {
+      const niv = ev.nivel_investimento || '';
+      const ordem = {'Baixo':1, 'Médio':2, 'Alto':3, 'Premium':4};
+      const max = ordem[F.investimento] || 99;
+      const atual = ordem[niv] || 99;
+      if (atual > max) return false;
+    }
+    
+    // Toggles
+    if (F.palestrar && ev.vale_palestrar !== 'Sim') return false;
+    if (F.patrocinar && ev.vale_patrocinar !== 'Sim') return false;
+    if (F.celebridade && ev.tem_celebridade !== 'TRUE' && ev.tem_celebridade !== true) return false;
+    
+    // Busca textual
+    if (F.search) {
+      const txt = (ev.nome+' '+ev.instituicao+' '+ev.tema_central+' '+(ev.subtemas||'')+' '+(ev.publico_alvo||'')).toLowerCase();
+      if (!txt.includes(F.search.toLowerCase())) return false;
+    }
+    
+    return true;
+  });
+}
+
+function sortEvents(events) {
+  const sorted = events.slice();
+  if (F.sort === 'relevancia') {
+    sorted.sort((a,b) => (parseInt(b.score_relevancia)||0) - (parseInt(a.score_relevancia)||0));
+  } else if (F.sort === 'investimento') {
+    sorted.sort((a,b) => (parseInt(a.valor_inscricao)||0) - (parseInt(b.valor_inscricao)||0));
+  } else if (F.sort === 'publico') {
+    sorted.sort((a,b) => (parseInt(b.publico_esperado)||0) - (parseInt(a.publico_esperado)||0));
+  } else {
+    // por data (default)
+    sorted.sort((a,b) => {
+      const da = parseDate(a.data_inicio);
+      const db = parseDate(b.data_inicio);
+      if (!da) return 1;
+      if (!db) return -1;
+      return da - db;
+    });
+  }
+  return sorted;
+}
+
+// ═══ EVENT CARD ═══
+function renderEventCard(ev, featured) {
+  const dataIni = parseDate(ev.data_inicio);
+  const dataFim = parseDate(ev.data_fim);
+  
+  const dia = dataIni ? dataIni.getDate() : '?';
+  const mesNome = dataIni ? mesesAbrev[dataIni.getMonth()] : '?';
+  const ano = dataIni ? dataIni.getFullYear() : '?';
+  
+  let dataTxt = fmtDate(ev.data_inicio);
+  if (dataFim && dataFim.getTime() !== dataIni?.getTime()) {
+    dataTxt += ' a ' + fmtDate(ev.data_fim);
+  }
+  
+  const modCls = (ev.modalidade||'').toLowerCase().replace(/í/g,'i');
+  const modIcon = modCls === 'online' ? '💻' : modCls === 'hibrido' ? '🔀' : '🏢';
+  
+  const score = parseInt(ev.score_relevancia) || 0;
+  const aderencia = parseInt(ev.aderencia_laratax) || 0;
+  
+  // Tags
+  const tags = [];
+  if (ev.vale_palestrar === 'Sim') tags.push({txt:'🎤 Palestrar', cls:'gold'});
+  if (ev.vale_patrocinar === 'Sim') tags.push({txt:'💰 Patrocinar', cls:'green'});
+  if (ev.tem_celebridade === 'TRUE' || ev.tem_celebridade === true) tags.push({txt:'🌟 Celebridade', cls:'pink'});
+  if (ev.networking_estimado === 'Alto') tags.push({txt:'👥 Alto networking', cls:'purple'});
+  if (ev.presenca_decisores === 'Alta') tags.push({txt:'💼 C-Level', cls:'cyan'});
+  if (ev.score_categoria === 'Tributarista') tags.push({txt:'⚖️ Tributarista', cls:'orange'});
+  
+  const palestrantesArr = (ev.palestrantes_renomados||'').split(',').map(s=>s.trim()).filter(s=>s).slice(0,3);
+  
+  const recomenda = parseInt(ev.recomendacao_participantes) || 0;
+  const valor = parseInt(ev.valor_inscricao) || 0;
+  
+  return `<div class="event-card${featured?' featured':''}" data-event-id="${esc(ev.ID||'')}">
+    <div class="ec-header">
+      <div class="ec-date-strip">
+        <div class="ec-date-block">
+          <div class="ec-date-day">${dia}</div>
+          <div class="ec-date-month">${mesNome}</div>
+          <div class="ec-date-year">${ano}</div>
+        </div>
+        <div class="ec-date-info">
+          <div class="ec-date-text">${esc(dataTxt)}</div>
+          <span class="ec-modalidade ${modCls}">${modIcon} ${esc(ev.modalidade||'—')}</span>
+        </div>
+      </div>
+      <h3 class="ec-title">${esc(ev.nome||'Evento sem título')}</h3>
+      ${ev.instituicao ? `<div class="ec-instituicao">${esc(ev.instituicao)}</div>` : ''}
+      <div class="ec-local">${ev.local_cidade ? esc(ev.local_cidade) : ''}${ev.local_estado ? ', '+esc(ev.local_estado) : ''}${(!ev.local_cidade && !ev.local_estado) ? 'Local não informado' : ''}</div>
+    </div>
+    
+    <div class="ec-body">
+      ${ev.tema_central ? `<div class="ec-tema"><strong>Tema:</strong> ${esc(ev.tema_central)}</div>` : ''}
+      
+      ${ev.justificativa_estrategica ? `<div class="ec-justificativa">${esc(ev.justificativa_estrategica)}</div>` : ''}
+      
+      <div class="ec-meta">
+        <div class="ec-meta-item">
+          <div class="ec-meta-l">👥 Público esperado</div>
+          <div class="ec-meta-v">${ev.publico_esperado ? fmt(ev.publico_esperado)+' pessoas' : '—'}</div>
+        </div>
+        <div class="ec-meta-item">
+          <div class="ec-meta-l">💰 Investimento</div>
+          <div class="ec-meta-v">${valor ? fmtBR(valor) : (ev.nivel_investimento || '—')}</div>
+          <div class="ec-meta-s">${ev.nivel_investimento ? esc(ev.nivel_investimento) : ''}</div>
+        </div>
+      </div>
+      
+      <div class="ec-scoring">
+        <div class="ec-score-row">
+          <div class="ec-score-label">Relevância</div>
+          <div class="ec-score-bar"><div class="ec-score-fill cyan" style="width:${score*10}%"></div></div>
+          <div class="ec-score-val">${score}/10</div>
+        </div>
+        <div class="ec-score-row">
+          <div class="ec-score-label">Aderência</div>
+          <div class="ec-score-bar"><div class="ec-score-fill green" style="width:${aderencia*10}%"></div></div>
+          <div class="ec-score-val">${aderencia}/10</div>
+        </div>
+      </div>
+      
+      ${tags.length ? `<div class="ec-tags">${tags.map(t => `<span class="ec-tag ${t.cls}">${t.txt}</span>`).join('')}</div>` : ''}
+      
+      ${palestrantesArr.length ? `<div class="ec-palestrantes">
+        <div class="ec-palestrantes-label">🎤 Palestrantes confirmados</div>
+        ${palestrantesArr.map(p => esc(p)).join(' · ')}
+      </div>` : ''}
+    </div>
+    
+    <div class="ec-footer">
+      <div class="ec-recommend">${recomenda > 0 ? `🎯 Recomenda <strong>${recomenda} pessoa${recomenda>1?'s':''}</strong>` : ''}</div>
+      ${ev.site_oficial ? `<a href="${esc(ev.site_oficial)}" target="_blank" rel="noopener" class="ec-cta">Ver detalhes →</a>` : `<button class="ec-cta" data-modal-event="${esc(ev.ID||'')}">Detalhes →</button>`}
+    </div>
+  </div>`;
+}
+
+// ═══ RENDER LISTA ═══
+function renderLista() {
+  const filtered = sortEvents(filterEvents(DASH_DATA.eventos));
+  
+  // Featured: score >= 8
+  const featured = filtered.filter(e => (parseInt(e.score_relevancia)||0) >= 8).slice(0, 4);
+  const rest = filtered.filter(e => (parseInt(e.score_relevancia)||0) < 8);
+  
+  const featuredEl = document.getElementById('featuredGrid');
+  const featuredSection = document.getElementById('featuredSection');
+  if (featured.length) {
+    featuredSection.style.display = 'block';
+    featuredEl.innerHTML = featured.map(ev => renderEventCard(ev, true)).join('');
+    document.getElementById('featuredCount').textContent = featured.length + ' evento' + (featured.length > 1 ? 's' : '');
+  } else {
+    featuredSection.style.display = 'none';
+  }
+  
+  const listaEl = document.getElementById('listaGrid');
+  if (rest.length) {
+    listaEl.innerHTML = rest.map(ev => renderEventCard(ev, false)).join('');
+  } else if (!featured.length) {
+    listaEl.innerHTML = `<div class="empty" style="grid-column:1/-1">
+      <div class="empty-icon">🔭</div>
+      <div class="empty-title">Nenhum evento encontrado</div>
+      <div class="empty-text">Tente ajustar os filtros ou expandir o período de busca.</div>
+    </div>`;
+  } else {
+    listaEl.innerHTML = '';
+  }
+  document.getElementById('listaCount').textContent = rest.length + ' evento' + (rest.length !== 1 ? 's' : '');
+}
+
+// ═══ RENDER CALENDÁRIO ═══
+function renderCalendario() {
+  const ano = calCurrentDate.getFullYear();
+  const mes = calCurrentDate.getMonth();
+  
+  document.getElementById('calTitle').textContent = meses[mes] + ' ' + ano;
+  
+  const primeiroDia = new Date(ano, mes, 1);
+  const ultimoDia = new Date(ano, mes + 1, 0);
+  const diaSemanaInicio = primeiroDia.getDay();
+  const totalDias = ultimoDia.getDate();
+  
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  
+  const eventos = filterEvents(DASH_DATA.eventos);
+  
+  // Mapeia eventos por data (YYYY-MM-DD)
+  const eventosPorData = {};
+  eventos.forEach(ev => {
+    const ini = parseDate(ev.data_inicio);
+    const fim = parseDate(ev.data_fim) || ini;
+    if (!ini) return;
+    
+    // Cria entradas pra cada dia entre início e fim
+    for (let d = new Date(ini); d <= fim; d.setDate(d.getDate()+1)) {
+      const key = d.toISOString().slice(0,10);
+      if (!eventosPorData[key]) eventosPorData[key] = [];
+      eventosPorData[key].push(ev);
+    }
+  });
+  
+  let html = '';
+  
+  // Dias do mês anterior
+  const mesAntUltimo = new Date(ano, mes, 0).getDate();
+  for (let i = diaSemanaInicio - 1; i >= 0; i--) {
+    html += `<div class="cal-day outside"><span class="cal-day-num">${mesAntUltimo - i}</span></div>`;
+  }
+  
+  // Dias do mês atual
+  for (let d = 1; d <= totalDias; d++) {
+    const data = new Date(ano, mes, d);
+    const key = data.toISOString().slice(0,10);
+    const evs = eventosPorData[key] || [];
+    const isHoje = isToday(data, hoje);
+    
+    const cls = ['cal-day'];
+    if (isHoje) cls.push('today');
+    
+    let pillsHtml = '';
+    const visibles = evs.slice(0, 3);
+    visibles.forEach(ev => {
+      const score = parseInt(ev.score_relevancia)||0;
+      let pillCls = '';
+      if (score >= 9) pillCls = 'gold';
+      else if (score >= 7) pillCls = 'green';
+      else if (score >= 5) pillCls = '';
+      else pillCls = 'purple';
+      pillsHtml += `<span class="cal-event-pill ${pillCls}" data-modal-event="${esc(ev.ID||'')}" title="${esc(ev.nome||'')}">${esc(trunc(ev.nome||'',18))}</span>`;
+    });
+    
+    if (evs.length > 3) {
+      pillsHtml += `<div class="cal-event-more" data-cal-day="${key}">+ ${evs.length - 3} eventos</div>`;
+    }
+    
+    html += `<div class="${cls.join(' ')}" data-cal-day="${key}">
+      <span class="cal-day-num">${d}</span>
+      ${pillsHtml}
+    </div>`;
+  }
+  
+  // Completar última semana
+  const totalCells = diaSemanaInicio + totalDias;
+  const remaining = (7 - (totalCells % 7)) % 7;
+  for (let i = 1; i <= remaining; i++) {
+    html += `<div class="cal-day outside"><span class="cal-day-num">${i}</span></div>`;
+  }
+  
+  document.getElementById('calDays').innerHTML = html;
+}
+
+// ═══ RENDER DASHBOARD ═══
+function renderDashboard() {
+  const eventos = filterEvents(DASH_DATA.eventos);
+  
+  // Por mês (próximos 12 meses)
+  const porMes = {};
+  eventos.forEach(ev => {
+    const d = parseDate(ev.data_inicio);
+    if (!d) return;
+    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+    porMes[key] = (porMes[key] || 0) + 1;
+  });
+  const mesArr = Object.keys(porMes).sort().slice(0, 12).map(k => {
+    const [y, m] = k.split('-');
+    return { n: mesesAbrev[parseInt(m)-1] + '/' + y.slice(2), v: porMes[k] };
+  });
+  renderChart('dashChartMes', mesArr);
+  
+  // Modalidade
+  const porMod = {};
+  eventos.forEach(ev => { const k = ev.modalidade || 'Não informado'; porMod[k] = (porMod[k]||0)+1; });
+  renderBars('dashModalidade', Object.keys(porMod).map(n=>({n,v:porMod[n]})).sort((a,b)=>b.v-a.v), 'cyan');
+  
+  // Estados (todos do BR)
+  const porEstado = {};
+  eventos.forEach(ev => {
+    if (ev.local_estado) porEstado[ev.local_estado] = (porEstado[ev.local_estado]||0)+1;
+  });
+  const estadosHtml = ESTADOS_BR.map(uf => {
+    const count = porEstado[uf] || 0;
+    return `<div class="uf-tile ${count > 0 ? 'has-events' : ''}" data-estado="${uf}">
+      <div class="uf-code">${uf}</div>
+      <div class="uf-count">${count}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('dashEstados').innerHTML = estadosHtml;
+  
+  // Tipos
+  const porTipo = {};
+  eventos.forEach(ev => { const k = ev.tipo_evento || 'Não informado'; porTipo[k] = (porTipo[k]||0)+1; });
+  renderBars('dashTipos', Object.keys(porTipo).map(n=>({n,v:porTipo[n]})).sort((a,b)=>b.v-a.v), 'gold');
+  
+  // Top instituições
+  const porInst = {};
+  eventos.forEach(ev => {
+    if (ev.instituicao) {
+      if (!porInst[ev.instituicao]) porInst[ev.instituicao] = { count: 0, totalScore: 0 };
+      porInst[ev.instituicao].count++;
+      porInst[ev.instituicao].totalScore += parseInt(ev.score_relevancia) || 0;
+    }
+  });
+  const instArr = Object.keys(porInst).map(n => ({
+    n,
+    v: porInst[n].count,
+    avg: porInst[n].count ? (porInst[n].totalScore/porInst[n].count).toFixed(1) : 0
+  })).sort((a,b) => b.v - a.v).slice(0, 10);
+  
+  const instEl = document.getElementById('dashInstituicoes');
+  if (!instArr.length) {
+    instEl.innerHTML = '<div class="empty"><span class="empty-icon">🏛️</span><span>Sem dados</span></div>';
+  } else {
+    instEl.innerHTML = instArr.map((item,i) => {
+      const pos = i+1;
+      const medal = pos===1?'🥇':pos===2?'🥈':pos===3?'🥉':('#'+pos);
+      return `<div class="dc-rank-item">
+        <div class="dc-rank-pos ${pos<=3?'gold':''}">${medal}</div>
+        <div class="dc-rank-info">
+          <div class="dc-rank-name">${esc(item.n)}</div>
+          <div class="dc-rank-meta">${item.v} evento${item.v>1?'s':''} · score médio ${item.avg}</div>
+        </div>
+        <div class="dc-rank-val">${item.v}</div>
+      </div>`;
+    }).join('');
+  }
+  
+  // Top eventos
+  const topEv = eventos.slice().sort((a,b) => (parseInt(b.score_relevancia)||0) - (parseInt(a.score_relevancia)||0)).slice(0, 10);
+  const topEl = document.getElementById('dashTopEventos');
+  if (!topEv.length) {
+    topEl.innerHTML = '<div class="empty"><span class="empty-icon">⭐</span><span>Sem eventos</span></div>';
+  } else {
+    topEl.innerHTML = topEv.map((ev,i) => {
+      const pos = i+1;
+      const medal = pos===1?'🥇':pos===2?'🥈':pos===3?'🥉':('#'+pos);
+      const score = parseInt(ev.score_relevancia)||0;
+      return `<div class="dc-rank-item" data-modal-event="${esc(ev.ID||'')}" style="cursor:pointer">
+        <div class="dc-rank-pos ${pos<=3?'gold':''}">${medal}</div>
+        <div class="dc-rank-info">
+          <div class="dc-rank-name">${esc(ev.nome||'—')}</div>
+          <div class="dc-rank-meta">${esc(ev.instituicao||'—')} · ${fmtDateShort(ev.data_inicio)} · ${esc(ev.local_cidade||'—')}</div>
+        </div>
+        <div class="dc-rank-val">⭐ ${score}/10</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function renderChart(id, data) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (!data.length) {
+    el.innerHTML = '<div class="empty"><span class="empty-icon">📊</span><span>Sem dados</span></div>';
+    return;
+  }
+  const max = Math.max.apply(null, data.map(d=>d.v)) || 1;
+  el.innerHTML = data.map(d => {
+    const h = (d.v/max)*170;
+    return `<div class="dc-cc">
+      <div class="dc-cc-val">${d.v}</div>
+      <div class="dc-cc-bar" style="height:${h}px"></div>
+      <div class="dc-cc-lbl">${esc(d.n)}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderBars(id, arr, color) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (!arr.length) {
+    el.innerHTML = '<div class="empty"><span class="empty-icon">📊</span><span>Sem dados</span></div>';
+    return;
+  }
+  const max = arr[0].v;
+  const total = arr.reduce((s,a)=>s+a.v,0);
+  el.innerHTML = arr.slice(0, 8).map(item => {
+    const pct = total ? ((item.v/total)*100).toFixed(0) : 0;
+    const w = (item.v/max)*100;
+    return `<div class="dc-bar">
+      <div class="dc-bar-hdr">
+        <span class="dc-bar-name">${esc(item.n)}</span>
+        <span class="dc-bar-val">${fmt(item.v)} (${pct}%)</span>
+      </div>
+      <div class="dc-bar-track"><div class="dc-bar-fill ${color}" style="width:${w}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+// ═══ HERO MINI ═══
+function renderHeroMini() {
+  const eventos = filterEvents(DASH_DATA.eventos);
+  const total = (DASH_DATA.eventos||[]).length;
+  
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  const proximos30 = new Date(hoje);
+  proximos30.setDate(proximos30.getDate() + 30);
+  
+  const prox30 = (DASH_DATA.eventos||[]).filter(ev => {
+    const d = parseDate(ev.data_inicio);
+    return d && d >= hoje && d <= proximos30;
+  }).length;
+  
+  const altaRel = (DASH_DATA.eventos||[]).filter(ev => (parseInt(ev.score_relevancia)||0) >= 8).length;
+  const remoto = (DASH_DATA.eventos||[]).filter(ev => ev.modalidade === 'Online' || ev.modalidade === 'Híbrido').length;
+  
+  document.getElementById('heroMini').innerHTML = `
+    <div class="hmini"><div class="hmini-l">📅 No Radar</div><div class="hmini-v">${fmt(total)}</div><div class="hmini-s">eventos catalogados</div></div>
+    <div class="hmini"><div class="hmini-l">🔥 Próximos 30d</div><div class="hmini-v">${fmt(prox30)}</div><div class="hmini-s">acontecendo em breve</div></div>
+    <div class="hmini"><div class="hmini-l">⭐ Alta Relevância</div><div class="hmini-v">${fmt(altaRel)}</div><div class="hmini-s">score 8 ou mais</div></div>
+    <div class="hmini"><div class="hmini-l">💻 Online/Híbrido</div><div class="hmini-v">${fmt(remoto)}</div><div class="hmini-s">acessíveis remotamente</div></div>
+  `;
+}
+
+// ═══ MODAL ═══
+function openModal(eventId) {
+  const ev = (DASH_DATA.eventos||[]).find(e => String(e.ID) === String(eventId));
+  if (!ev) return;
+  
+  const dataIni = parseDate(ev.data_inicio);
+  const dataFim = parseDate(ev.data_fim);
+  
+  let dataTxt = fmtDate(ev.data_inicio);
+  if (dataFim && dataFim.getTime() !== dataIni?.getTime()) {
+    dataTxt += ' a ' + fmtDate(ev.data_fim);
+  }
+  
+  const modCls = (ev.modalidade||'').toLowerCase().replace(/í/g,'i');
+  const score = parseInt(ev.score_relevancia) || 0;
+  const aderencia = parseInt(ev.aderencia_laratax) || 0;
+  
+  document.getElementById('modalHeader').innerHTML = `
+    <div style="margin-bottom:8px"><span class="ec-modalidade ${modCls}">${esc(ev.modalidade||'—')}</span></div>
+    <h2 style="font-size:22px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:8px;letter-spacing:-.01em">${esc(ev.nome||'—')}</h2>
+    <div style="font-size:12px;color:var(--text3);font-weight:600">${esc(ev.instituicao||'')} · ${esc(dataTxt)}</div>
+  `;
+  
+  let body = '';
+  
+  if (ev.justificativa_estrategica) {
+    body += `<div class="ec-justificativa">${esc(ev.justificativa_estrategica)}</div>`;
+  }
+  
+  body += `<div class="ec-meta" style="grid-template-columns:repeat(2,1fr)">
+    <div class="ec-meta-item">
+      <div class="ec-meta-l">📍 Local</div>
+      <div class="ec-meta-v">${esc(ev.local_cidade||'—')}${ev.local_estado?', '+esc(ev.local_estado):''}</div>
+      ${ev.local_endereco ? `<div class="ec-meta-s">${esc(ev.local_endereco)}</div>` : ''}
+    </div>
+    <div class="ec-meta-item">
+      <div class="ec-meta-l">👥 Público</div>
+      <div class="ec-meta-v">${ev.publico_esperado ? fmt(ev.publico_esperado)+' pessoas' : '—'}</div>
+      <div class="ec-meta-s">${esc(ev.publico_alvo||'')}</div>
+    </div>
+    <div class="ec-meta-item">
+      <div class="ec-meta-l">💰 Inscrição</div>
+      <div class="ec-meta-v">${ev.valor_inscricao ? fmtBR(ev.valor_inscricao) : '—'}</div>
+      <div class="ec-meta-s">${esc(ev.nivel_investimento||'')}</div>
+    </div>
+    <div class="ec-meta-item">
+      <div class="ec-meta-l">🎯 Tipo</div>
+      <div class="ec-meta-v">${esc(ev.tipo_evento||'—')}</div>
+      <div class="ec-meta-s">${esc(ev.formato||'')}</div>
+    </div>
+  </div>`;
+  
+  body += `<div class="ec-scoring">
+    <div class="ec-score-row">
+      <div class="ec-score-label">Relevância</div>
+      <div class="ec-score-bar"><div class="ec-score-fill cyan" style="width:${score*10}%"></div></div>
+      <div class="ec-score-val">${score}/10</div>
+    </div>
+    <div class="ec-score-row">
+      <div class="ec-score-label">Aderência</div>
+      <div class="ec-score-bar"><div class="ec-score-fill green" style="width:${aderencia*10}%"></div></div>
+      <div class="ec-score-val">${aderencia}/10</div>
+    </div>
+  </div>`;
+  
+  if (ev.tema_central) body += `<div><strong style="font-size:12px;color:var(--cyan2);text-transform:uppercase;letter-spacing:.1em">Tema Central</strong><div style="margin-top:6px;font-size:14px;line-height:1.5">${esc(ev.tema_central)}</div></div>`;
+  
+  if (ev.subtemas) body += `<div><strong style="font-size:12px;color:var(--cyan2);text-transform:uppercase;letter-spacing:.1em">Subtemas</strong><div style="margin-top:6px;font-size:13px;line-height:1.6">${esc(ev.subtemas)}</div></div>`;
+  
+  const palestrantesArr = (ev.palestrantes_renomados||'').split(',').map(s=>s.trim()).filter(s=>s);
+  if (palestrantesArr.length) {
+    body += `<div class="ec-palestrantes" style="font-size:13px">
+      <div class="ec-palestrantes-label">🎤 Palestrantes confirmados</div>
+      ${palestrantesArr.map(p => `<div style="margin:3px 0">• ${esc(p)}</div>`).join('')}
+    </div>`;
+  }
+  
+  if (ev.recomendacao_participantes || ev.perfis_ideais) {
+    body += `<div style="background:linear-gradient(135deg,var(--cyan-pale),#dbf0f7);border-radius:12px;padding:14px 16px">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan2);margin-bottom:8px">📌 Recomendação LaraTAX</div>
+      ${ev.recomendacao_participantes ? `<div style="font-size:13px;margin-bottom:5px"><strong>${ev.recomendacao_participantes} pessoa${ev.recomendacao_participantes>1?'s':''}</strong> recomendada${ev.recomendacao_participantes>1?'s':''}</div>` : ''}
+      ${ev.perfis_ideais ? `<div style="font-size:12px;color:var(--text2)">Perfis ideais: ${esc(ev.perfis_ideais)}</div>` : ''}
+    </div>`;
+  }
+  
+  if (ev.site_oficial) {
+    body += `<a href="${esc(ev.site_oficial)}" target="_blank" rel="noopener" class="ec-cta" style="margin-top:8px;justify-content:center;width:100%">🌐 Acessar site oficial</a>`;
+  }
+  
+  document.getElementById('modalBody').innerHTML = body;
+  document.getElementById('modalBg').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('open');
+}
+
+// ═══ RENDER PRINCIPAL ═══
+function render() {
+  if (activeView === 'lista') renderLista();
+  else if (activeView === 'calendario') renderCalendario();
+  else if (activeView === 'dashboard') renderDashboard();
+  renderHeroMini();
+  updateFilterCount();
+}
+
+function updateFilterCount() {
+  let c = 0;
+  if (F.periodo !== 0) c++;
+  if (F.estado !== 'todos') c++;
+  if (F.modalidade !== 'todos') c++;
+  if (F.tipo !== 'todos') c++;
+  if (F.categoria !== 'todos') c++;
+  if (F.relevancia > 1) c++;
+  if (F.investimento !== 'todos') c++;
+  if (F.publico > 0) c++;
+  if (F.palestrar) c++;
+  if (F.patrocinar) c++;
+  if (F.celebridade) c++;
+  if (F.search) c++;
+  
+  const el = document.getElementById('filterCount');
+  if (c > 0) { el.style.display = 'inline-block'; el.textContent = c; }
+  else el.style.display = 'none';
+}
+
+function setView(view) {
+  activeView = view;
+  document.querySelectorAll('.vs-tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  render();
+}
+
+function resetFilters() {
+  F.periodo = 0;
+  F.estado = 'todos';
+  F.modalidade = 'todos';
+  F.tipo = 'todos';
+  F.categoria = 'todos';
+  F.relevancia = 1;
+  F.investimento = 'todos';
+  F.publico = 0;
+  F.palestrar = false;
+  F.patrocinar = false;
+  F.celebridade = false;
+  F.search = '';
+  
+  document.getElementById('searchInput').value = '';
+  document.getElementById('filterEstado').value = 'todos';
+  document.getElementById('filterTipo').value = 'todos';
+  document.getElementById('sliderRelevancia').value = 1;
+  document.getElementById('sliderRelevanciaVal').textContent = '≥ 1';
+  document.getElementById('sliderPublico').value = 0;
+  document.getElementById('sliderPublicoVal').textContent = '≥ 0 pessoas';
+  document.getElementById('togglePalestrar').checked = false;
+  document.getElementById('togglePatrocinar').checked = false;
+  document.getElementById('toggleCelebridade').checked = false;
+  
+  document.querySelectorAll('#fg-periodo .fp-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.periodo) === 0));
+  document.querySelectorAll('#fg-modalidade .fp-btn').forEach(b => b.classList.toggle('active', b.dataset.modalidade === 'todos'));
+  document.querySelectorAll('#fg-categoria .fp-btn').forEach(b => b.classList.toggle('active', b.dataset.categoria === 'todos'));
+  document.querySelectorAll('#fg-investimento .fp-btn').forEach(b => b.classList.toggle('active', b.dataset.investimento === 'todos'));
+  
+  render();
+}
+
+function updateClock() {
+  const d = new Date();
+  document.getElementById('navClock').textContent = String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+}
+
+// ═══ INIT ═══
+function init() {
+  // Popular filtros dinâmicos
+  const filtros = DASH_DATA.filtros || {};
+  
+  const selEst = document.getElementById('filterEstado');
+  (filtros.estados || []).forEach(uf => {
+    if (!uf) return;
+    const o = document.createElement('option');
+    o.value = uf; o.textContent = uf;
+    selEst.appendChild(o);
+  });
+  selEst.addEventListener('change', e => { F.estado = e.target.value; render(); });
+  
+  const selTipo = document.getElementById('filterTipo');
+  (filtros.tipos || []).forEach(t => {
+    if (!t) return;
+    const o = document.createElement('option');
+    o.value = t; o.textContent = t;
+    selTipo.appendChild(o);
+  });
+  selTipo.addEventListener('change', e => { F.tipo = e.target.value; render(); });
+  
+  // Sliders
+  const sliderRel = document.getElementById('sliderRelevancia');
+  sliderRel.addEventListener('input', e => {
+    F.relevancia = parseInt(e.target.value);
+    document.getElementById('sliderRelevanciaVal').textContent = '≥ ' + F.relevancia;
+    render();
+  });
+  
+  const sliderPub = document.getElementById('sliderPublico');
+  sliderPub.addEventListener('input', e => {
+    F.publico = parseInt(e.target.value);
+    document.getElementById('sliderPublicoVal').textContent = '≥ ' + fmt(F.publico) + ' pessoas';
+    render();
+  });
+  
+  // Toggles
+  document.getElementById('togglePalestrar').addEventListener('change', e => { F.palestrar = e.target.checked; render(); });
+  document.getElementById('togglePatrocinar').addEventListener('change', e => { F.patrocinar = e.target.checked; render(); });
+  document.getElementById('toggleCelebridade').addEventListener('change', e => { F.celebridade = e.target.checked; render(); });
+  
+  // Search
+  let searchTimer;
+  document.getElementById('searchInput').addEventListener('input', e => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => { F.search = e.target.value.trim(); render(); }, 250);
+  });
+  
+  // Sort
+  document.getElementById('sortSelect').addEventListener('change', e => { F.sort = e.target.value; render(); });
+  
+  // Botão filtros
+  document.getElementById('btnFilters').addEventListener('click', () => {
+    const panel = document.getElementById('filtersPanel');
+    panel.classList.toggle('open');
+    document.getElementById('btnFilters').classList.toggle('active');
+  });
+  
+  // Reset
+  document.getElementById('btnReset').addEventListener('click', resetFilters);
+  
+  // Calendário navegação
+  document.getElementById('calPrev').addEventListener('click', () => {
+    calCurrentDate.setMonth(calCurrentDate.getMonth() - 1);
+    renderCalendario();
+  });
+  document.getElementById('calNext').addEventListener('click', () => {
+    calCurrentDate.setMonth(calCurrentDate.getMonth() + 1);
+    renderCalendario();
+  });
+  document.getElementById('calToday').addEventListener('click', () => {
+    calCurrentDate = new Date();
+    renderCalendario();
+  });
+  
+  // Modal close
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('modalBg').addEventListener('click', e => {
+    if (e.target.id === 'modalBg') closeModal();
+  });
+  
+  // Event delegation global
+  document.addEventListener('click', e => {
+    // View tabs
+    const viewTab = e.target.closest('.vs-tab');
+    if (viewTab) { setView(viewTab.dataset.view); return; }
+    
+    // Período
+    const periodoBtn = e.target.closest('#fg-periodo .fp-btn');
+    if (periodoBtn) {
+      F.periodo = parseInt(periodoBtn.dataset.periodo);
+      document.querySelectorAll('#fg-periodo .fp-btn').forEach(b => b.classList.toggle('active', b === periodoBtn));
+      render(); return;
+    }
+    
+    // Modalidade
+    const modBtn = e.target.closest('#fg-modalidade .fp-btn');
+    if (modBtn) {
+      F.modalidade = modBtn.dataset.modalidade;
+      document.querySelectorAll('#fg-modalidade .fp-btn').forEach(b => b.classList.toggle('active', b === modBtn));
+      render(); return;
+    }
+    
+    // Categoria
+    const catBtn = e.target.closest('#fg-categoria .fp-btn');
+    if (catBtn) {
+      F.categoria = catBtn.dataset.categoria;
+      document.querySelectorAll('#fg-categoria .fp-btn').forEach(b => b.classList.toggle('active', b === catBtn));
+      render(); return;
+    }
+    
+    // Investimento
+    const invBtn = e.target.closest('#fg-investimento .fp-btn');
+    if (invBtn) {
+      F.investimento = invBtn.dataset.investimento;
+      document.querySelectorAll('#fg-investimento .fp-btn').forEach(b => b.classList.toggle('active', b === invBtn));
+      render(); return;
+    }
+    
+    // UF tile (filtro estado)
+    const ufTile = e.target.closest('.uf-tile.has-events');
+    if (ufTile) {
+      F.estado = ufTile.dataset.estado;
+      document.getElementById('filterEstado').value = F.estado;
+      setView('lista');
+      return;
+    }
+    
+    // Modal trigger
+    const modalTrigger = e.target.closest('[data-modal-event]');
+    if (modalTrigger) {
+      e.preventDefault();
+      openModal(modalTrigger.dataset.modalEvent);
+      return;
+    }
+  });
+  
+  // Datas hero
+  document.getElementById('navDate').textContent = new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('updateBadge').textContent = DASH_DATA.dataAtualizacao || 'agora';
+  
+  updateClock();
+  setInterval(updateClock, 30000);
+  render();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+</body>
+</html>
