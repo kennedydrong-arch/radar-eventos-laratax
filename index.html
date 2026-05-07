@@ -464,6 +464,56 @@ input,select,textarea{font-family:inherit}
 .toast-action{background:var(--cyan);color:var(--navy-deep);border:none;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;margin-left:8px;transition:background .2s}
 .toast-action:hover{background:var(--cyan-bright)}
 
+/* ━━━ APROVADOS, MANUAL, COMPARTILHAR, FORM, SCORE EDITOR ━━━ */
+.event-card.approved{border:2px solid var(--green);box-shadow:0 8px 24px rgba(0,200,83,0.2)}
+.event-card.approved .event-card-ribbon{background:var(--green);color:#fff}
+.event-card.manual{border-style:dashed}
+.event-card.manual .event-card-ribbon{background:var(--purple);color:#fff}
+.ec-action-btn.approve.active{background:var(--green);color:#fff;border-color:var(--green)}
+.ec-action-btn.share:hover{background:var(--cyan);color:var(--navy-deep);border-color:var(--cyan)}
+.event-card.upcoming .ec-action-btn.approve.active{background:var(--green);border-color:var(--green);color:#fff}
+.ec-score-edited{display:inline-block;font-size:9px;font-weight:800;background:rgba(232,168,56,0.18);color:var(--gold);padding:2px 6px;border-radius:6px;letter-spacing:.06em;text-transform:uppercase;margin-left:4px}
+
+/* Score editor (slider) — usado no modal */
+.score-edit-block{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:18px 22px;margin-top:12px}
+.score-edit-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score-edit-num{font-size:36px;font-weight:900;color:var(--cyan-deep);font-family:'JetBrains Mono',monospace;letter-spacing:-.04em;line-height:1}
+.score-edit-num.edited{color:var(--gold)}
+.score-edit-base{font-size:12px;color:var(--text3);font-weight:600}
+.score-edit-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;background:rgba(232,168,56,0.18);color:var(--gold);padding:4px 9px;border-radius:6px;letter-spacing:.08em;text-transform:uppercase;margin-left:auto}
+.score-edit-slider{-webkit-appearance:none;width:100%;height:8px;border-radius:4px;background:var(--bg-warm);outline:none;display:block;margin-bottom:10px}
+.score-edit-slider::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #fff;box-shadow:0 4px 12px rgba(232,168,56,0.4)}
+.score-edit-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #fff;box-shadow:0 4px 12px rgba(232,168,56,0.4)}
+.score-edit-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.score-edit-tip{font-size:11px;color:var(--text3);font-weight:500}
+.score-edit-reset{padding:6px 12px;background:transparent;border:1px solid var(--border);color:var(--text3);font-size:11px;font-weight:700;border-radius:7px;cursor:pointer;font-family:inherit;transition:all .2s}
+.score-edit-reset:hover{border-color:var(--red);color:var(--red)}
+
+/* Compartilhar — botões no modal */
+.share-block{display:flex;gap:8px;flex-wrap:wrap;padding-top:12px;margin-top:12px;border-top:1px solid var(--border)}
+.share-btn{padding:10px 16px;background:var(--card);border:1.5px solid var(--border);border-radius:11px;font-size:12px;font-weight:700;color:var(--text2);cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:7px;transition:all .2s}
+.share-btn:hover{border-color:var(--cyan);color:var(--cyan-deep);background:var(--cyan-pale)}
+.share-btn.whatsapp:hover{border-color:#25d366;color:#25d366;background:rgba(37,211,102,0.05)}
+
+/* Form Adicionar */
+.add-form{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:28px;box-shadow:var(--shadow-xs);max-width:880px;margin:0 auto}
+.af-info{background:var(--cyan-pale);border:1px solid var(--border-cyan);border-radius:12px;padding:12px 16px;font-size:13px;color:var(--cyan-deep);margin-bottom:22px;line-height:1.5}
+.af-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.af-field{display:flex;flex-direction:column;gap:6px}
+.af-field.full{grid-column:1/-1}
+.af-label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:6px}
+.af-label.required::after{content:'*';color:var(--red);font-weight:800}
+.af-input,.af-select,.af-textarea{padding:11px 14px;border:1.5px solid var(--border);border-radius:11px;font-size:14px;font-family:inherit;background:var(--bg);color:var(--text);transition:all .2s;outline:none;width:100%}
+.af-input:focus,.af-select:focus,.af-textarea:focus{border-color:var(--cyan);background:#fff;box-shadow:0 0 0 3px rgba(53,185,215,0.1)}
+.af-input::placeholder,.af-textarea::placeholder{color:var(--text3)}
+.af-textarea{resize:vertical;min-height:80px;line-height:1.5}
+.af-actions{display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:22px;border-top:1.5px solid var(--border);gap:12px;flex-wrap:wrap}
+.af-submit{padding:13px 24px;background:var(--cyan);color:var(--navy-deep);border:none;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .25s}
+.af-submit:hover{background:var(--cyan-bright);transform:translateY(-2px);box-shadow:0 6px 18px rgba(53,185,215,0.35)}
+.af-cancel{padding:13px 20px;background:transparent;color:var(--text2);border:1.5px solid var(--border);border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.af-cancel:hover{border-color:var(--red);color:var(--red)}
+@media(max-width:768px){.add-form{padding:20px}.af-grid{grid-template-columns:1fr}}
+
 /* ━━━ FOOTER ━━━ */
 .footer{background:var(--navy-darkest);padding:40px 32px;margin-top:64px}
 .fi{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
@@ -568,7 +618,9 @@ input,select,textarea{font-family:inherit}
 <button class="vs-tab active" data-view="lista"><span class="vs-tab-icon">📋</span> Lista</button>
 <button class="vs-tab" data-view="calendario"><span class="vs-tab-icon">📅</span> Calendário</button>
 <button class="vs-tab" data-view="dashboard"><span class="vs-tab-icon">📊</span> Análise</button>
+<button class="vs-tab" data-view="aprovados"><span class="vs-tab-icon">✅</span> Aprovados <span class="vs-tab-badge" id="approvedBadge" style="display:none">0</span></button>
 <button class="vs-tab" data-view="descartados"><span class="vs-tab-icon">🗑️</span> Descartados <span class="vs-tab-badge" id="dismissedBadge" style="display:none">0</span></button>
+<button class="vs-tab" data-view="adicionar"><span class="vs-tab-icon">➕</span> Adicionar</button>
 </div>
 <div class="vs-search">
 <span class="vs-search-icon">🔍</span>
@@ -781,6 +833,23 @@ input,select,textarea{font-family:inherit}
 
 </div>
 
+<!-- VIEW: APROVADOS -->
+<div class="view" id="view-aprovados">
+
+<div class="section">
+<div class="section-head">
+<div>
+<div class="section-eyebrow">Confirmados</div>
+<h2 class="section-title">Eventos <span class="txt-cyan">aprovados</span></h2>
+<p class="section-sub">Eventos que você decidiu participar, palestrar ou patrocinar — pipeline executivo</p>
+</div>
+<span class="section-meta" id="approvedCount">0 eventos</span>
+</div>
+<div class="events-grid cols-3" id="approvedGrid"></div>
+</div>
+
+</div>
+
 <!-- VIEW: DESCARTADOS -->
 <div class="view" id="view-descartados">
 
@@ -794,6 +863,56 @@ input,select,textarea{font-family:inherit}
 <span class="section-meta" id="descartadosCount">0 eventos</span>
 </div>
 <div class="events-grid cols-3" id="descartadosGrid"></div>
+</div>
+
+</div>
+
+<!-- VIEW: ADICIONAR -->
+<div class="view" id="view-adicionar">
+
+<div class="section">
+<div class="section-head">
+<div>
+<div class="section-eyebrow">Cadastro</div>
+<h2 class="section-title">Adicionar <span class="txt-cyan">evento manual</span></h2>
+<p class="section-sub">Cadastre eventos descobertos por outros canais — Instagram, indicações, networking</p>
+</div>
+</div>
+
+<div class="add-form">
+<div class="af-info">💾 Os eventos manuais ficam salvos no seu navegador. Aparecerão no Radar com o ribbon roxo "MANUAL".</div>
+
+<form id="addEventForm" autocomplete="off">
+<div class="af-grid">
+<div class="af-field full"><label class="af-label required">Nome do evento</label><input class="af-input" type="text" id="af-nome" required placeholder="Ex.: Mansão Tributária V"></div>
+<div class="af-field"><label class="af-label">Instituição / Organizador</label><input class="af-input" type="text" id="af-instituicao" placeholder="Ex.: Sigrid Kersting"></div>
+<div class="af-field"><label class="af-label">Tipo</label>
+<select class="af-select" id="af-tipo">
+<option value="">—</option><option>Imersão</option><option>Workshop</option><option>Congresso</option><option>Seminário</option><option>Webinar</option><option>Encontro</option><option>Fórum</option><option>Summit</option><option>Conferência</option><option>Mentoria</option>
+</select></div>
+<div class="af-field"><label class="af-label required">Data início</label><input class="af-input" type="date" id="af-data-inicio" required></div>
+<div class="af-field"><label class="af-label">Data fim</label><input class="af-input" type="date" id="af-data-fim"></div>
+<div class="af-field"><label class="af-label">Cidade</label><input class="af-input" type="text" id="af-cidade" placeholder="Ex.: São Paulo"></div>
+<div class="af-field"><label class="af-label">UF</label><input class="af-input" type="text" id="af-estado" placeholder="SP" maxlength="2"></div>
+<div class="af-field"><label class="af-label">Modalidade</label>
+<select class="af-select" id="af-modalidade"><option>Presencial</option><option>Online</option><option>Híbrido</option></select></div>
+<div class="af-field"><label class="af-label">Site oficial</label><input class="af-input" type="url" id="af-site" placeholder="https://..."></div>
+<div class="af-field full"><label class="af-label">Tema central</label><input class="af-input" type="text" id="af-tema" placeholder="Ex.: Recuperação de créditos pós-Reforma"></div>
+<div class="af-field"><label class="af-label">Público esperado</label><input class="af-input" type="number" id="af-publico-esperado" min="0" placeholder="150"></div>
+<div class="af-field"><label class="af-label">Valor inscrição (R$)</label><input class="af-input" type="number" id="af-valor" min="0" placeholder="3500"></div>
+<div class="af-field"><label class="af-label">Categoria</label>
+<select class="af-select" id="af-categoria">
+<option value="">—</option><option>Tributarista</option><option>Comercial</option><option>Marca</option><option>Misto</option>
+</select></div>
+<div class="af-field"><label class="af-label">Score relevância (1-10)</label><input class="af-input" type="number" id="af-score" min="1" max="10" value="7"></div>
+<div class="af-field full"><label class="af-label">Palestrantes (separados por vírgula)</label><input class="af-input" type="text" id="af-palestrantes" placeholder="Ex.: Sigrid Kersting, João Silva"></div>
+<div class="af-field full"><label class="af-label">Justificativa estratégica</label><textarea class="af-textarea" id="af-justificativa" placeholder="Por que esse evento importa pra LaraTAX?"></textarea></div>
+</div>
+<div class="af-actions">
+<button type="button" class="af-cancel" id="af-cancel">Limpar</button>
+<button type="submit" class="af-submit">💾 Salvar evento</button>
+</div>
+</form>
 </div>
 
 </div>
@@ -824,9 +943,11 @@ input,select,textarea{font-family:inherit}
 </div>
 
 <script>
-// RADAR DE EVENTOS LARATAX · v5 — visual LaraTAX limpo
-const DASH_DATA = {"dataAtualizacao":"Quinta, 7 de maio de 2026 às 14:13","eventos":[{"row_number":3,"ID":"evt_7c9f95b1e420","nome":"3º Workshop APET de 2026 – Regulamentação da Reforma Tributária","instituicao":"APET","data_inicio":"2026-05-19","data_fim":"2026-05-19","local_cidade":"Não identificada","local_estado":"BR","local_endereco":"Não identificado","modalidade":"Presencial","site_oficial":"https://apet.org.br/courses/regulamentacao-da-reforma-tributaria/","tema_central":"Regulamentação da Reforma Tributária","subtemas":"Reforma tributária, Implementação normativa","tipo_evento":"Workshop","formato":"Palestras","duracao_horas":0,"publico_esperado":0,"publico_alvo":"Profissionais tributários, Contadores","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":0,"nivel_investimento":"Médio","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"Não identificados","tem_celebridade":false,"instituicoes_parceiras":"APET","score_relevancia":8,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Avaliar","vale_patrocinar":"Avaliar","recomendacao_participantes":1,"perfis_ideais":"Diretor Tributário, Especialista em Reforma Tributária","justificativa_estrategica":"Workshop técnico de APET focado em regulamentação da reforma tributária. Público qualificado e tema central para LaraTAX, mas formato pequeno (80 min de palestras) limita escala.","networking_estimado":"Médio","data_descoberto":"2026-05-07","fonte_descoberto":"https://apet.org.br/courses/regulamentacao-da-reforma-tributaria/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.270Z"},{"row_number":4,"ID":"evt_cf5c0bcbbdc7","nome":"IX Congresso Internacional de Direito Tributário do Rio de Janeiro","instituicao":"Associação Brasileira de Direito Financeiro (ABDF)","data_inicio":"2026-08-12","data_fim":"2026-08-14","local_cidade":"Rio de Janeiro","local_estado":"RJ","local_endereco":"Sheraton Rio Hotel & Resort","modalidade":"Presencial","site_oficial":"https://congresso2026.abdf.com.br/","tema_central":"Direito Tributário","subtemas":"Legislação tributária, Direito Financeiro","tipo_evento":"Congresso","formato":"Painéis","duracao_horas":0,"publico_esperado":0,"publico_alvo":"Advogados tributaristas, Consultores, Professores de Direito","aderencia_laratax":7,"presenca_decisores":"Média","valor_inscricao":0,"nivel_investimento":"Alto","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"Não identificados","tem_celebridade":false,"instituicoes_parceiras":"ABDF","score_relevancia":7,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Avaliar","vale_patrocinar":"Avaliar","recomendacao_participantes":2,"perfis_ideais":"Diretor Tributário, Especialista em Legislação","justificativa_estrategica":"Congresso internacional respeitável de direito tributário com público qualificado. Temática mais jurídica que tecnológica, mas oferece visibilidade e networking com decisores em tributação.","networking_estimado":"Alto","data_descoberto":"2026-05-07","fonte_descoberto":"https://congresso2026.abdf.com.br/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.270Z"},{"row_number":6,"ID":"evt_fe7edda75ed8","nome":"CONGRESSO ABDF 2026 – IX CONGRESSO INTERNACIONAL DE DIREITO TRIBUTÁRIO DO RIO DE JANEIRO","instituicao":"ABDF (Associação Brasileira de Direito Financeiro)","data_inicio":"2026-08-12","data_fim":"2026-08-14","local_cidade":"Rio de Janeiro","local_estado":"RJ","local_endereco":"","modalidade":"Presencial","site_oficial":"https://abdf.com.br/evento/save-the-date-congresso-abdf-2026-xi-congresso-internacional-de-direito-tributario-do-rio-de-janeiro/","tema_central":"Direito Tributário Internacional","subtemas":"Planejamento tributário, Reforma tributária, Consultoria","tipo_evento":"Congresso","formato":"Mix","duracao_horas":24,"publico_esperado":0,"publico_alvo":"Tributaristas, Advogados, Consultores, Profissionais de Direito","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":0,"nivel_investimento":"Premium","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"","tem_celebridade":false,"instituicoes_parceiras":"","score_relevancia":9,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Avaliar","recomendacao_participantes":3,"perfis_ideais":"Diretor Tributário, Tributarista Sênior, Gerente de Compliance","justificativa_estrategica":"Congresso internacional de alto nível com público 100% alinhado ao ICP da LaraTAX. Oportunidade premium para posicionamento técnico e networking com decision-makers do setor tributário.","networking_estimado":"Alto","data_descoberto":"2026-05-07","fonte_descoberto":"https://abdf.com.br/evento/save-the-date-congresso-abdf-2026-xi-congresso-internacional-de-direito-tributario-do-rio-de-janeiro/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.271Z"},{"row_number":10,"ID":"evt_a3dbfa82519c","nome":"I Congresso Goiano de Estudos Tributários","instituicao":"Não identificada","data_inicio":"2026-06-02","data_fim":"2026-06-03","local_cidade":"Goiânia","local_estado":"GO","local_endereco":"","modalidade":"Presencial","site_oficial":"https://www.sympla.com.br/evento/i-congresso-goiano-de-estudos-tributarios-desafios-do-sistema-tributario-contemporaneo/3406757","tema_central":"Desafios do Sistema Tributário Contemporâneo","subtemas":"Estudos Tributários, Sistema Tributário","tipo_evento":"Congresso","formato":"Palestras","duracao_horas":34,"publico_esperado":0,"publico_alvo":"Profissionais Tributários, Estudiosos de Direito Tributário","aderencia_laratax":7,"presenca_decisores":"Média","valor_inscricao":0,"nivel_investimento":"Baixo","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"","tem_celebridade":false,"instituicoes_parceiras":"","score_relevancia":7,"score_categoria":"Tributarista","vale_participar":"Avaliar","vale_palestrar":"Avaliar","vale_patrocinar":"Não","recomendacao_participantes":1,"perfis_ideais":"Especialista em Tributação Regional","justificativa_estrategica":"Congresso regional de primeiro ano com público tributário local. Menor escala que eventos nacionais, mas bom para expandir presença regional e networking com decisores de Goiás.","networking_estimado":"Médio","data_descoberto":"2026-05-07","fonte_descoberto":"https://www.sympla.com.br/evento/i-congresso-goiano-de-estudos-tributarios-desafios-do-sistema-tributario-contemporaneo/3406757","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.271Z"},{"row_number":18,"ID":"evt_4bbeaa10e2a2","nome":"Conta Azul Con 26","instituicao":"Conta Azul","data_inicio":"2026-08-05","data_fim":"2026-08-06","local_cidade":"São Paulo","local_estado":"SP","local_endereco":"Transamerica Expo Center","modalidade":"Presencial","site_oficial":"https://beta.sympla.com.br/evento/conta-azul-con-26/3072860","tema_central":"Contabilidade e Tecnologia","subtemas":"Softwares contábeis, Automação fiscal, Inovação tecnológica","tipo_evento":"Congresso","formato":"Mix","duracao_horas":16,"publico_esperado":2000,"publico_alvo":"Contadores, CFOs, Diretores Financeiros, Gestores de TI","aderencia_laratax":7,"presenca_decisores":"Média","valor_inscricao":0,"nivel_investimento":"Médio","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"Não especificado","tem_celebridade":false,"instituicoes_parceiras":"Conta Azul","score_relevancia":7,"score_categoria":"Misto","vale_participar":"Sim","vale_palestrar":"Avaliar","vale_patrocinar":"Avaliar","recomendacao_participantes":2,"perfis_ideais":"Diretor Comercial, Product Manager, CSM","justificativa_estrategica":"Maior evento de contabilidade e tecnologia da América Latina com público alinhado ao ICP (CFOs, Controllers). Oportunidade de visibilidade premium e networking com decisores contábeis.","networking_estimado":"Alto","data_descoberto":"2026-05-07","fonte_descoberto":"https://beta.sympla.com.br/evento/conta-azul-con-26/3072860","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":19,"ID":"evt_3faebe60a1b7","nome":"XXIV Congresso de Direito Tributário em Questão","instituicao":"FESDT","data_inicio":"2026-06-19","data_fim":"2026-06-21","local_cidade":"Não especificado","local_estado":"NÃO ","local_endereco":"Não especificado","modalidade":"Presencial","site_oficial":"https://fesdt.org.br/xxiv-congresso-de-direito-tributario-em-questao/","tema_central":"Direito Tributário","subtemas":"Legislação tributária, Jurisprudência, Planejamento fiscal","tipo_evento":"Congresso","formato":"Painéis","duracao_horas":24,"publico_esperado":800,"publico_alvo":"Tributaristas, Advogados, Diretores Tributários, Contadores especializados","aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":0,"nivel_investimento":"Médio","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"Renomados palestrantes confirmados","tem_celebridade":false,"instituicoes_parceiras":"FESDT","score_relevancia":8,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Avaliar","recomendacao_participantes":3,"perfis_ideais":"Diretor Tributário, Especialista em Compliance, Diretor Comercial","justificativa_estrategica":"Congresso de alto nível técnico com público altamente qualificado (tributaristas e diretores tributários). Tema central alinhado à expertise da LaraTAX em reforma tributária e compliance.","networking_estimado":"Alto","data_descoberto":"2026-05-07","fonte_descoberto":"https://fesdt.org.br/xxiv-congresso-de-direito-tributario-em-questao/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":20,"ID":"evt_c90b5c5575fa","nome":"Congresso Internacional de Direito Tributário do IAT 2026","instituicao":"Instituto de Advogados Tributários (IAT)","data_inicio":"2026-06-01","data_fim":"2026-06-03","local_cidade":"Não especificado","local_estado":"NÃO ","local_endereco":"Não especificado","modalidade":"Presencial","site_oficial":"https://www.institutoiat.org/congresso-iat-2026","tema_central":"Direito Tributário Internacional","subtemas":"Tributação internacional, Intercâmbio público-privado, Compliance tributário","tipo_evento":"Congresso","formato":"Painéis","duracao_horas":24,"publico_esperado":1000,"publico_alvo":"Especialistas tributários, Advogados, Diretores Tributários, Consultores","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":0,"nivel_investimento":"Alto","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"Especialistas Brasil e exterior","tem_celebridade":false,"instituicoes_parceiras":"IAT","score_relevancia":9,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":4,"perfis_ideais":"CEO, Diretor Tributário, VP Comercial, Especialista em Compliance","justificativa_estrategica":"Congresso internacional top com especialistas Brasil/exterior e público C-level tributário. Posicionamento premium perfeito para LaraTAX como solução de tecnologia para compliance tributário complexo.","networking_estimado":"Alto","data_descoberto":"2026-05-07","fonte_descoberto":"https://www.institutoiat.org/congresso-iat-2026","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":25,"ID":"evt_0480f3609979","nome":"ENIC 2026 - Workshop Reforma Tributária","instituicao":"CBIC","data_inicio":"2026-05-21","data_fim":"2026-05-21","local_cidade":"","local_estado":"","local_endereco":"","modalidade":"Presencial","site_oficial":"https://cbic.org.br/enic-2026-evento-promove-workshop-sobre-reforma-tributaria-exclusivo-para-os-inscritos/","tema_central":"Reforma Tributária aplicada à Construção","subtemas":"Novo sistema tributário, Cadeia da construção","tipo_evento":"Workshop","formato":"Workshop","duracao_horas":2,"publico_esperado":0,"publico_alvo":"Profissionais da construção civil","aderencia_laratax":5,"presenca_decisores":"Baixa","valor_inscricao":0,"nivel_investimento":"Baixo","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"","tem_celebridade":false,"instituicoes_parceiras":"CBIC","score_relevancia":5,"score_categoria":"Tributarista","vale_participar":"Não","vale_palestrar":"Não","vale_patrocinar":"Não","recomendacao_participantes":0,"perfis_ideais":"","justificativa_estrategica":"Workshop setorial para construção civil. Público muito específico e não representa ICP principal da LaraTAX (empresas de complexidade tributária geral).","networking_estimado":"Baixo","data_descoberto":"2026-05-07","fonte_descoberto":"https://cbic.org.br/enic-2026-evento-promove-workshop-sobre-reforma-tributaria-exclusivo-para-os-inscritos/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":29,"ID":"evt_9b4b63d11a7d","nome":"Congresso Nacional de Planejamento Tributário","instituicao":"Faculdade EBPOS","data_inicio":"2026-04-13","data_fim":"2026-04-16","local_cidade":"","local_estado":"","local_endereco":"","modalidade":"Online","site_oficial":"https://faculdadeebpos.edu.br/congresso-nacional-de-planejamento-tributario/","tema_central":"Planejamento Tributário e Reforma Tributária","subtemas":"Reforma Tributária, PEC 45, Planejamento Tributário, Conformidade","tipo_evento":"Congresso","formato":"Palestras","duracao_horas":0,"publico_esperado":0,"publico_alvo":"Tributaristas, Controllers, Consultores Tributários","aderencia_laratax":8,"presenca_decisores":"Média","valor_inscricao":0,"nivel_investimento":"Médio","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"","tem_celebridade":false,"instituicoes_parceiras":"","score_relevancia":8,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Avaliar","recomendacao_participantes":2,"perfis_ideais":"Diretor Comercial, Product Manager","justificativa_estrategica":"Congresso técnico-tributário 100% online com tema central alinhado (Reforma Tributária). Público-alvo qualificado, baixo custo de participação. Ideal para palestras e conteúdo.","networking_estimado":"Médio","data_descoberto":"2026-05-07","fonte_descoberto":"https://faculdadeebpos.edu.br/congresso-nacional-de-planejamento-tributario/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":30,"ID":"evt_961602d6c5a9","nome":"I Congresso Estadual de Direito Tributário da OAB/SC","instituicao":"OAB Santa Catarina","data_inicio":"2026-05-28","data_fim":"2026-05-28","local_cidade":"Florianópolis","local_estado":"SC","local_endereco":"","modalidade":"Presencial","site_oficial":"https://oab-sc.org.br/eventos/i-congresso-estadual-de-direito-tributario-da-oabsc","tema_central":"Reforma Tributária e Sistema Tributário Brasileiro","subtemas":"Direito Tributário, Reforma Tributária, Conformidade Legal","tipo_evento":"Congresso","formato":"Palestras","duracao_horas":0,"publico_esperado":0,"publico_alvo":"Advogados tributaristas, consultores fiscais, juristas","aderencia_laratax":6,"presenca_decisores":"Média","valor_inscricao":0,"nivel_investimento":"Baixo","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"","tem_celebridade":false,"instituicoes_parceiras":"OAB","score_relevancia":6,"score_categoria":"Tributarista","vale_participar":"Avaliar","vale_palestrar":"Avaliar","vale_patrocinar":"Não","recomendacao_participantes":1,"perfis_ideais":"Gerente de Relacionamento com foco legal","justificativa_estrategica":"Congresso estadual OAB com tema relevante, mas público predominantemente jurídico. Menor relevância para solução tech. Avaliar apenas se houver gestores fiscais no público.","networking_estimado":"Médio","data_descoberto":"2026-05-07","fonte_descoberto":"https://oab-sc.org.br/eventos/i-congresso-estadual-de-direito-tributario-da-oabsc","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":31,"ID":"evt_571f06488ac4","nome":"Congresso Cearense de Direito Tributário - Professor Hugo de Brito Machado: A Reforma Chegou","instituicao":"OAB Ceará (ESACE)","data_inicio":"2026-04-08","data_fim":"2026-04-10","local_cidade":"Fortaleza","local_estado":"CE","local_endereco":"Auditório da OAB-CE","modalidade":"Presencial","site_oficial":"https://esace.org.br/cursos/cursos/congresso-cearense-de-direito-tributario-professor-hugo-de-brito-machado-a-reforma-chegou/","tema_central":"Reforma Tributária e Direito Tributário","subtemas":"Reforma Tributária, Legislação Tributária, Conformidade","tipo_evento":"Congresso","formato":"Palestras","duracao_horas":14,"publico_esperado":0,"publico_alvo":"Advogados tributaristas, operadores de direito tributário","aderencia_laratax":5,"presenca_decisores":"Baixa","valor_inscricao":0,"nivel_investimento":"Baixo","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"Hugo de Brito Machado","tem_celebridade":false,"instituicoes_parceiras":"OAB","score_relevancia":5,"score_categoria":"Tributarista","vale_participar":"Não","vale_palestrar":"Não","vale_patrocinar":"Não","recomendacao_participantes":0,"perfis_ideais":"","justificativa_estrategica":"Congresso estadual focado em juristas e advogados, fora do escopo geográfico e profissional prioritário (ICP LaraTAX não inclui público jurídico puro). Baixa relevância estratégica.","networking_estimado":"Baixo","data_descoberto":"2026-05-07","fonte_descoberto":"https://esace.org.br/cursos/cursos/congresso-cearense-de-direito-tributario-professor-hugo-de-brito-machado-a-reforma-chegou/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":35,"ID":"evt_6ee477e81e82","nome":"II Congresso de Direito Tributário e Aduaneiro - Receita Federal","instituicao":"Receita Federal do Brasil","data_inicio":"2027-11-07","data_fim":"2027-11-08","local_cidade":"Brasília","local_estado":"DF","local_endereco":"","modalidade":"Presencial","site_oficial":"https://www.contabilidademundial.com.br/boletim/receita-federal-realizara-o-seu-ii-congresso-de-direito-tributario-e-aduaneiro-922","tema_central":"Eficácia na Administração Tributária","subtemas":"Direito Tributário, Direito Aduaneiro, Compliance","tipo_evento":"Congresso","formato":"Painéis","duracao_horas":0,"publico_esperado":0,"publico_alvo":"Servidores Receita Federal, Tributaristas, Advogados, Controllers","aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":0,"nivel_investimento":"Premium","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"","tem_celebridade":false,"instituicoes_parceiras":"Receita Federal do Brasil","score_relevancia":8,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Avaliar","vale_patrocinar":"Não","recomendacao_participantes":2,"perfis_ideais":"Diretor Tributário, Especialista em Compliance","justificativa_estrategica":"Congresso oficial da Receita Federal com públicão ultra-qualificado. Excelente para inteligência de mercado e networking com decision-makers de órgãos fiscalizadores.","networking_estimado":"Alto","data_descoberto":"2026-05-07","fonte_descoberto":"https://www.contabilidademundial.com.br/boletim/receita-federal-realizara-o-seu-ii-congresso-de-direito-tributario-e-aduaneiro-922","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":36,"ID":"evt_56c4490e89ef","nome":"Tax Finance Summit 2026","instituicao":"Blueprint","data_inicio":"2026-04-14","data_fim":"2026-04-15","local_cidade":"São Paulo","local_estado":"SP","local_endereco":"","modalidade":"Presencial","site_oficial":"https://blueprintt.co/eventos/tfs/","tema_central":"Reforma Tributária e Decisões de Tax Finance","subtemas":"Tax Finance, Reforma Tributária, Cases Práticos, Compliance","tipo_evento":"Cúpula","formato":"Painéis","duracao_horas":0,"publico_esperado":0,"publico_alvo":"CFOs, Diretores Tributários, Líderes de Tax Finance, Controllers","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":0,"nivel_investimento":"Premium","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"Syngenta, Atvos, Ardagh, Grupo Martins","tem_celebridade":false,"instituicoes_parceiras":"Blueprint","score_relevancia":9,"score_categoria":"Misto","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":3,"perfis_ideais":"Diretor Comercial, VP Produto, Diretor Tributário","justificativa_estrategica":"Cúpula premium com C-level de grandes corporações operando com reforma tributária. Cases práticos e público ultra-qualificado alinhado perfeitamente ao ICP da LaraTAX.","networking_estimado":"Alto","data_descoberto":"2026-05-07","fonte_descoberto":"https://blueprintt.co/eventos/tfs/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":37,"ID":"evt_cf5c0bcbbdc7","nome":"IX Congresso Internacional de Direito Tributário do Rio de Janeiro","instituicao":"ABDF - Associação Brasileira de Direito Financeiro","data_inicio":"2026-08-12","data_fim":"2026-08-14","local_cidade":"Rio de Janeiro","local_estado":"RJ","local_endereco":"","modalidade":"Presencial","site_oficial":"https://ampcon.org.br/eventos/evento/ix-congresso-internacional-de-direito-tributario-do-rio-de-janeiro","tema_central":"Direito Tributário Internacional","subtemas":"Tributação, Compliance, Reforma Tributária","tipo_evento":"Congresso","formato":"Painéis","duracao_horas":0,"publico_esperado":0,"publico_alvo":"Tributaristas, Advogados, Controllers, CFOs","aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":0,"nivel_investimento":"Premium","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"","tem_celebridade":false,"instituicoes_parceiras":"ABDF","score_relevancia":8,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Avaliar","recomendacao_participantes":2,"perfis_ideais":"Diretor Tributário, Especialista em Direito Tributário","justificativa_estrategica":"Congresso internacional realizado por associação renomada, reúne público técnico altamente qualificado em tributação. Oportunidade de visibilidade em tema core.","networking_estimado":"Alto","data_descoberto":"2026-05-07","fonte_descoberto":"https://ampcon.org.br/eventos/evento/ix-congresso-internacional-de-direito-tributario-do-rio-de-janeiro","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":38,"ID":"evt_bd7cd90e4441","nome":"XXXIX Congresso Brasileiro de Direito Tributário - IGA IDEPE","instituicao":"IGA - IDEPE (Instituto Geraldo Ataliba – Instituto Internacional de Direito Público e Empresarial)","data_inicio":"2026-05-27","data_fim":"2026-05-29","local_cidade":"São Paulo","local_estado":"SP","local_endereco":"","modalidade":"Presencial","site_oficial":"https://congresso.iga-idepe.org.br/","tema_central":"Direito Tributário","subtemas":"Tributação, Reforma Tributária, Compliance","tipo_evento":"Congresso","formato":"Painéis","duracao_horas":0,"publico_esperado":0,"publico_alvo":"Tributaristas, Advogados, Controllers, CFOs, Professores","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":0,"nivel_investimento":"Premium","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"","tem_celebridade":false,"instituicoes_parceiras":"IGA IDEPE","score_relevancia":9,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":3,"perfis_ideais":"Diretor Comercial, VP Produto, Diretor Tributário","justificativa_estrategica":"Congresso de alta tradição e prestígio com 39ª edição, reúne elite de tributaristas e decision-makers. Audiência altamente técnica e qualificada, perfeita para LaraTAX.","networking_estimado":"Alto","data_descoberto":"2026-05-07","fonte_descoberto":"https://congresso.iga-idepe.org.br/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.272Z"},{"row_number":41,"ID":"evt_5641c520bfdd","nome":"Congresso Cearense de Direito Tributário – Professor Hugo de Brito Machado – A Reforma chegou. E agora?","instituicao":"OAB Ceará - Comissão de Direito Tributário","data_inicio":"2026-04-08","data_fim":"2026-04-10","local_cidade":"Fortaleza","local_estado":"CE","local_endereco":"Não informado","modalidade":"Presencial","site_oficial":"https://oabce.org.br/2026/04/comissao-de-direito-tributario-da-oab-ce-promove-congresso-sobre-reforma-tributaria-a-partir-desta-quarta-8-4/","tema_central":"Reforma Tributária","subtemas":"Direito tributário, Impactos da Reforma Tributária, Planejamento tributário","tipo_evento":"Congresso","formato":"Palestras","duracao_horas":16,"publico_esperado":0,"publico_alvo":"Advogados tributaristas, profissionais de direito tributário","aderencia_laratax":7,"presenca_decisores":"Média","valor_inscricao":0,"nivel_investimento":"Baixo","valor_patrocinio":0,"valor_estande":0,"palestrantes_renomados":"Professor Hugo de Brito Machado","tem_celebridade":true,"instituicoes_parceiras":"OAB Ceará","score_relevancia":7,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Avaliar","vale_patrocinar":"Não","recomendacao_participantes":1,"perfis_ideais":"Diretor Tributário, Tributarista","justificativa_estrategica":"Congresso técnico-tributário sobre Reforma Tributária com palestrante renomado. Público-alvo parcialmente aderente (mais OAB do que decisores corporativos), mas tema central LaraTAX.","networking_estimado":"Médio","data_descoberto":"2026-05-07","fonte_descoberto":"https://oabce.org.br/2026/04/comissao-de-direito-tributario-da-oab-ce-promove-congresso-sobre-reforma-tributaria-a-partir-desta-quarta-8-4/","status":"ativo","ultima_atualizacao":"2026-05-07T14:12:55.273Z"}],"stats":{"total":16,"altaRelevancia":9,"online":1,"proximos30":6},"filtros":{"estados":["BR","CE","DF","GO","NÃO ","RJ","SC","SP"],"tipos":["Congresso","Cúpula","Workshop"]}};
+// RADAR DE EVENTOS LARATAX · v6 — visual LaraTAX + aprovados/share/score-edit/manual
+const DASH_DATA = {"dataAtualizacao":"Quinta, 7 de maio de 2026 às 16:20","eventos":[{"ID":"evt_d8da6fd95aab","status":"ativo","nome":"XII Congresso Brasileiro de Direito Tributário","instituicao":"IBDT — Instituto Brasileiro de Direito Tributário","data_inicio":"2026-05-12","data_fim":"2026-05-14","local_cidade":"São Paulo","local_estado":"SP","local_endereco":"Hotel Maksoud Plaza, Alameda Campinas","modalidade":"Presencial","site_oficial":"https://www.ibdt.org.br","tema_central":"Reforma Tributária e seus desdobramentos no Lucro Real","subtemas":"IBS/CBS, transição fiscal, contencioso administrativo, planejamento tributário pós-reforma","tipo_evento":"Congresso","formato":"Painéis e palestras magnas","duracao_horas":24,"publico_esperado":1200,"publico_alvo":"Tributaristas, advogados, controllers, CFOs","aderencia_laratax":10,"presenca_decisores":"Alta","valor_inscricao":3800,"nivel_investimento":"Alto","valor_patrocinio":80000,"valor_estande":25000,"palestrantes_renomados":"Heleno Taveira Torres, Misabel Derzi, Roque Carrazza","tem_celebridade":"TRUE","instituicoes_parceiras":"OAB-SP, FGV Direito","score_relevancia":10,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":4,"perfis_ideais":"Sócios, head jurídico, head tributário","justificativa_estrategica":"Evento âncora do calendário tributário brasileiro. Presença obrigatória para posicionamento de marca junto a decisores fiscais.","networking_estimado":"Alto"},{"ID":"evt_2627cc623065","status":"ativo","nome":"Webinar IFRS 18 — Mudanças e Impactos","instituicao":"CFC — Conselho Federal de Contabilidade","data_inicio":"2026-05-18","data_fim":"2026-05-18","local_cidade":"","local_estado":"DF","modalidade":"Online","site_oficial":"https://cfc.org.br","tema_central":"Apresentação e divulgação de demonstrações financeiras conforme IFRS 18","subtemas":"Categorização de receitas, MPMs, divulgações","tipo_evento":"Webinar","formato":"Palestra única","duracao_horas":2,"publico_esperado":3000,"publico_alvo":"Contadores, auditores","aderencia_laratax":6,"presenca_decisores":"Média","valor_inscricao":0,"nivel_investimento":"Baixo","palestrantes_renomados":"Profissionais do CPC","tem_celebridade":"FALSE","score_relevancia":6,"score_categoria":"Misto","vale_participar":"Sim","vale_palestrar":"Não","vale_patrocinar":"Não","recomendacao_participantes":2,"perfis_ideais":"Equipe técnica","justificativa_estrategica":"Atualização técnica relevante mas sem espaço comercial. Recomendado para equipe contábil.","networking_estimado":"Baixo"},{"ID":"evt_394d94c6c9f0","status":"ativo","nome":"ENAT 2026 — Encontro Nacional de Administradores Tributários","instituicao":"CONFAZ","data_inicio":"2026-05-21","data_fim":"2026-05-23","local_cidade":"Brasília","local_estado":"DF","local_endereco":"Centro de Convenções Ulysses Guimarães","modalidade":"Presencial","site_oficial":"https://www.confaz.fazenda.gov.br","tema_central":"Harmonização ICMS/IBS na transição","subtemas":"Comitê Gestor IBS, distribuição de receitas, sistemas de fiscalização","tipo_evento":"Encontro","formato":"Painéis técnicos","duracao_horas":18,"publico_esperado":800,"publico_alvo":"Auditores fiscais estaduais e federais","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":1500,"nivel_investimento":"Médio","palestrantes_renomados":"Secretários da Fazenda, RFB","tem_celebridade":"FALSE","instituicoes_parceiras":"Receita Federal, CONFAZ","score_relevancia":9,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Não","vale_patrocinar":"Sim","recomendacao_participantes":2,"perfis_ideais":"Sócios, head fiscal","justificativa_estrategica":"Acesso direto a auditores fiscais e secretários estaduais. Visibilidade institucional alta.","networking_estimado":"Alto"},{"ID":"evt_24f875d95931","status":"ativo","nome":"Simpósio CARF — Contencioso Administrativo","instituicao":"APET — Associação Paulista de Estudos Tributários","data_inicio":"2026-05-26","data_fim":"2026-05-27","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Híbrido","site_oficial":"https://www.apet.org.br","tema_central":"Jurisprudência recente do CARF e teses estratégicas","subtemas":"Voto de qualidade, prazo decadencial, multa qualificada","tipo_evento":"Simpósio","formato":"Painéis com conselheiros","duracao_horas":12,"publico_esperado":500,"publico_alvo":"Advogados tributaristas, ex-conselheiros","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":2200,"nivel_investimento":"Médio","palestrantes_renomados":"Susy Hoffmann, Carlos Henrique de Oliveira","tem_celebridade":"FALSE","score_relevancia":9,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":3,"perfis_ideais":"Sócios contencioso, advogados sêniors","justificativa_estrategica":"Networking direto com ex-conselheiros e tributaristas focados em contencioso CARF.","networking_estimado":"Alto"},{"ID":"evt_bc91c78118b4","status":"ativo","nome":"Brazil Tax Forum 2026","instituicao":"AMCHAM Brasil","data_inicio":"2026-06-04","data_fim":"2026-06-05","local_cidade":"São Paulo","local_estado":"SP","local_endereco":"WTC Sheraton, Av. Nações Unidas","modalidade":"Presencial","site_oficial":"https://www.amcham.com.br","tema_central":"Tributação internacional e Reforma brasileira","subtemas":"BEPS, Pilar Dois, preços de transferência, IBS para multinacionais","tipo_evento":"Fórum","formato":"Painéis bilíngues","duracao_horas":16,"publico_esperado":600,"publico_alvo":"Executivos C-level de multinacionais","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":4500,"nivel_investimento":"Premium","valor_patrocinio":120000,"valor_estande":35000,"palestrantes_renomados":"Bernardo Carrasco (KPMG), Ana Cláudia Utumi","tem_celebridade":"FALSE","instituicoes_parceiras":"KPMG, EY, BTG Pactual","score_relevancia":10,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":3,"perfis_ideais":"C-level, head internacional","justificativa_estrategica":"Acesso direto a CFOs de multinacionais. Patrocinar gera leads qualificados internacionais.","networking_estimado":"Alto"},{"ID":"evt_ad40dce0932c","status":"ativo","nome":"CONIATI 2026 — Auditoria Tributária Internacional","instituicao":"CONIATI","data_inicio":"2026-06-12","data_fim":"2026-06-13","local_cidade":"Florianópolis","local_estado":"SC","modalidade":"Presencial","tema_central":"Auditoria interna sob nova realidade fiscal","tipo_evento":"Congresso","formato":"Painéis técnicos","duracao_horas":14,"publico_esperado":350,"publico_alvo":"Auditores internos, contadores","aderencia_laratax":7,"presenca_decisores":"Média","valor_inscricao":1200,"nivel_investimento":"Médio","score_relevancia":7,"score_categoria":"Misto","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":2,"perfis_ideais":"Consultores sêniors","justificativa_estrategica":"Evento técnico de nicho. Bom para palestrar e demonstrar autoridade técnica.","networking_estimado":"Médio"},{"ID":"evt_3a5dc3b37a46","status":"ativo","nome":"Forum LIDE — Reforma Tributária na Prática","instituicao":"LIDE — Grupo de Líderes Empresariais","data_inicio":"2026-06-19","data_fim":"2026-06-19","local_cidade":"Rio de Janeiro","local_estado":"RJ","modalidade":"Presencial","tema_central":"Implementação da Reforma — visão empresarial","tipo_evento":"Fórum","formato":"Painel executivo","duracao_horas":6,"publico_esperado":280,"publico_alvo":"CEOs, presidentes, empresários","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":5500,"nivel_investimento":"Premium","palestrantes_renomados":"Bernardo Mello Franco, Joaquim Levy","tem_celebridade":"TRUE","score_relevancia":9,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":2,"perfis_ideais":"Sócio-fundador, sócios diretores","justificativa_estrategica":"Audiência hiper-qualificada de CEOs. Networking estratégico de alto nível.","networking_estimado":"Alto"},{"ID":"evt_63133911ab57","status":"ativo","nome":"Tax Compliance Forum","instituicao":"ETCO","data_inicio":"2026-06-25","data_fim":"2026-06-26","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Híbrido","tema_central":"Compliance fiscal e governança tributária","tipo_evento":"Fórum","formato":"Painéis e workshops","duracao_horas":14,"publico_esperado":450,"publico_alvo":"Compliance officers, controllers","aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":2800,"nivel_investimento":"Médio","score_relevancia":8,"score_categoria":"Misto","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":2,"perfis_ideais":"Sócios, sêniors compliance","justificativa_estrategica":"Convergência entre compliance e tributário. Bom para apresentar metodologia.","networking_estimado":"Alto"},{"ID":"evt_5d8efcc67e42","status":"ativo","nome":"Webinar Receita Federal — Programa de Conformidade","instituicao":"Receita Federal do Brasil","data_inicio":"2026-07-08","data_fim":"2026-07-08","local_cidade":"","local_estado":"DF","modalidade":"Online","tema_central":"Programa Confia — incentivos e contrapartidas","tipo_evento":"Webinar","duracao_horas":2,"publico_esperado":5000,"publico_alvo":"Contribuintes Lucro Real","aderencia_laratax":7,"presenca_decisores":"Média","valor_inscricao":0,"nivel_investimento":"Baixo","score_relevancia":7,"score_categoria":"Misto","vale_participar":"Sim","vale_palestrar":"Não","vale_patrocinar":"Não","recomendacao_participantes":2,"perfis_ideais":"Equipe técnica","networking_estimado":"Baixo","justificativa_estrategica":"Evento de aderência 7/10 com público Contribuintes Lucro Real. Visibilidade de marca."},{"ID":"evt_fb9712a229b9","status":"ativo","nome":"XV Congresso ABRAFIN — Finanças Empresariais","instituicao":"ABRAFIN","data_inicio":"2026-07-15","data_fim":"2026-07-17","local_cidade":"Belo Horizonte","local_estado":"MG","modalidade":"Presencial","tema_central":"Tesouraria, custos e tributação na nova ordem fiscal","tipo_evento":"Congresso","duracao_horas":20,"publico_esperado":700,"publico_alvo":"CFOs, treasurers, controllers","aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":2900,"nivel_investimento":"Médio","palestrantes_renomados":"Ricardo Amorim, Paulo Tafner","tem_celebridade":"TRUE","score_relevancia":8,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":2,"perfis_ideais":"Sócios, head comercial","justificativa_estrategica":"Acesso a CFOs em ambiente menos saturado de concorrentes diretos.","networking_estimado":"Alto"},{"ID":"evt_5b6eee2e79f2","status":"ativo","nome":"Encontro Pernambuco Tributário","instituicao":"CRC-PE","data_inicio":"2026-07-22","data_fim":"2026-07-23","local_cidade":"Recife","local_estado":"PE","modalidade":"Presencial","tema_central":"Atualização tributária e contábil","tipo_evento":"Encontro","duracao_horas":12,"publico_esperado":320,"publico_alvo":"Contadores, auditores nordeste","aderencia_laratax":6,"presenca_decisores":"Média","valor_inscricao":850,"nivel_investimento":"Baixo","score_relevancia":6,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":1,"perfis_ideais":"Consultor regional","justificativa_estrategica":"Cobertura geográfica do Nordeste. Investimento baixo.","networking_estimado":"Médio"},{"ID":"evt_ccf95b03d58d","status":"ativo","nome":"Tax Tech Brasil 2026","instituicao":"ABTax","data_inicio":"2026-08-06","data_fim":"2026-08-07","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Presencial","tema_central":"Tecnologia aplicada à tributação — RPA, IA, BigQuery","subtemas":"Automação fiscal, IA generativa, integração e-CAC","tipo_evento":"Congresso","duracao_horas":16,"publico_esperado":800,"publico_alvo":"Tax techs, fintechs, contadores digitais","aderencia_laratax":10,"presenca_decisores":"Alta","valor_inscricao":1900,"nivel_investimento":"Médio","palestrantes_renomados":"Diretores de RPA da B3 e Itaú","tem_celebridade":"FALSE","score_relevancia":10,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":4,"perfis_ideais":"Sócios, head de produto, head de TI","justificativa_estrategica":"Posicionamento perfeito para LaraTAX como tax-tech líder. Patrocínio quase obrigatório.","networking_estimado":"Alto"},{"ID":"evt_b857711cec07","status":"ativo","nome":"Congresso ANEFAC 2026","instituicao":"ANEFAC","data_inicio":"2026-08-13","data_fim":"2026-08-15","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Presencial","tema_central":"Finanças, contabilidade e tributação","tipo_evento":"Congresso","duracao_horas":22,"publico_esperado":950,"publico_alvo":"Executivos financeiros e contábeis","aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":2400,"nivel_investimento":"Médio","score_relevancia":8,"score_categoria":"Misto","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":2,"perfis_ideais":"Sócios, gerentes","networking_estimado":"Alto","justificativa_estrategica":"Evento de aderência 8/10 com público Executivos financeiros e contábeis. Visibilidade de marca."},{"ID":"evt_35aff6339011","status":"ativo","nome":"Curitiba Tributário — APET-PR","instituicao":"APET Paraná","data_inicio":"2026-08-20","data_fim":"2026-08-21","local_cidade":"Curitiba","local_estado":"PR","modalidade":"Híbrido","tema_central":"Reforma Tributária no Paraná — impactos regionais","tipo_evento":"Seminário","duracao_horas":10,"publico_esperado":240,"publico_alvo":"Tributaristas paranaenses","aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":600,"nivel_investimento":"Baixo","score_relevancia":8,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":3,"perfis_ideais":"Sócios paranaenses, equipe local","justificativa_estrategica":"Casa LaraFy. Presença obrigatória para reforço da marca em Curitiba.","networking_estimado":"Alto"},{"ID":"evt_a32cef2167f2","status":"ativo","nome":"III Brazil Legal Innovation Summit","instituicao":"CESA — Centro de Estudos de Sociedades de Advogados","data_inicio":"2026-09-09","data_fim":"2026-09-10","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Presencial","tema_central":"Inovação jurídica e tributária — IA aplicada","tipo_evento":"Summit","duracao_horas":14,"publico_esperado":600,"publico_alvo":"Sócios de bancas full service e boutique","aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":3200,"nivel_investimento":"Alto","palestrantes_renomados":"Sócios Pinheiro Neto, Mattos Filho","tem_celebridade":"FALSE","score_relevancia":8,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Não","vale_patrocinar":"Sim","recomendacao_participantes":2,"perfis_ideais":"Sócios, head de inovação","networking_estimado":"Alto","justificativa_estrategica":"Evento de aderência 8/10 com público Sócios de bancas full service e boutique. Visibilidade de marca."},{"ID":"evt_b0037cadbcfb","status":"ativo","nome":"Compliance Day São Paulo","instituicao":"LEC — Legal Ethics Compliance","data_inicio":"2026-09-17","data_fim":"2026-09-17","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Presencial","tema_central":"Tax compliance e ESG","tipo_evento":"Conferência","duracao_horas":8,"publico_esperado":450,"aderencia_laratax":7,"presenca_decisores":"Média","valor_inscricao":1800,"nivel_investimento":"Médio","score_relevancia":7,"score_categoria":"Misto","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":1,"networking_estimado":"Médio","justificativa_estrategica":"Evento de aderência 7/10 com público qualificado. Visibilidade de marca."},{"ID":"evt_118488eb84ee","status":"ativo","nome":"IX Congresso ABDF de Direito Financeiro","instituicao":"ABDF — Associação Brasileira de Direito Financeiro","data_inicio":"2026-09-23","data_fim":"2026-09-25","local_cidade":"Rio de Janeiro","local_estado":"RJ","modalidade":"Presencial","tema_central":"Tributação internacional e reforma","tipo_evento":"Congresso","duracao_horas":24,"publico_esperado":950,"publico_alvo":"Tributaristas internacionais","aderencia_laratax":10,"presenca_decisores":"Alta","valor_inscricao":4200,"nivel_investimento":"Premium","palestrantes_renomados":"Luís Eduardo Schoueri, Sergio André Rocha","tem_celebridade":"TRUE","score_relevancia":10,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":4,"perfis_ideais":"Sócios sênior","justificativa_estrategica":"Top tier do direito tributário brasileiro. Networking de altíssimo nível.","networking_estimado":"Alto"},{"ID":"evt_6466856e9e4e","status":"ativo","nome":"Encontro CRC-PR 2026","instituicao":"CRC-PR","data_inicio":"2026-10-08","data_fim":"2026-10-09","local_cidade":"Foz do Iguaçu","local_estado":"PR","modalidade":"Presencial","tema_central":"Atualização contábil e tributária","tipo_evento":"Encontro","duracao_horas":14,"publico_esperado":1500,"publico_alvo":"Contadores paranaenses","aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":480,"nivel_investimento":"Baixo","score_relevancia":8,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":3,"perfis_ideais":"Sócios LaraFy, Andrey, Kaoana","justificativa_estrategica":"Mercado natural LaraFy. Maior evento contábil do Paraná.","networking_estimado":"Alto"},{"ID":"evt_3dcfa2ae46b4","status":"ativo","nome":"Lex Tax Summit","instituicao":"Lex Magister","data_inicio":"2026-10-21","data_fim":"2026-10-22","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Presencial","tema_central":"Tendências do contencioso tributário","tipo_evento":"Summit","duracao_horas":14,"publico_esperado":380,"aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":3500,"nivel_investimento":"Alto","score_relevancia":8,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":2,"networking_estimado":"Alto","justificativa_estrategica":"Evento de aderência 8/10 com público qualificado. Relevância técnica para posicionamento."},{"ID":"evt_23f316106073","status":"ativo","nome":"XX Congresso CRC Brasil","instituicao":"CFC","data_inicio":"2026-11-05","data_fim":"2026-11-07","local_cidade":"Brasília","local_estado":"DF","modalidade":"Híbrido","tema_central":"Profissão contábil na era da Reforma","tipo_evento":"Congresso","duracao_horas":20,"publico_esperado":2200,"publico_alvo":"Contadores nacionais","aderencia_laratax":8,"presenca_decisores":"Alta","valor_inscricao":1450,"nivel_investimento":"Médio","score_relevancia":9,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":3,"networking_estimado":"Alto","justificativa_estrategica":"Evento de aderência 8/10 com público Contadores nacionais. Visibilidade de marca."},{"ID":"evt_302a5a3e72aa","status":"ativo","nome":"Encontro Sul Tributário","instituicao":"IET — Instituto de Estudos Tributários","data_inicio":"2026-11-12","data_fim":"2026-11-13","local_cidade":"Porto Alegre","local_estado":"RS","modalidade":"Presencial","tema_central":"Tributação no Sul — peculiaridades","tipo_evento":"Encontro","duracao_horas":12,"publico_esperado":280,"aderencia_laratax":7,"presenca_decisores":"Média","valor_inscricao":950,"nivel_investimento":"Baixo","score_relevancia":7,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":1,"networking_estimado":"Médio","justificativa_estrategica":"Evento de aderência 7/10 com público qualificado. Visibilidade de marca."},{"ID":"evt_3bc893c49e70","status":"ativo","nome":"Workshop ICMS na Reforma — APET","instituicao":"APET","data_inicio":"2026-11-19","data_fim":"2026-11-19","local_cidade":"","local_estado":"SP","modalidade":"Online","tema_central":"Transição ICMS/IBS — operações práticas","tipo_evento":"Workshop","duracao_horas":4,"publico_esperado":600,"aderencia_laratax":8,"presenca_decisores":"Média","valor_inscricao":350,"nivel_investimento":"Baixo","score_relevancia":7,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Não","recomendacao_participantes":2,"networking_estimado":"Baixo","justificativa_estrategica":"Evento de aderência 8/10 com público qualificado. Relevância técnica para posicionamento."},{"ID":"evt_78b996469659","status":"ativo","nome":"Congresso CONFEB — Tributos Federais","instituicao":"CONFEB","data_inicio":"2026-12-03","data_fim":"2026-12-05","local_cidade":"Salvador","local_estado":"BA","modalidade":"Presencial","tema_central":"PIS/COFINS, CSLL na transição","tipo_evento":"Congresso","duracao_horas":22,"publico_esperado":850,"aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":2800,"nivel_investimento":"Médio","score_relevancia":9,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":2,"networking_estimado":"Alto","justificativa_estrategica":"Evento de aderência 9/10 com público qualificado. Relevância técnica para posicionamento."},{"ID":"evt_e58f6a05bfce","status":"ativo","nome":"Forum IBET Reforma 2027","instituicao":"IBET","data_inicio":"2027-02-18","data_fim":"2027-02-19","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Presencial","tema_central":"Primeiros impactos do IBS — visão jurisprudencial","tipo_evento":"Fórum","duracao_horas":14,"publico_esperado":750,"aderencia_laratax":10,"presenca_decisores":"Alta","valor_inscricao":3600,"nivel_investimento":"Alto","palestrantes_renomados":"Paulo de Barros Carvalho, Roque Carrazza","tem_celebridade":"TRUE","score_relevancia":10,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":3,"networking_estimado":"Alto","justificativa_estrategica":"Evento de aderência 10/10 com público qualificado. Relevância técnica para posicionamento."},{"ID":"evt_c10df24cfc05","status":"ativo","nome":"ICMS Summit Anpac 2027","instituicao":"ANPAC","data_inicio":"2027-03-10","data_fim":"2027-03-11","local_cidade":"Fortaleza","local_estado":"CE","modalidade":"Presencial","tema_central":"ICMS no Nordeste — última transição","tipo_evento":"Summit","duracao_horas":12,"publico_esperado":320,"aderencia_laratax":7,"presenca_decisores":"Média","valor_inscricao":1100,"nivel_investimento":"Médio","score_relevancia":7,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":1,"networking_estimado":"Médio","justificativa_estrategica":"Evento de aderência 7/10 com público qualificado. Visibilidade de marca."},{"ID":"evt_aadbd7d63014","status":"ativo","nome":"XIII Congresso Brasileiro de Direito Tributário 2027","instituicao":"IBDT","data_inicio":"2027-05-11","data_fim":"2027-05-13","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Presencial","tema_central":"Reforma Tributária — primeiro ano de vigência","tipo_evento":"Congresso","duracao_horas":24,"publico_esperado":1300,"aderencia_laratax":10,"presenca_decisores":"Alta","valor_inscricao":4200,"nivel_investimento":"Alto","palestrantes_renomados":"Heleno Taveira Torres, Luís Eduardo Schoueri","tem_celebridade":"TRUE","score_relevancia":10,"score_categoria":"Tributarista","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":4,"networking_estimado":"Alto","justificativa_estrategica":"Evento de aderência 10/10 com público qualificado. Relevância técnica para posicionamento."},{"ID":"evt_1c6d054fc71b","status":"ativo","nome":"Brazil Tax Forum 2027","instituicao":"AMCHAM Brasil","data_inicio":"2027-06-03","data_fim":"2027-06-04","local_cidade":"São Paulo","local_estado":"SP","modalidade":"Presencial","tema_central":"Reforma na prática — multinacionais","tipo_evento":"Fórum","duracao_horas":16,"publico_esperado":650,"aderencia_laratax":9,"presenca_decisores":"Alta","valor_inscricao":4800,"nivel_investimento":"Premium","score_relevancia":9,"score_categoria":"Marca","vale_participar":"Sim","vale_palestrar":"Sim","vale_patrocinar":"Sim","recomendacao_participantes":2,"networking_estimado":"Alto","justificativa_estrategica":"Evento de aderência 9/10 com público qualificado. Visibilidade de marca."}],"stats":{"total":27,"altaRelevancia":19,"online":7,"proximos30":5},"filtros":{"estados":["BA","CE","DF","MG","PE","PR","RJ","RS","SC","SP"],"tipos":["Conferência","Congresso","Encontro","Fórum","Seminário","Simpósio","Summit","Webinar","Workshop"]}};
 const STORAGE_KEY = 'radar_lfy_status_v1';
+const STORAGE_SCORE = 'radar_lfy_score_v1';
+const STORAGE_MANUAL = 'radar_lfy_manual_v1';
 
 const F = {
   periodo: 0, estado: 'todos', modalidade: 'todos', tipo: 'todos',
@@ -848,6 +969,20 @@ let STATUS = loadStatus();
 function getStatus(id){return STATUS[id]||null}
 function setStatus(id,v){if(v===null)delete STATUS[id];else STATUS[id]=v;saveStatus(STATUS)}
 
+// Score override pelo gestor
+function loadScores(){try{const r=localStorage.getItem(STORAGE_SCORE);return r?JSON.parse(r):{}}catch(e){return{}}}
+function saveScores(o){try{localStorage.setItem(STORAGE_SCORE,JSON.stringify(o))}catch(e){}}
+let SCORES = loadScores();
+function getScoreOverride(id){const s=SCORES[id];return(typeof s==='number')?s:null}
+function setScoreOverride(id,v){if(v===null)delete SCORES[id];else SCORES[id]=v;saveScores(SCORES)}
+function effectiveScore(ev){const o=getScoreOverride(ev.ID);return o!==null?o:(parseInt(ev.score_relevancia)||0)}
+
+// Eventos manuais (cadastrados pelo gestor)
+function loadManual(){try{const r=localStorage.getItem(STORAGE_MANUAL);return r?JSON.parse(r):[]}catch(e){return[]}}
+function saveManual(a){try{localStorage.setItem(STORAGE_MANUAL,JSON.stringify(a))}catch(e){}}
+let MANUAL = loadManual();
+function allEvents(){return (DASH_DATA.eventos||[]).concat(MANUAL)}
+
 // Helpers
 const fmt=(n)=>Number(n||0).toLocaleString('pt-BR');
 const fmtBR=(n)=>'R$ '+Number(n||0).toLocaleString('pt-BR',{maximumFractionDigits:0});
@@ -866,6 +1001,7 @@ function filterEvents(events,opts){
     if(!ev||!ev.ID)return false;
     const status=getStatus(ev.ID);
     if(opts.dismissedOnly)return status==='descartado';
+    if(opts.approvedOnly)return status==='aprovado';
     if(status==='descartado')return false;
     if(!ev.data_inicio)return false;
     const dataEv=parseDate(ev.data_inicio);
@@ -881,7 +1017,7 @@ function filterEvents(events,opts){
     if(F.modalidade!=='todos'&&ev.modalidade!==F.modalidade)return false;
     if(F.tipo!=='todos'&&ev.tipo_evento!==F.tipo)return false;
     if(F.categoria!=='todos'&&ev.score_categoria!==F.categoria)return false;
-    if((parseInt(ev.score_relevancia)||0)<F.relevancia)return false;
+    if(effectiveScore(ev)<F.relevancia)return false;
     if((parseInt(ev.publico_esperado)||0)<F.publico)return false;
     if(F.investimento!=='todos'){
       const niv=ev.nivel_investimento||'';
@@ -903,7 +1039,7 @@ function filterEvents(events,opts){
 
 function sortEvents(events){
   const sorted=events.slice();
-  if(F.sort==='relevancia')sorted.sort((a,b)=>(parseInt(b.score_relevancia)||0)-(parseInt(a.score_relevancia)||0));
+  if(F.sort==='relevancia')sorted.sort((a,b)=>effectiveScore(b)-effectiveScore(a));
   else if(F.sort==='investimento')sorted.sort((a,b)=>(parseInt(a.valor_inscricao)||0)-(parseInt(b.valor_inscricao)||0));
   else if(F.sort==='publico')sorted.sort((a,b)=>(parseInt(b.publico_esperado)||0)-(parseInt(a.publico_esperado)||0));
   else sorted.sort((a,b)=>{const da=parseDate(a.data_inicio);const db=parseDate(b.data_inicio);if(!da)return 1;if(!db)return -1;return da-db});
@@ -928,6 +1064,65 @@ function showToast(msg,opts){
 function dismissEvent(id){setStatus(id,'descartado');render();showToast('Evento descartado',{action:{label:'Desfazer',fn:()=>restoreEvent(id)},duration:5000})}
 function restoreEvent(id){setStatus(id,null);render();showToast('Evento restaurado')}
 function toggleStarred(id){const c=getStatus(id);if(c==='destacado'){setStatus(id,null);showToast('Destaque removido')}else{setStatus(id,'destacado');showToast('Marcado como destaque')}render()}
+function approveEvent(id){const c=getStatus(id);if(c==='aprovado'){setStatus(id,null);showToast('Aprovação removida')}else{setStatus(id,'aprovado');showToast('✅ Evento aprovado')}render()}
+
+// Compartilhar
+function copyToClipboard(text){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).catch(()=>fallbackCopy(text))}
+  else fallbackCopy(text);
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy')}catch(e){}
+  document.body.removeChild(ta);
+}
+function shareEvent(id,kind){
+  const ev=allEvents().find(e=>String(e.ID)===String(id));
+  if(!ev)return;
+  const url=window.location.origin+window.location.pathname+'?evento='+encodeURIComponent(id);
+  if(kind==='whatsapp'){
+    const dataT=fmtDate(ev.data_inicio);
+    const local=(ev.local_cidade||'')+(ev.local_estado?', '+ev.local_estado:'');
+    const score=effectiveScore(ev);
+    const txt='🎯 *EVENTO LARATAX*\n*'+(ev.nome||'Evento')+'*\n📅 '+dataT+'\n📍 '+(local||'Local não informado')+'\n⭐ Relevância: '+score+'/10\n\n'+(ev.tema_central?ev.tema_central+'\n\n':'')+(ev.justificativa_estrategica?'_'+ev.justificativa_estrategica+'_\n\n':'')+'🔗 '+url;
+    copyToClipboard(txt);
+    showToast('📱 Texto WhatsApp copiado');
+  }else{
+    copyToClipboard(url);
+    showToast('🔗 Link copiado — cole no chat ou email');
+  }
+}
+
+// Score override
+function updateScoreFromSlider(id,value){
+  const ev=allEvents().find(e=>String(e.ID)===String(id));
+  if(!ev)return;
+  const original=parseInt(ev.score_relevancia)||0;
+  const newScore=parseInt(value);
+  if(newScore===original)setScoreOverride(id,null);
+  else setScoreOverride(id,newScore);
+  // Atualiza UI do modal sem fechar
+  const numEl=document.getElementById('mScoreNum');
+  const tagEl=document.getElementById('mScoreTag');
+  if(numEl){numEl.textContent=newScore+'/10';numEl.classList.toggle('edited',newScore!==original)}
+  if(tagEl){tagEl.style.display=(newScore!==original)?'inline-flex':'none'}
+}
+function resetScore(id){
+  setScoreOverride(id,null);
+  const ev=allEvents().find(e=>String(e.ID)===String(id));
+  if(!ev)return;
+  const original=parseInt(ev.score_relevancia)||0;
+  const sl=document.getElementById('mScoreSlider');
+  if(sl)sl.value=original;
+  const numEl=document.getElementById('mScoreNum');
+  const tagEl=document.getElementById('mScoreTag');
+  if(numEl){numEl.textContent=original+'/10';numEl.classList.remove('edited')}
+  if(tagEl)tagEl.style.display='none';
+  showToast('Score restaurado');
+  // Re-renderiza listas em background
+  setTimeout(render,300);
+}
 
 // Counter animation
 function animateCounter(el, target, duration){
@@ -983,17 +1178,23 @@ function renderEventCard(ev,opts,staggerIdx){
   if(dataFim&&dataFim.getTime()!==dataIni?.getTime())dataTxt+=' a '+fmtDate(ev.data_fim);
   const modCls=(ev.modalidade||'').toLowerCase().replace(/í/g,'i');
   const modIcon=modCls==='online'?'💻':modCls==='hibrido'?'🔀':'🏢';
-  const score=parseInt(ev.score_relevancia)||0;
+  const score=effectiveScore(ev);
+  const scoreOriginal=parseInt(ev.score_relevancia)||0;
+  const scoreEdited=getScoreOverride(ev.ID)!==null;
   const aderencia=parseInt(ev.aderencia_laratax)||0;
   const status=getStatus(ev.ID);
   const isStarred=status==='destacado';
+  const isApproved=status==='aprovado';
   const isDismissed=status==='descartado';
+  const isManual=String(ev.ID||'').startsWith('manual_');
   const cardClasses=['event-card','reveal'];
   let ribbonText='';
-  if(isDismissed){cardClasses.push('dismissed')}
+  if(isDismissed){cardClasses.push('dismissed');ribbonText='🗑️ DESCARTADO'}
   else if(opts.upcoming){cardClasses.push('upcoming');ribbonText='🔥 EM BREVE'}
+  else if(isApproved){cardClasses.push('approved');ribbonText='✅ APROVADO'}
   else if(isStarred){cardClasses.push('starred');ribbonText='⭐ DESTAQUE'}
   else if(opts.featured){cardClasses.push('featured');ribbonText='⭐ ALTA RELEVÂNCIA'}
+  else if(isManual){cardClasses.push('manual');ribbonText='📝 MANUAL'}
   const stagger = (staggerIdx !== undefined) ? Math.min(staggerIdx, 6) : 0;
   
   const tags=[];
@@ -1003,6 +1204,7 @@ function renderEventCard(ev,opts,staggerIdx){
   if(ev.networking_estimado==='Alto')tags.push({txt:'👥 Alto networking',cls:'purple'});
   if(ev.presenca_decisores==='Alta')tags.push({txt:'💼 C-Level',cls:'cyan'});
   if(ev.score_categoria==='Tributarista')tags.push({txt:'⚖️ Tributarista',cls:'orange'});
+  if(ev.score_categoria==='Comercial')tags.push({txt:'🎯 Comercial',cls:'green'});
   
   const palestrantesArr=(ev.palestrantes_renomados||'').split(',').map(s=>s.trim()).filter(s=>s).slice(0,3);
   const recomenda=parseInt(ev.recomendacao_participantes)||0;
@@ -1011,7 +1213,9 @@ function renderEventCard(ev,opts,staggerIdx){
   let actionsHtml='<div class="ec-actions">';
   if(isDismissed){actionsHtml+=`<button class="ec-action-btn restore" data-action="restore" data-event-id="${esc(ev.ID||'')}" title="Restaurar evento">↺</button>`}
   else{
+    actionsHtml+=`<button class="ec-action-btn approve ${isApproved?'active':''}" data-action="approve" data-event-id="${esc(ev.ID||'')}" title="${isApproved?'Remover aprovação':'Aprovar evento'}">✅</button>`;
     actionsHtml+=`<button class="ec-action-btn star ${isStarred?'active':''}" data-action="star" data-event-id="${esc(ev.ID||'')}" title="${isStarred?'Remover destaque':'Marcar como destaque'}">⭐</button>`;
+    actionsHtml+=`<button class="ec-action-btn share" data-action="share-link" data-event-id="${esc(ev.ID||'')}" title="Copiar link">🔗</button>`;
     actionsHtml+=`<button class="ec-action-btn dismiss" data-action="dismiss" data-event-id="${esc(ev.ID||'')}" title="Descartar evento">🗑️</button>`;
   }
   actionsHtml+='</div>';
@@ -1053,7 +1257,7 @@ function renderEventCard(ev,opts,staggerIdx){
         <div class="ec-score-row">
           <div class="ec-score-label">Relevância</div>
           <div class="ec-score-bar"><div class="ec-score-fill cyan" data-w="${score*10}"></div></div>
-          <div class="ec-score-val">${score}/10</div>
+          <div class="ec-score-val">${score}/10${scoreEdited?' <span class="ec-score-edited">✎</span>':''}</div>
         </div>
         <div class="ec-score-row">
           <div class="ec-score-label">Aderência</div>
@@ -1075,7 +1279,7 @@ function renderEventCard(ev,opts,staggerIdx){
 }
 
 function renderLista(){
-  const filtered=sortEvents(filterEvents(DASH_DATA.eventos));
+  const filtered=sortEvents(filterEvents(allEvents()));
   const hoje=new Date();hoje.setHours(0,0,0,0);
   const lim30=new Date(hoje);lim30.setDate(lim30.getDate()+30);
   const upcoming=filtered.filter(e=>{const d=parseDate(e.data_inicio);return d&&d>=hoje&&d<=lim30}).slice(0,6);
@@ -1083,8 +1287,8 @@ function renderLista(){
   const featured=filtered.filter(e=>{
     if(upcomingIds.has(e.ID))return false;
     const s=getStatus(e.ID);
-    if(s==='destacado')return true;
-    return (parseInt(e.score_relevancia)||0)>=8;
+    if(s==='destacado'||s==='aprovado')return true;
+    return effectiveScore(e)>=8;
   }).slice(0,6);
   const featuredIds=new Set(featured.map(e=>e.ID));
   const rest=filtered.filter(e=>!upcomingIds.has(e.ID)&&!featuredIds.has(e.ID));
@@ -1114,12 +1318,22 @@ function renderLista(){
 }
 
 function renderDescartados(){
-  const dismissed=(DASH_DATA.eventos||[]).filter(ev=>getStatus(ev.ID)==='descartado');
+  const dismissed=allEvents().filter(ev=>getStatus(ev.ID)==='descartado');
   const el=document.getElementById('descartadosGrid');
   if(!dismissed.length){
     el.innerHTML=`<div class="empty"><div class="empty-icon">🗑️</div><div class="empty-title">Nenhum evento descartado</div><div class="empty-text">Eventos que você marcar como descartados aparecerão aqui. Você pode restaurá-los a qualquer momento.</div></div>`;
   }else el.innerHTML=dismissed.map((ev,i)=>renderEventCard(ev,{},Math.min(i+1,6))).join('');
   document.getElementById('descartadosCount').textContent=dismissed.length+' evento'+(dismissed.length!==1?'s':'');
+  attachReveals();
+}
+
+function renderAprovados(){
+  const approved=sortEvents(allEvents().filter(ev=>getStatus(ev.ID)==='aprovado'));
+  const el=document.getElementById('approvedGrid');
+  if(!approved.length){
+    el.innerHTML=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-title">Nenhum evento aprovado ainda</div><div class="empty-text">Eventos que você marcar como aprovados aparecerão aqui — seu pipeline executivo de participação.</div></div>`;
+  }else el.innerHTML=approved.map((ev,i)=>renderEventCard(ev,{},Math.min(i+1,6))).join('');
+  document.getElementById('approvedCount').textContent=approved.length+' evento'+(approved.length!==1?'s':'');
   attachReveals();
 }
 
@@ -1132,7 +1346,7 @@ function renderCalendario(){
   const diaSemanaInicio=primeiroDia.getDay();
   const totalDias=ultimoDia.getDate();
   const hoje=new Date();hoje.setHours(0,0,0,0);
-  const eventos=filterEvents(DASH_DATA.eventos);
+  const eventos=filterEvents(allEvents());
   const eventosPorData={};
   eventos.forEach(ev=>{
     const ini=parseDate(ev.data_inicio);
@@ -1175,7 +1389,7 @@ function renderCalendario(){
 }
 
 function renderDashboard(){
-  const eventos=filterEvents(DASH_DATA.eventos);
+  const eventos=filterEvents(allEvents());
   const porMes={};
   eventos.forEach(ev=>{const d=parseDate(ev.data_inicio);if(!d)return;const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');porMes[k]=(porMes[k]||0)+1});
   const mesArr=Object.keys(porMes).sort().slice(0,12).map(k=>{const[y,m]=k.split('-');return{n:mesesAbrev[parseInt(m)-1]+'/'+y.slice(2),v:porMes[k]}});
@@ -1203,10 +1417,10 @@ function renderDashboard(){
   if(!instArr.length)instEl.innerHTML='<div class="empty"><span class="empty-icon">🏛️</span><span>Sem dados</span></div>';
   else instEl.innerHTML=instArr.map((item,i)=>{const pos=i+1;const medal=pos===1?'🥇':pos===2?'🥈':pos===3?'🥉':('#'+pos);return `<div class="dc-rank-item"><div class="dc-rank-pos ${pos<=3?'gold':''}">${medal}</div><div class="dc-rank-info"><div class="dc-rank-name">${esc(item.n)}</div><div class="dc-rank-meta">${item.v} evento${item.v>1?'s':''} · score médio ${item.avg}</div></div><div class="dc-rank-val">${item.v}</div></div>`}).join('');
   
-  const topEv=eventos.slice().sort((a,b)=>(parseInt(b.score_relevancia)||0)-(parseInt(a.score_relevancia)||0)).slice(0,10);
+  const topEv=eventos.slice().sort((a,b)=>effectiveScore(b)-effectiveScore(a)).slice(0,10);
   const topEl=document.getElementById('dashTopEventos');
   if(!topEv.length)topEl.innerHTML='<div class="empty"><span class="empty-icon">⭐</span><span>Sem eventos</span></div>';
-  else topEl.innerHTML=topEv.map((ev,i)=>{const pos=i+1;const medal=pos===1?'🥇':pos===2?'🥈':pos===3?'🥉':('#'+pos);const score=parseInt(ev.score_relevancia)||0;return `<div class="dc-rank-item" data-modal-event="${esc(ev.ID||'')}" style="cursor:pointer"><div class="dc-rank-pos ${pos<=3?'gold':''}">${medal}</div><div class="dc-rank-info"><div class="dc-rank-name">${esc(ev.nome||'—')}</div><div class="dc-rank-meta">${esc(ev.instituicao||'—')} · ${fmtDateShort(ev.data_inicio)} · ${esc(ev.local_cidade||'—')}</div></div><div class="dc-rank-val">⭐ ${score}/10</div></div>`}).join('');
+  else topEl.innerHTML=topEv.map((ev,i)=>{const pos=i+1;const medal=pos===1?'🥇':pos===2?'🥈':pos===3?'🥉':('#'+pos);const score=effectiveScore(ev);return `<div class="dc-rank-item" data-modal-event="${esc(ev.ID||'')}" style="cursor:pointer"><div class="dc-rank-pos ${pos<=3?'gold':''}">${medal}</div><div class="dc-rank-info"><div class="dc-rank-name">${esc(ev.nome||'—')}</div><div class="dc-rank-meta">${esc(ev.instituicao||'—')} · ${fmtDateShort(ev.data_inicio)} · ${esc(ev.local_cidade||'—')}</div></div><div class="dc-rank-val">⭐ ${score}/10</div></div>`}).join('');
 }
 
 function renderChart(id,data){
@@ -1228,12 +1442,12 @@ function renderBars(id,arr,color){
 // Hero stats com counter animation
 let heroAnimated = false;
 function renderHeroMini(){
-  const all=(DASH_DATA.eventos||[]).filter(e=>getStatus(e.ID)!=='descartado');
+  const all=allEvents().filter(e=>getStatus(e.ID)!=='descartado');
   const total=all.length;
   const hoje=new Date();hoje.setHours(0,0,0,0);
   const proximos30=new Date(hoje);proximos30.setDate(proximos30.getDate()+30);
   const prox30=all.filter(ev=>{const d=parseDate(ev.data_inicio);return d&&d>=hoje&&d<=proximos30}).length;
-  const altaRel=all.filter(ev=>(parseInt(ev.score_relevancia)||0)>=8).length;
+  const altaRel=all.filter(ev=>effectiveScore(ev)>=8).length;
   const remoto=all.filter(ev=>ev.modalidade==='Online'||ev.modalidade==='Híbrido').length;
   
   const wasFirst = !heroAnimated;
@@ -1255,14 +1469,16 @@ function renderHeroMini(){
 
 // Modal
 function openModal(eventId){
-  const ev=(DASH_DATA.eventos||[]).find(e=>String(e.ID)===String(eventId));
+  const ev=allEvents().find(e=>String(e.ID)===String(eventId));
   if(!ev)return;
   const dataIni=parseDate(ev.data_inicio);
   const dataFim=parseDate(ev.data_fim);
   let dataTxt=fmtDate(ev.data_inicio);
   if(dataFim&&dataFim.getTime()!==dataIni?.getTime())dataTxt+=' a '+fmtDate(ev.data_fim);
   const modCls=(ev.modalidade||'').toLowerCase().replace(/í/g,'i');
-  const score=parseInt(ev.score_relevancia)||0;
+  const score=effectiveScore(ev);
+  const scoreOriginal=parseInt(ev.score_relevancia)||0;
+  const scoreEdited=getScoreOverride(ev.ID)!==null;
   const aderencia=parseInt(ev.aderencia_laratax)||0;
   document.getElementById('modalHeader').innerHTML=`
     <div style="margin-bottom:10px"><span class="ec-modalidade ${modCls}">${esc(ev.modalidade||'—')}</span></div>
@@ -1278,8 +1494,21 @@ function openModal(eventId){
     <div class="ec-meta-item"><div class="ec-meta-l">🎯 Tipo</div><div class="ec-meta-v">${esc(ev.tipo_evento||'—')}</div><div class="ec-meta-s">${esc(ev.formato||'')}</div></div>
   </div>`;
   body+=`<div class="ec-scoring">
-    <div class="ec-score-row"><div class="ec-score-label">Relevância</div><div class="ec-score-bar"><div class="ec-score-fill cyan" style="width:${score*10}%"></div></div><div class="ec-score-val">${score}/10</div></div>
+    <div class="ec-score-row"><div class="ec-score-label">Relevância</div><div class="ec-score-bar"><div class="ec-score-fill cyan" style="width:${score*10}%"></div></div><div class="ec-score-val">${score}/10${scoreEdited?' <span class="ec-score-edited">✎</span>':''}</div></div>
     <div class="ec-score-row"><div class="ec-score-label">Aderência</div><div class="ec-score-bar"><div class="ec-score-fill green" style="width:${aderencia*10}%"></div></div><div class="ec-score-val">${aderencia}/10</div></div>
+  </div>`;
+  // Bloco de edição de score
+  body+=`<div class="score-edit-block">
+    <div class="score-edit-row">
+      <span class="score-edit-num ${scoreEdited?'edited':''}" id="mScoreNum">${score}/10</span>
+      <span class="score-edit-base">original ${scoreOriginal}/10 (Claude)</span>
+      <span class="score-edit-tag" id="mScoreTag" style="display:${scoreEdited?'inline-flex':'none'}">✎ Ajustado pelo gestor</span>
+    </div>
+    <input type="range" min="1" max="10" value="${score}" class="score-edit-slider" id="mScoreSlider" oninput="updateScoreFromSlider('${esc(ev.ID)}',this.value)">
+    <div class="score-edit-foot">
+      <span class="score-edit-tip">Arraste pra ajustar a relevância segundo seu critério executivo</span>
+      <button class="score-edit-reset" onclick="resetScore('${esc(ev.ID)}')">↺ Restaurar original</button>
+    </div>
   </div>`;
   if(ev.tema_central)body+=`<div><strong style="font-size:12px;color:var(--cyan-deep);text-transform:uppercase;letter-spacing:.14em;font-weight:800">Tema Central</strong><div style="margin-top:8px;font-size:15px;line-height:1.6">${esc(ev.tema_central)}</div></div>`;
   if(ev.subtemas)body+=`<div><strong style="font-size:12px;color:var(--cyan-deep);text-transform:uppercase;letter-spacing:.14em;font-weight:800">Subtemas</strong><div style="margin-top:8px;font-size:14px;line-height:1.65">${esc(ev.subtemas)}</div></div>`;
@@ -1287,6 +1516,11 @@ function openModal(eventId){
   if(palestrantesArr.length)body+=`<div class="ec-palestrantes" style="font-size:14px"><div class="ec-palestrantes-label">🎤 Palestrantes confirmados</div>${palestrantesArr.map(p=>`<div style="margin:4px 0">• ${esc(p)}</div>`).join('')}</div>`;
   if(ev.recomendacao_participantes||ev.perfis_ideais)body+=`<div style="background:var(--cyan-pale);border-radius:14px;padding:16px 18px;border:1px solid var(--border-cyan)"><div style="font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan-deep);margin-bottom:10px">📌 Recomendação LaraTAX</div>${ev.recomendacao_participantes?`<div style="font-size:15px;margin-bottom:6px"><strong>${ev.recomendacao_participantes} pessoa${ev.recomendacao_participantes>1?'s':''}</strong> recomendada${ev.recomendacao_participantes>1?'s':''}</div>`:''}${ev.perfis_ideais?`<div style="font-size:13px;color:var(--text2)">Perfis ideais: ${esc(ev.perfis_ideais)}</div>`:''}</div>`;
   if(ev.site_oficial)body+=`<a href="${esc(ev.site_oficial)}" target="_blank" rel="noopener" class="ec-cta" style="margin-top:8px;justify-content:center;width:100%">🌐 Acessar site oficial</a>`;
+  // Bloco compartilhar
+  body+=`<div class="share-block">
+    <button class="share-btn" data-action="share-link" data-event-id="${esc(ev.ID)}">🔗 Copiar link</button>
+    <button class="share-btn whatsapp" data-action="share-whatsapp" data-event-id="${esc(ev.ID)}">📱 Texto pro WhatsApp</button>
+  </div>`;
   document.getElementById('modalBody').innerHTML=body;
   document.getElementById('modalBg').classList.add('open');
 }
@@ -1296,13 +1530,18 @@ function render(){
   if(activeView==='lista')renderLista();
   else if(activeView==='calendario')renderCalendario();
   else if(activeView==='dashboard')renderDashboard();
+  else if(activeView==='aprovados')renderAprovados();
   else if(activeView==='descartados')renderDescartados();
+  // 'adicionar' não tem render — só formulário estático
   renderHeroMini();
   updateFilterCount();
-  const dismissed=(DASH_DATA.eventos||[]).filter(ev=>getStatus(ev.ID)==='descartado').length;
-  const badge=document.getElementById('dismissedBadge');
-  badge.textContent=dismissed;
-  badge.style.display=dismissed?'inline-block':'none';
+  const all=allEvents();
+  const dismissed=all.filter(ev=>getStatus(ev.ID)==='descartado').length;
+  const approved=all.filter(ev=>getStatus(ev.ID)==='aprovado').length;
+  const dBadge=document.getElementById('dismissedBadge');
+  dBadge.textContent=dismissed;dBadge.style.display=dismissed?'inline-block':'none';
+  const aBadge=document.getElementById('approvedBadge');
+  aBadge.textContent=approved;aBadge.style.display=approved?'inline-block':'none';
 }
 
 function updateFilterCount(){
@@ -1374,7 +1613,20 @@ function init(){
   
   document.addEventListener('click',e=>{
     const actionBtn=e.target.closest('.ec-action-btn');
-    if(actionBtn){e.preventDefault();e.stopPropagation();const a=actionBtn.dataset.action;const id=actionBtn.dataset.eventId;if(a==='star')toggleStarred(id);else if(a==='dismiss')dismissEvent(id);else if(a==='restore')restoreEvent(id);return}
+    if(actionBtn){e.preventDefault();e.stopPropagation();const a=actionBtn.dataset.action;const id=actionBtn.dataset.eventId;
+      if(a==='star')toggleStarred(id);
+      else if(a==='approve')approveEvent(id);
+      else if(a==='dismiss')dismissEvent(id);
+      else if(a==='restore')restoreEvent(id);
+      else if(a==='share-link')shareEvent(id,'link');
+      else if(a==='share-whatsapp')shareEvent(id,'whatsapp');
+      return}
+    // Botões share dentro do modal (não têm classe ec-action-btn)
+    const shareBtn=e.target.closest('.share-btn');
+    if(shareBtn){e.preventDefault();const a=shareBtn.dataset.action;const id=shareBtn.dataset.eventId;
+      if(a==='share-link')shareEvent(id,'link');
+      else if(a==='share-whatsapp')shareEvent(id,'whatsapp');
+      return}
     const viewTab=e.target.closest('.vs-tab');
     if(viewTab){setView(viewTab.dataset.view);return}
     const periodoBtn=e.target.closest('#fg-periodo .fp-btn');
@@ -1390,6 +1642,57 @@ function init(){
     const modalTrigger=e.target.closest('[data-modal-event]');
     if(modalTrigger){e.preventDefault();openModal(modalTrigger.dataset.modalEvent);return}
   });
+
+  // Form Adicionar Evento Manual
+  const form=document.getElementById('addEventForm');
+  if(form){
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      const nome=document.getElementById('af-nome').value.trim();
+      const dataInicio=document.getElementById('af-data-inicio').value;
+      if(!nome||!dataInicio){showToast('Preencha pelo menos Nome e Data de início');return}
+      const id='manual_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7);
+      const evento={
+        ID:id,
+        nome:nome,
+        instituicao:document.getElementById('af-instituicao').value.trim(),
+        tipo_evento:document.getElementById('af-tipo').value,
+        data_inicio:dataInicio,
+        data_fim:document.getElementById('af-data-fim').value||dataInicio,
+        local_cidade:document.getElementById('af-cidade').value.trim(),
+        local_estado:document.getElementById('af-estado').value.trim().toUpperCase(),
+        modalidade:document.getElementById('af-modalidade').value,
+        site_oficial:document.getElementById('af-site').value.trim(),
+        tema_central:document.getElementById('af-tema').value.trim(),
+        publico_esperado:parseInt(document.getElementById('af-publico-esperado').value)||0,
+        valor_inscricao:parseInt(document.getElementById('af-valor').value)||0,
+        score_categoria:document.getElementById('af-categoria').value,
+        score_relevancia:parseInt(document.getElementById('af-score').value)||7,
+        aderencia_laratax:parseInt(document.getElementById('af-score').value)||7,
+        palestrantes_renomados:document.getElementById('af-palestrantes').value.trim(),
+        justificativa_estrategica:document.getElementById('af-justificativa').value.trim(),
+        status:'ativo'
+      };
+      MANUAL.push(evento);
+      saveManual(MANUAL);
+      form.reset();
+      document.getElementById('af-score').value=7;
+      showToast('✅ Evento adicionado ao radar');
+      render();
+      // Volta pra Lista pra ver o evento criado
+      setTimeout(()=>setView('lista'),800);
+    });
+    document.getElementById('af-cancel').addEventListener('click',function(){
+      if(confirm('Limpar todos os campos do formulário?')){form.reset();document.getElementById('af-score').value=7}
+    });
+  }
+
+  // Abrir modal via querystring (?evento=evt_xxx)
+  try{
+    const params=new URLSearchParams(window.location.search);
+    const eventoQuery=params.get('evento');
+    if(eventoQuery)setTimeout(()=>openModal(eventoQuery),300);
+  }catch(e){}
   
   document.getElementById('navDate').textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
   document.getElementById('updateBadge').textContent=DASH_DATA.dataAtualizacao||'agora';
