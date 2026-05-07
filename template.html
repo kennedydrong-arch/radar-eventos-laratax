@@ -464,6 +464,56 @@ input,select,textarea{font-family:inherit}
 .toast-action{background:var(--cyan);color:var(--navy-deep);border:none;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;margin-left:8px;transition:background .2s}
 .toast-action:hover{background:var(--cyan-bright)}
 
+/* ━━━ APROVADOS, MANUAL, COMPARTILHAR, FORM, SCORE EDITOR ━━━ */
+.event-card.approved{border:2px solid var(--green);box-shadow:0 8px 24px rgba(0,200,83,0.2)}
+.event-card.approved .event-card-ribbon{background:var(--green);color:#fff}
+.event-card.manual{border-style:dashed}
+.event-card.manual .event-card-ribbon{background:var(--purple);color:#fff}
+.ec-action-btn.approve.active{background:var(--green);color:#fff;border-color:var(--green)}
+.ec-action-btn.share:hover{background:var(--cyan);color:var(--navy-deep);border-color:var(--cyan)}
+.event-card.upcoming .ec-action-btn.approve.active{background:var(--green);border-color:var(--green);color:#fff}
+.ec-score-edited{display:inline-block;font-size:9px;font-weight:800;background:rgba(232,168,56,0.18);color:var(--gold);padding:2px 6px;border-radius:6px;letter-spacing:.06em;text-transform:uppercase;margin-left:4px}
+
+/* Score editor (slider) — usado no modal */
+.score-edit-block{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:18px 22px;margin-top:12px}
+.score-edit-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score-edit-num{font-size:36px;font-weight:900;color:var(--cyan-deep);font-family:'JetBrains Mono',monospace;letter-spacing:-.04em;line-height:1}
+.score-edit-num.edited{color:var(--gold)}
+.score-edit-base{font-size:12px;color:var(--text3);font-weight:600}
+.score-edit-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;background:rgba(232,168,56,0.18);color:var(--gold);padding:4px 9px;border-radius:6px;letter-spacing:.08em;text-transform:uppercase;margin-left:auto}
+.score-edit-slider{-webkit-appearance:none;width:100%;height:8px;border-radius:4px;background:var(--bg-warm);outline:none;display:block;margin-bottom:10px}
+.score-edit-slider::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #fff;box-shadow:0 4px 12px rgba(232,168,56,0.4)}
+.score-edit-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #fff;box-shadow:0 4px 12px rgba(232,168,56,0.4)}
+.score-edit-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.score-edit-tip{font-size:11px;color:var(--text3);font-weight:500}
+.score-edit-reset{padding:6px 12px;background:transparent;border:1px solid var(--border);color:var(--text3);font-size:11px;font-weight:700;border-radius:7px;cursor:pointer;font-family:inherit;transition:all .2s}
+.score-edit-reset:hover{border-color:var(--red);color:var(--red)}
+
+/* Compartilhar — botões no modal */
+.share-block{display:flex;gap:8px;flex-wrap:wrap;padding-top:12px;margin-top:12px;border-top:1px solid var(--border)}
+.share-btn{padding:10px 16px;background:var(--card);border:1.5px solid var(--border);border-radius:11px;font-size:12px;font-weight:700;color:var(--text2);cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:7px;transition:all .2s}
+.share-btn:hover{border-color:var(--cyan);color:var(--cyan-deep);background:var(--cyan-pale)}
+.share-btn.whatsapp:hover{border-color:#25d366;color:#25d366;background:rgba(37,211,102,0.05)}
+
+/* Form Adicionar */
+.add-form{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:28px;box-shadow:var(--shadow-xs);max-width:880px;margin:0 auto}
+.af-info{background:var(--cyan-pale);border:1px solid var(--border-cyan);border-radius:12px;padding:12px 16px;font-size:13px;color:var(--cyan-deep);margin-bottom:22px;line-height:1.5}
+.af-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.af-field{display:flex;flex-direction:column;gap:6px}
+.af-field.full{grid-column:1/-1}
+.af-label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:6px}
+.af-label.required::after{content:'*';color:var(--red);font-weight:800}
+.af-input,.af-select,.af-textarea{padding:11px 14px;border:1.5px solid var(--border);border-radius:11px;font-size:14px;font-family:inherit;background:var(--bg);color:var(--text);transition:all .2s;outline:none;width:100%}
+.af-input:focus,.af-select:focus,.af-textarea:focus{border-color:var(--cyan);background:#fff;box-shadow:0 0 0 3px rgba(53,185,215,0.1)}
+.af-input::placeholder,.af-textarea::placeholder{color:var(--text3)}
+.af-textarea{resize:vertical;min-height:80px;line-height:1.5}
+.af-actions{display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:22px;border-top:1.5px solid var(--border);gap:12px;flex-wrap:wrap}
+.af-submit{padding:13px 24px;background:var(--cyan);color:var(--navy-deep);border:none;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .25s}
+.af-submit:hover{background:var(--cyan-bright);transform:translateY(-2px);box-shadow:0 6px 18px rgba(53,185,215,0.35)}
+.af-cancel{padding:13px 20px;background:transparent;color:var(--text2);border:1.5px solid var(--border);border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.af-cancel:hover{border-color:var(--red);color:var(--red)}
+@media(max-width:768px){.add-form{padding:20px}.af-grid{grid-template-columns:1fr}}
+
 /* ━━━ FOOTER ━━━ */
 .footer{background:var(--navy-darkest);padding:40px 32px;margin-top:64px}
 .fi{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
@@ -568,7 +618,9 @@ input,select,textarea{font-family:inherit}
 <button class="vs-tab active" data-view="lista"><span class="vs-tab-icon">📋</span> Lista</button>
 <button class="vs-tab" data-view="calendario"><span class="vs-tab-icon">📅</span> Calendário</button>
 <button class="vs-tab" data-view="dashboard"><span class="vs-tab-icon">📊</span> Análise</button>
+<button class="vs-tab" data-view="aprovados"><span class="vs-tab-icon">✅</span> Aprovados <span class="vs-tab-badge" id="approvedBadge" style="display:none">0</span></button>
 <button class="vs-tab" data-view="descartados"><span class="vs-tab-icon">🗑️</span> Descartados <span class="vs-tab-badge" id="dismissedBadge" style="display:none">0</span></button>
+<button class="vs-tab" data-view="adicionar"><span class="vs-tab-icon">➕</span> Adicionar</button>
 </div>
 <div class="vs-search">
 <span class="vs-search-icon">🔍</span>
@@ -781,6 +833,23 @@ input,select,textarea{font-family:inherit}
 
 </div>
 
+<!-- VIEW: APROVADOS -->
+<div class="view" id="view-aprovados">
+
+<div class="section">
+<div class="section-head">
+<div>
+<div class="section-eyebrow">Confirmados</div>
+<h2 class="section-title">Eventos <span class="txt-cyan">aprovados</span></h2>
+<p class="section-sub">Eventos que você decidiu participar, palestrar ou patrocinar — pipeline executivo</p>
+</div>
+<span class="section-meta" id="approvedCount">0 eventos</span>
+</div>
+<div class="events-grid cols-3" id="approvedGrid"></div>
+</div>
+
+</div>
+
 <!-- VIEW: DESCARTADOS -->
 <div class="view" id="view-descartados">
 
@@ -794,6 +863,56 @@ input,select,textarea{font-family:inherit}
 <span class="section-meta" id="descartadosCount">0 eventos</span>
 </div>
 <div class="events-grid cols-3" id="descartadosGrid"></div>
+</div>
+
+</div>
+
+<!-- VIEW: ADICIONAR -->
+<div class="view" id="view-adicionar">
+
+<div class="section">
+<div class="section-head">
+<div>
+<div class="section-eyebrow">Cadastro</div>
+<h2 class="section-title">Adicionar <span class="txt-cyan">evento manual</span></h2>
+<p class="section-sub">Cadastre eventos descobertos por outros canais — Instagram, indicações, networking</p>
+</div>
+</div>
+
+<div class="add-form">
+<div class="af-info">💾 Os eventos manuais ficam salvos no seu navegador. Aparecerão no Radar com o ribbon roxo "MANUAL".</div>
+
+<form id="addEventForm" autocomplete="off">
+<div class="af-grid">
+<div class="af-field full"><label class="af-label required">Nome do evento</label><input class="af-input" type="text" id="af-nome" required placeholder="Ex.: Mansão Tributária V"></div>
+<div class="af-field"><label class="af-label">Instituição / Organizador</label><input class="af-input" type="text" id="af-instituicao" placeholder="Ex.: Sigrid Kersting"></div>
+<div class="af-field"><label class="af-label">Tipo</label>
+<select class="af-select" id="af-tipo">
+<option value="">—</option><option>Imersão</option><option>Workshop</option><option>Congresso</option><option>Seminário</option><option>Webinar</option><option>Encontro</option><option>Fórum</option><option>Summit</option><option>Conferência</option><option>Mentoria</option>
+</select></div>
+<div class="af-field"><label class="af-label required">Data início</label><input class="af-input" type="date" id="af-data-inicio" required></div>
+<div class="af-field"><label class="af-label">Data fim</label><input class="af-input" type="date" id="af-data-fim"></div>
+<div class="af-field"><label class="af-label">Cidade</label><input class="af-input" type="text" id="af-cidade" placeholder="Ex.: São Paulo"></div>
+<div class="af-field"><label class="af-label">UF</label><input class="af-input" type="text" id="af-estado" placeholder="SP" maxlength="2"></div>
+<div class="af-field"><label class="af-label">Modalidade</label>
+<select class="af-select" id="af-modalidade"><option>Presencial</option><option>Online</option><option>Híbrido</option></select></div>
+<div class="af-field"><label class="af-label">Site oficial</label><input class="af-input" type="url" id="af-site" placeholder="https://..."></div>
+<div class="af-field full"><label class="af-label">Tema central</label><input class="af-input" type="text" id="af-tema" placeholder="Ex.: Recuperação de créditos pós-Reforma"></div>
+<div class="af-field"><label class="af-label">Público esperado</label><input class="af-input" type="number" id="af-publico-esperado" min="0" placeholder="150"></div>
+<div class="af-field"><label class="af-label">Valor inscrição (R$)</label><input class="af-input" type="number" id="af-valor" min="0" placeholder="3500"></div>
+<div class="af-field"><label class="af-label">Categoria</label>
+<select class="af-select" id="af-categoria">
+<option value="">—</option><option>Tributarista</option><option>Comercial</option><option>Marca</option><option>Misto</option>
+</select></div>
+<div class="af-field"><label class="af-label">Score relevância (1-10)</label><input class="af-input" type="number" id="af-score" min="1" max="10" value="7"></div>
+<div class="af-field full"><label class="af-label">Palestrantes (separados por vírgula)</label><input class="af-input" type="text" id="af-palestrantes" placeholder="Ex.: Sigrid Kersting, João Silva"></div>
+<div class="af-field full"><label class="af-label">Justificativa estratégica</label><textarea class="af-textarea" id="af-justificativa" placeholder="Por que esse evento importa pra LaraTAX?"></textarea></div>
+</div>
+<div class="af-actions">
+<button type="button" class="af-cancel" id="af-cancel">Limpar</button>
+<button type="submit" class="af-submit">💾 Salvar evento</button>
+</div>
+</form>
 </div>
 
 </div>
@@ -824,9 +943,11 @@ input,select,textarea{font-family:inherit}
 </div>
 
 <script>
-// RADAR DE EVENTOS LARATAX · v5 — visual LaraTAX limpo
+// RADAR DE EVENTOS LARATAX · v6 — visual LaraTAX + aprovados/share/score-edit/manual
 const DASH_DATA = __DASH_DATA__;
 const STORAGE_KEY = 'radar_lfy_status_v1';
+const STORAGE_SCORE = 'radar_lfy_score_v1';
+const STORAGE_MANUAL = 'radar_lfy_manual_v1';
 
 const F = {
   periodo: 0, estado: 'todos', modalidade: 'todos', tipo: 'todos',
@@ -848,6 +969,20 @@ let STATUS = loadStatus();
 function getStatus(id){return STATUS[id]||null}
 function setStatus(id,v){if(v===null)delete STATUS[id];else STATUS[id]=v;saveStatus(STATUS)}
 
+// Score override pelo gestor
+function loadScores(){try{const r=localStorage.getItem(STORAGE_SCORE);return r?JSON.parse(r):{}}catch(e){return{}}}
+function saveScores(o){try{localStorage.setItem(STORAGE_SCORE,JSON.stringify(o))}catch(e){}}
+let SCORES = loadScores();
+function getScoreOverride(id){const s=SCORES[id];return(typeof s==='number')?s:null}
+function setScoreOverride(id,v){if(v===null)delete SCORES[id];else SCORES[id]=v;saveScores(SCORES)}
+function effectiveScore(ev){const o=getScoreOverride(ev.ID);return o!==null?o:(parseInt(ev.score_relevancia)||0)}
+
+// Eventos manuais (cadastrados pelo gestor)
+function loadManual(){try{const r=localStorage.getItem(STORAGE_MANUAL);return r?JSON.parse(r):[]}catch(e){return[]}}
+function saveManual(a){try{localStorage.setItem(STORAGE_MANUAL,JSON.stringify(a))}catch(e){}}
+let MANUAL = loadManual();
+function allEvents(){return (DASH_DATA.eventos||[]).concat(MANUAL)}
+
 // Helpers
 const fmt=(n)=>Number(n||0).toLocaleString('pt-BR');
 const fmtBR=(n)=>'R$ '+Number(n||0).toLocaleString('pt-BR',{maximumFractionDigits:0});
@@ -866,6 +1001,7 @@ function filterEvents(events,opts){
     if(!ev||!ev.ID)return false;
     const status=getStatus(ev.ID);
     if(opts.dismissedOnly)return status==='descartado';
+    if(opts.approvedOnly)return status==='aprovado';
     if(status==='descartado')return false;
     if(!ev.data_inicio)return false;
     const dataEv=parseDate(ev.data_inicio);
@@ -881,7 +1017,7 @@ function filterEvents(events,opts){
     if(F.modalidade!=='todos'&&ev.modalidade!==F.modalidade)return false;
     if(F.tipo!=='todos'&&ev.tipo_evento!==F.tipo)return false;
     if(F.categoria!=='todos'&&ev.score_categoria!==F.categoria)return false;
-    if((parseInt(ev.score_relevancia)||0)<F.relevancia)return false;
+    if(effectiveScore(ev)<F.relevancia)return false;
     if((parseInt(ev.publico_esperado)||0)<F.publico)return false;
     if(F.investimento!=='todos'){
       const niv=ev.nivel_investimento||'';
@@ -903,7 +1039,7 @@ function filterEvents(events,opts){
 
 function sortEvents(events){
   const sorted=events.slice();
-  if(F.sort==='relevancia')sorted.sort((a,b)=>(parseInt(b.score_relevancia)||0)-(parseInt(a.score_relevancia)||0));
+  if(F.sort==='relevancia')sorted.sort((a,b)=>effectiveScore(b)-effectiveScore(a));
   else if(F.sort==='investimento')sorted.sort((a,b)=>(parseInt(a.valor_inscricao)||0)-(parseInt(b.valor_inscricao)||0));
   else if(F.sort==='publico')sorted.sort((a,b)=>(parseInt(b.publico_esperado)||0)-(parseInt(a.publico_esperado)||0));
   else sorted.sort((a,b)=>{const da=parseDate(a.data_inicio);const db=parseDate(b.data_inicio);if(!da)return 1;if(!db)return -1;return da-db});
@@ -928,6 +1064,65 @@ function showToast(msg,opts){
 function dismissEvent(id){setStatus(id,'descartado');render();showToast('Evento descartado',{action:{label:'Desfazer',fn:()=>restoreEvent(id)},duration:5000})}
 function restoreEvent(id){setStatus(id,null);render();showToast('Evento restaurado')}
 function toggleStarred(id){const c=getStatus(id);if(c==='destacado'){setStatus(id,null);showToast('Destaque removido')}else{setStatus(id,'destacado');showToast('Marcado como destaque')}render()}
+function approveEvent(id){const c=getStatus(id);if(c==='aprovado'){setStatus(id,null);showToast('Aprovação removida')}else{setStatus(id,'aprovado');showToast('✅ Evento aprovado')}render()}
+
+// Compartilhar
+function copyToClipboard(text){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).catch(()=>fallbackCopy(text))}
+  else fallbackCopy(text);
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy')}catch(e){}
+  document.body.removeChild(ta);
+}
+function shareEvent(id,kind){
+  const ev=allEvents().find(e=>String(e.ID)===String(id));
+  if(!ev)return;
+  const url=window.location.origin+window.location.pathname+'?evento='+encodeURIComponent(id);
+  if(kind==='whatsapp'){
+    const dataT=fmtDate(ev.data_inicio);
+    const local=(ev.local_cidade||'')+(ev.local_estado?', '+ev.local_estado:'');
+    const score=effectiveScore(ev);
+    const txt='🎯 *EVENTO LARATAX*\n*'+(ev.nome||'Evento')+'*\n📅 '+dataT+'\n📍 '+(local||'Local não informado')+'\n⭐ Relevância: '+score+'/10\n\n'+(ev.tema_central?ev.tema_central+'\n\n':'')+(ev.justificativa_estrategica?'_'+ev.justificativa_estrategica+'_\n\n':'')+'🔗 '+url;
+    copyToClipboard(txt);
+    showToast('📱 Texto WhatsApp copiado');
+  }else{
+    copyToClipboard(url);
+    showToast('🔗 Link copiado — cole no chat ou email');
+  }
+}
+
+// Score override
+function updateScoreFromSlider(id,value){
+  const ev=allEvents().find(e=>String(e.ID)===String(id));
+  if(!ev)return;
+  const original=parseInt(ev.score_relevancia)||0;
+  const newScore=parseInt(value);
+  if(newScore===original)setScoreOverride(id,null);
+  else setScoreOverride(id,newScore);
+  // Atualiza UI do modal sem fechar
+  const numEl=document.getElementById('mScoreNum');
+  const tagEl=document.getElementById('mScoreTag');
+  if(numEl){numEl.textContent=newScore+'/10';numEl.classList.toggle('edited',newScore!==original)}
+  if(tagEl){tagEl.style.display=(newScore!==original)?'inline-flex':'none'}
+}
+function resetScore(id){
+  setScoreOverride(id,null);
+  const ev=allEvents().find(e=>String(e.ID)===String(id));
+  if(!ev)return;
+  const original=parseInt(ev.score_relevancia)||0;
+  const sl=document.getElementById('mScoreSlider');
+  if(sl)sl.value=original;
+  const numEl=document.getElementById('mScoreNum');
+  const tagEl=document.getElementById('mScoreTag');
+  if(numEl){numEl.textContent=original+'/10';numEl.classList.remove('edited')}
+  if(tagEl)tagEl.style.display='none';
+  showToast('Score restaurado');
+  // Re-renderiza listas em background
+  setTimeout(render,300);
+}
 
 // Counter animation
 function animateCounter(el, target, duration){
@@ -983,17 +1178,23 @@ function renderEventCard(ev,opts,staggerIdx){
   if(dataFim&&dataFim.getTime()!==dataIni?.getTime())dataTxt+=' a '+fmtDate(ev.data_fim);
   const modCls=(ev.modalidade||'').toLowerCase().replace(/í/g,'i');
   const modIcon=modCls==='online'?'💻':modCls==='hibrido'?'🔀':'🏢';
-  const score=parseInt(ev.score_relevancia)||0;
+  const score=effectiveScore(ev);
+  const scoreOriginal=parseInt(ev.score_relevancia)||0;
+  const scoreEdited=getScoreOverride(ev.ID)!==null;
   const aderencia=parseInt(ev.aderencia_laratax)||0;
   const status=getStatus(ev.ID);
   const isStarred=status==='destacado';
+  const isApproved=status==='aprovado';
   const isDismissed=status==='descartado';
+  const isManual=String(ev.ID||'').startsWith('manual_');
   const cardClasses=['event-card','reveal'];
   let ribbonText='';
-  if(isDismissed){cardClasses.push('dismissed')}
+  if(isDismissed){cardClasses.push('dismissed');ribbonText='🗑️ DESCARTADO'}
   else if(opts.upcoming){cardClasses.push('upcoming');ribbonText='🔥 EM BREVE'}
+  else if(isApproved){cardClasses.push('approved');ribbonText='✅ APROVADO'}
   else if(isStarred){cardClasses.push('starred');ribbonText='⭐ DESTAQUE'}
   else if(opts.featured){cardClasses.push('featured');ribbonText='⭐ ALTA RELEVÂNCIA'}
+  else if(isManual){cardClasses.push('manual');ribbonText='📝 MANUAL'}
   const stagger = (staggerIdx !== undefined) ? Math.min(staggerIdx, 6) : 0;
   
   const tags=[];
@@ -1003,6 +1204,7 @@ function renderEventCard(ev,opts,staggerIdx){
   if(ev.networking_estimado==='Alto')tags.push({txt:'👥 Alto networking',cls:'purple'});
   if(ev.presenca_decisores==='Alta')tags.push({txt:'💼 C-Level',cls:'cyan'});
   if(ev.score_categoria==='Tributarista')tags.push({txt:'⚖️ Tributarista',cls:'orange'});
+  if(ev.score_categoria==='Comercial')tags.push({txt:'🎯 Comercial',cls:'green'});
   
   const palestrantesArr=(ev.palestrantes_renomados||'').split(',').map(s=>s.trim()).filter(s=>s).slice(0,3);
   const recomenda=parseInt(ev.recomendacao_participantes)||0;
@@ -1011,7 +1213,9 @@ function renderEventCard(ev,opts,staggerIdx){
   let actionsHtml='<div class="ec-actions">';
   if(isDismissed){actionsHtml+=`<button class="ec-action-btn restore" data-action="restore" data-event-id="${esc(ev.ID||'')}" title="Restaurar evento">↺</button>`}
   else{
+    actionsHtml+=`<button class="ec-action-btn approve ${isApproved?'active':''}" data-action="approve" data-event-id="${esc(ev.ID||'')}" title="${isApproved?'Remover aprovação':'Aprovar evento'}">✅</button>`;
     actionsHtml+=`<button class="ec-action-btn star ${isStarred?'active':''}" data-action="star" data-event-id="${esc(ev.ID||'')}" title="${isStarred?'Remover destaque':'Marcar como destaque'}">⭐</button>`;
+    actionsHtml+=`<button class="ec-action-btn share" data-action="share-link" data-event-id="${esc(ev.ID||'')}" title="Copiar link">🔗</button>`;
     actionsHtml+=`<button class="ec-action-btn dismiss" data-action="dismiss" data-event-id="${esc(ev.ID||'')}" title="Descartar evento">🗑️</button>`;
   }
   actionsHtml+='</div>';
@@ -1053,7 +1257,7 @@ function renderEventCard(ev,opts,staggerIdx){
         <div class="ec-score-row">
           <div class="ec-score-label">Relevância</div>
           <div class="ec-score-bar"><div class="ec-score-fill cyan" data-w="${score*10}"></div></div>
-          <div class="ec-score-val">${score}/10</div>
+          <div class="ec-score-val">${score}/10${scoreEdited?' <span class="ec-score-edited">✎</span>':''}</div>
         </div>
         <div class="ec-score-row">
           <div class="ec-score-label">Aderência</div>
@@ -1075,7 +1279,7 @@ function renderEventCard(ev,opts,staggerIdx){
 }
 
 function renderLista(){
-  const filtered=sortEvents(filterEvents(DASH_DATA.eventos));
+  const filtered=sortEvents(filterEvents(allEvents()));
   const hoje=new Date();hoje.setHours(0,0,0,0);
   const lim30=new Date(hoje);lim30.setDate(lim30.getDate()+30);
   const upcoming=filtered.filter(e=>{const d=parseDate(e.data_inicio);return d&&d>=hoje&&d<=lim30}).slice(0,6);
@@ -1083,8 +1287,8 @@ function renderLista(){
   const featured=filtered.filter(e=>{
     if(upcomingIds.has(e.ID))return false;
     const s=getStatus(e.ID);
-    if(s==='destacado')return true;
-    return (parseInt(e.score_relevancia)||0)>=8;
+    if(s==='destacado'||s==='aprovado')return true;
+    return effectiveScore(e)>=8;
   }).slice(0,6);
   const featuredIds=new Set(featured.map(e=>e.ID));
   const rest=filtered.filter(e=>!upcomingIds.has(e.ID)&&!featuredIds.has(e.ID));
@@ -1114,12 +1318,22 @@ function renderLista(){
 }
 
 function renderDescartados(){
-  const dismissed=(DASH_DATA.eventos||[]).filter(ev=>getStatus(ev.ID)==='descartado');
+  const dismissed=allEvents().filter(ev=>getStatus(ev.ID)==='descartado');
   const el=document.getElementById('descartadosGrid');
   if(!dismissed.length){
     el.innerHTML=`<div class="empty"><div class="empty-icon">🗑️</div><div class="empty-title">Nenhum evento descartado</div><div class="empty-text">Eventos que você marcar como descartados aparecerão aqui. Você pode restaurá-los a qualquer momento.</div></div>`;
   }else el.innerHTML=dismissed.map((ev,i)=>renderEventCard(ev,{},Math.min(i+1,6))).join('');
   document.getElementById('descartadosCount').textContent=dismissed.length+' evento'+(dismissed.length!==1?'s':'');
+  attachReveals();
+}
+
+function renderAprovados(){
+  const approved=sortEvents(allEvents().filter(ev=>getStatus(ev.ID)==='aprovado'));
+  const el=document.getElementById('approvedGrid');
+  if(!approved.length){
+    el.innerHTML=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-title">Nenhum evento aprovado ainda</div><div class="empty-text">Eventos que você marcar como aprovados aparecerão aqui — seu pipeline executivo de participação.</div></div>`;
+  }else el.innerHTML=approved.map((ev,i)=>renderEventCard(ev,{},Math.min(i+1,6))).join('');
+  document.getElementById('approvedCount').textContent=approved.length+' evento'+(approved.length!==1?'s':'');
   attachReveals();
 }
 
@@ -1132,7 +1346,7 @@ function renderCalendario(){
   const diaSemanaInicio=primeiroDia.getDay();
   const totalDias=ultimoDia.getDate();
   const hoje=new Date();hoje.setHours(0,0,0,0);
-  const eventos=filterEvents(DASH_DATA.eventos);
+  const eventos=filterEvents(allEvents());
   const eventosPorData={};
   eventos.forEach(ev=>{
     const ini=parseDate(ev.data_inicio);
@@ -1175,7 +1389,7 @@ function renderCalendario(){
 }
 
 function renderDashboard(){
-  const eventos=filterEvents(DASH_DATA.eventos);
+  const eventos=filterEvents(allEvents());
   const porMes={};
   eventos.forEach(ev=>{const d=parseDate(ev.data_inicio);if(!d)return;const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');porMes[k]=(porMes[k]||0)+1});
   const mesArr=Object.keys(porMes).sort().slice(0,12).map(k=>{const[y,m]=k.split('-');return{n:mesesAbrev[parseInt(m)-1]+'/'+y.slice(2),v:porMes[k]}});
@@ -1203,10 +1417,10 @@ function renderDashboard(){
   if(!instArr.length)instEl.innerHTML='<div class="empty"><span class="empty-icon">🏛️</span><span>Sem dados</span></div>';
   else instEl.innerHTML=instArr.map((item,i)=>{const pos=i+1;const medal=pos===1?'🥇':pos===2?'🥈':pos===3?'🥉':('#'+pos);return `<div class="dc-rank-item"><div class="dc-rank-pos ${pos<=3?'gold':''}">${medal}</div><div class="dc-rank-info"><div class="dc-rank-name">${esc(item.n)}</div><div class="dc-rank-meta">${item.v} evento${item.v>1?'s':''} · score médio ${item.avg}</div></div><div class="dc-rank-val">${item.v}</div></div>`}).join('');
   
-  const topEv=eventos.slice().sort((a,b)=>(parseInt(b.score_relevancia)||0)-(parseInt(a.score_relevancia)||0)).slice(0,10);
+  const topEv=eventos.slice().sort((a,b)=>effectiveScore(b)-effectiveScore(a)).slice(0,10);
   const topEl=document.getElementById('dashTopEventos');
   if(!topEv.length)topEl.innerHTML='<div class="empty"><span class="empty-icon">⭐</span><span>Sem eventos</span></div>';
-  else topEl.innerHTML=topEv.map((ev,i)=>{const pos=i+1;const medal=pos===1?'🥇':pos===2?'🥈':pos===3?'🥉':('#'+pos);const score=parseInt(ev.score_relevancia)||0;return `<div class="dc-rank-item" data-modal-event="${esc(ev.ID||'')}" style="cursor:pointer"><div class="dc-rank-pos ${pos<=3?'gold':''}">${medal}</div><div class="dc-rank-info"><div class="dc-rank-name">${esc(ev.nome||'—')}</div><div class="dc-rank-meta">${esc(ev.instituicao||'—')} · ${fmtDateShort(ev.data_inicio)} · ${esc(ev.local_cidade||'—')}</div></div><div class="dc-rank-val">⭐ ${score}/10</div></div>`}).join('');
+  else topEl.innerHTML=topEv.map((ev,i)=>{const pos=i+1;const medal=pos===1?'🥇':pos===2?'🥈':pos===3?'🥉':('#'+pos);const score=effectiveScore(ev);return `<div class="dc-rank-item" data-modal-event="${esc(ev.ID||'')}" style="cursor:pointer"><div class="dc-rank-pos ${pos<=3?'gold':''}">${medal}</div><div class="dc-rank-info"><div class="dc-rank-name">${esc(ev.nome||'—')}</div><div class="dc-rank-meta">${esc(ev.instituicao||'—')} · ${fmtDateShort(ev.data_inicio)} · ${esc(ev.local_cidade||'—')}</div></div><div class="dc-rank-val">⭐ ${score}/10</div></div>`}).join('');
 }
 
 function renderChart(id,data){
@@ -1228,12 +1442,12 @@ function renderBars(id,arr,color){
 // Hero stats com counter animation
 let heroAnimated = false;
 function renderHeroMini(){
-  const all=(DASH_DATA.eventos||[]).filter(e=>getStatus(e.ID)!=='descartado');
+  const all=allEvents().filter(e=>getStatus(e.ID)!=='descartado');
   const total=all.length;
   const hoje=new Date();hoje.setHours(0,0,0,0);
   const proximos30=new Date(hoje);proximos30.setDate(proximos30.getDate()+30);
   const prox30=all.filter(ev=>{const d=parseDate(ev.data_inicio);return d&&d>=hoje&&d<=proximos30}).length;
-  const altaRel=all.filter(ev=>(parseInt(ev.score_relevancia)||0)>=8).length;
+  const altaRel=all.filter(ev=>effectiveScore(ev)>=8).length;
   const remoto=all.filter(ev=>ev.modalidade==='Online'||ev.modalidade==='Híbrido').length;
   
   const wasFirst = !heroAnimated;
@@ -1255,14 +1469,16 @@ function renderHeroMini(){
 
 // Modal
 function openModal(eventId){
-  const ev=(DASH_DATA.eventos||[]).find(e=>String(e.ID)===String(eventId));
+  const ev=allEvents().find(e=>String(e.ID)===String(eventId));
   if(!ev)return;
   const dataIni=parseDate(ev.data_inicio);
   const dataFim=parseDate(ev.data_fim);
   let dataTxt=fmtDate(ev.data_inicio);
   if(dataFim&&dataFim.getTime()!==dataIni?.getTime())dataTxt+=' a '+fmtDate(ev.data_fim);
   const modCls=(ev.modalidade||'').toLowerCase().replace(/í/g,'i');
-  const score=parseInt(ev.score_relevancia)||0;
+  const score=effectiveScore(ev);
+  const scoreOriginal=parseInt(ev.score_relevancia)||0;
+  const scoreEdited=getScoreOverride(ev.ID)!==null;
   const aderencia=parseInt(ev.aderencia_laratax)||0;
   document.getElementById('modalHeader').innerHTML=`
     <div style="margin-bottom:10px"><span class="ec-modalidade ${modCls}">${esc(ev.modalidade||'—')}</span></div>
@@ -1278,8 +1494,21 @@ function openModal(eventId){
     <div class="ec-meta-item"><div class="ec-meta-l">🎯 Tipo</div><div class="ec-meta-v">${esc(ev.tipo_evento||'—')}</div><div class="ec-meta-s">${esc(ev.formato||'')}</div></div>
   </div>`;
   body+=`<div class="ec-scoring">
-    <div class="ec-score-row"><div class="ec-score-label">Relevância</div><div class="ec-score-bar"><div class="ec-score-fill cyan" style="width:${score*10}%"></div></div><div class="ec-score-val">${score}/10</div></div>
+    <div class="ec-score-row"><div class="ec-score-label">Relevância</div><div class="ec-score-bar"><div class="ec-score-fill cyan" style="width:${score*10}%"></div></div><div class="ec-score-val">${score}/10${scoreEdited?' <span class="ec-score-edited">✎</span>':''}</div></div>
     <div class="ec-score-row"><div class="ec-score-label">Aderência</div><div class="ec-score-bar"><div class="ec-score-fill green" style="width:${aderencia*10}%"></div></div><div class="ec-score-val">${aderencia}/10</div></div>
+  </div>`;
+  // Bloco de edição de score
+  body+=`<div class="score-edit-block">
+    <div class="score-edit-row">
+      <span class="score-edit-num ${scoreEdited?'edited':''}" id="mScoreNum">${score}/10</span>
+      <span class="score-edit-base">original ${scoreOriginal}/10 (Claude)</span>
+      <span class="score-edit-tag" id="mScoreTag" style="display:${scoreEdited?'inline-flex':'none'}">✎ Ajustado pelo gestor</span>
+    </div>
+    <input type="range" min="1" max="10" value="${score}" class="score-edit-slider" id="mScoreSlider" oninput="updateScoreFromSlider('${esc(ev.ID)}',this.value)">
+    <div class="score-edit-foot">
+      <span class="score-edit-tip">Arraste pra ajustar a relevância segundo seu critério executivo</span>
+      <button class="score-edit-reset" onclick="resetScore('${esc(ev.ID)}')">↺ Restaurar original</button>
+    </div>
   </div>`;
   if(ev.tema_central)body+=`<div><strong style="font-size:12px;color:var(--cyan-deep);text-transform:uppercase;letter-spacing:.14em;font-weight:800">Tema Central</strong><div style="margin-top:8px;font-size:15px;line-height:1.6">${esc(ev.tema_central)}</div></div>`;
   if(ev.subtemas)body+=`<div><strong style="font-size:12px;color:var(--cyan-deep);text-transform:uppercase;letter-spacing:.14em;font-weight:800">Subtemas</strong><div style="margin-top:8px;font-size:14px;line-height:1.65">${esc(ev.subtemas)}</div></div>`;
@@ -1287,6 +1516,11 @@ function openModal(eventId){
   if(palestrantesArr.length)body+=`<div class="ec-palestrantes" style="font-size:14px"><div class="ec-palestrantes-label">🎤 Palestrantes confirmados</div>${palestrantesArr.map(p=>`<div style="margin:4px 0">• ${esc(p)}</div>`).join('')}</div>`;
   if(ev.recomendacao_participantes||ev.perfis_ideais)body+=`<div style="background:var(--cyan-pale);border-radius:14px;padding:16px 18px;border:1px solid var(--border-cyan)"><div style="font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan-deep);margin-bottom:10px">📌 Recomendação LaraTAX</div>${ev.recomendacao_participantes?`<div style="font-size:15px;margin-bottom:6px"><strong>${ev.recomendacao_participantes} pessoa${ev.recomendacao_participantes>1?'s':''}</strong> recomendada${ev.recomendacao_participantes>1?'s':''}</div>`:''}${ev.perfis_ideais?`<div style="font-size:13px;color:var(--text2)">Perfis ideais: ${esc(ev.perfis_ideais)}</div>`:''}</div>`;
   if(ev.site_oficial)body+=`<a href="${esc(ev.site_oficial)}" target="_blank" rel="noopener" class="ec-cta" style="margin-top:8px;justify-content:center;width:100%">🌐 Acessar site oficial</a>`;
+  // Bloco compartilhar
+  body+=`<div class="share-block">
+    <button class="share-btn" data-action="share-link" data-event-id="${esc(ev.ID)}">🔗 Copiar link</button>
+    <button class="share-btn whatsapp" data-action="share-whatsapp" data-event-id="${esc(ev.ID)}">📱 Texto pro WhatsApp</button>
+  </div>`;
   document.getElementById('modalBody').innerHTML=body;
   document.getElementById('modalBg').classList.add('open');
 }
@@ -1296,13 +1530,18 @@ function render(){
   if(activeView==='lista')renderLista();
   else if(activeView==='calendario')renderCalendario();
   else if(activeView==='dashboard')renderDashboard();
+  else if(activeView==='aprovados')renderAprovados();
   else if(activeView==='descartados')renderDescartados();
+  // 'adicionar' não tem render — só formulário estático
   renderHeroMini();
   updateFilterCount();
-  const dismissed=(DASH_DATA.eventos||[]).filter(ev=>getStatus(ev.ID)==='descartado').length;
-  const badge=document.getElementById('dismissedBadge');
-  badge.textContent=dismissed;
-  badge.style.display=dismissed?'inline-block':'none';
+  const all=allEvents();
+  const dismissed=all.filter(ev=>getStatus(ev.ID)==='descartado').length;
+  const approved=all.filter(ev=>getStatus(ev.ID)==='aprovado').length;
+  const dBadge=document.getElementById('dismissedBadge');
+  dBadge.textContent=dismissed;dBadge.style.display=dismissed?'inline-block':'none';
+  const aBadge=document.getElementById('approvedBadge');
+  aBadge.textContent=approved;aBadge.style.display=approved?'inline-block':'none';
 }
 
 function updateFilterCount(){
@@ -1374,7 +1613,20 @@ function init(){
   
   document.addEventListener('click',e=>{
     const actionBtn=e.target.closest('.ec-action-btn');
-    if(actionBtn){e.preventDefault();e.stopPropagation();const a=actionBtn.dataset.action;const id=actionBtn.dataset.eventId;if(a==='star')toggleStarred(id);else if(a==='dismiss')dismissEvent(id);else if(a==='restore')restoreEvent(id);return}
+    if(actionBtn){e.preventDefault();e.stopPropagation();const a=actionBtn.dataset.action;const id=actionBtn.dataset.eventId;
+      if(a==='star')toggleStarred(id);
+      else if(a==='approve')approveEvent(id);
+      else if(a==='dismiss')dismissEvent(id);
+      else if(a==='restore')restoreEvent(id);
+      else if(a==='share-link')shareEvent(id,'link');
+      else if(a==='share-whatsapp')shareEvent(id,'whatsapp');
+      return}
+    // Botões share dentro do modal (não têm classe ec-action-btn)
+    const shareBtn=e.target.closest('.share-btn');
+    if(shareBtn){e.preventDefault();const a=shareBtn.dataset.action;const id=shareBtn.dataset.eventId;
+      if(a==='share-link')shareEvent(id,'link');
+      else if(a==='share-whatsapp')shareEvent(id,'whatsapp');
+      return}
     const viewTab=e.target.closest('.vs-tab');
     if(viewTab){setView(viewTab.dataset.view);return}
     const periodoBtn=e.target.closest('#fg-periodo .fp-btn');
@@ -1390,6 +1642,57 @@ function init(){
     const modalTrigger=e.target.closest('[data-modal-event]');
     if(modalTrigger){e.preventDefault();openModal(modalTrigger.dataset.modalEvent);return}
   });
+
+  // Form Adicionar Evento Manual
+  const form=document.getElementById('addEventForm');
+  if(form){
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      const nome=document.getElementById('af-nome').value.trim();
+      const dataInicio=document.getElementById('af-data-inicio').value;
+      if(!nome||!dataInicio){showToast('Preencha pelo menos Nome e Data de início');return}
+      const id='manual_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7);
+      const evento={
+        ID:id,
+        nome:nome,
+        instituicao:document.getElementById('af-instituicao').value.trim(),
+        tipo_evento:document.getElementById('af-tipo').value,
+        data_inicio:dataInicio,
+        data_fim:document.getElementById('af-data-fim').value||dataInicio,
+        local_cidade:document.getElementById('af-cidade').value.trim(),
+        local_estado:document.getElementById('af-estado').value.trim().toUpperCase(),
+        modalidade:document.getElementById('af-modalidade').value,
+        site_oficial:document.getElementById('af-site').value.trim(),
+        tema_central:document.getElementById('af-tema').value.trim(),
+        publico_esperado:parseInt(document.getElementById('af-publico-esperado').value)||0,
+        valor_inscricao:parseInt(document.getElementById('af-valor').value)||0,
+        score_categoria:document.getElementById('af-categoria').value,
+        score_relevancia:parseInt(document.getElementById('af-score').value)||7,
+        aderencia_laratax:parseInt(document.getElementById('af-score').value)||7,
+        palestrantes_renomados:document.getElementById('af-palestrantes').value.trim(),
+        justificativa_estrategica:document.getElementById('af-justificativa').value.trim(),
+        status:'ativo'
+      };
+      MANUAL.push(evento);
+      saveManual(MANUAL);
+      form.reset();
+      document.getElementById('af-score').value=7;
+      showToast('✅ Evento adicionado ao radar');
+      render();
+      // Volta pra Lista pra ver o evento criado
+      setTimeout(()=>setView('lista'),800);
+    });
+    document.getElementById('af-cancel').addEventListener('click',function(){
+      if(confirm('Limpar todos os campos do formulário?')){form.reset();document.getElementById('af-score').value=7}
+    });
+  }
+
+  // Abrir modal via querystring (?evento=evt_xxx)
+  try{
+    const params=new URLSearchParams(window.location.search);
+    const eventoQuery=params.get('evento');
+    if(eventoQuery)setTimeout(()=>openModal(eventoQuery),300);
+  }catch(e){}
   
   document.getElementById('navDate').textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
   document.getElementById('updateBadge').textContent=DASH_DATA.dataAtualizacao||'agora';
