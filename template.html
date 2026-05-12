@@ -368,6 +368,12 @@ input,select,textarea{font-family:inherit}
 /* CTA — ciano sólido com texto NAVY */
 .ec-cta{padding:11px 20px;background:var(--cyan);color:var(--navy-deep);border:none;border-radius:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .25s;letter-spacing:.01em}
 .ec-cta:hover{background:var(--cyan-bright);transform:translateY(-2px);box-shadow:0 6px 18px rgba(53,185,215,0.35)}
+/* CTA secundário — link direto pro site oficial do evento (PATCH v6.1) */
+.ec-cta-secondary{padding:11px 16px;background:transparent;color:var(--text2);border:1.5px solid var(--border);border-radius:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .25s;letter-spacing:.01em;white-space:nowrap}
+.ec-cta-secondary:hover{border-color:var(--cyan);color:var(--cyan-deep);background:var(--cyan-pale)}
+.event-card.upcoming .ec-cta-secondary{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.85);border-color:var(--navy-line-strong)}
+.event-card.upcoming .ec-cta-secondary:hover{background:rgba(53,185,215,0.15);border-color:var(--cyan);color:#fff}
+.ec-footer-buttons{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 
 /* ━━━ CALENDAR ━━━ */
 .cal-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:16px;flex-wrap:wrap}
@@ -1015,7 +1021,7 @@ input,select,textarea{font-family:inherit}
 </div>
 
 <script>
-// RADAR DE EVENTOS LARATAX · v6 — visual LaraTAX + aprovados/share/score-edit/manual
+// RADAR DE EVENTOS LARATAX · v6.1 — visual LaraTAX + aprovados/share/score-edit/manual + botão site oficial
 const DASH_DATA = __DASH_DATA__;
 const STORAGE_KEY = 'radar_lfy_status_v1';
 const STORAGE_SCORE = 'radar_lfy_score_v1';
@@ -1238,7 +1244,7 @@ function attachReveals(){
   document.querySelectorAll('.reveal:not(.revealed)').forEach(el => revealObserver.observe(el));
 }
 
-// Event card
+// Event card — com PATCH v6.1: botão "Site oficial" no footer (fallback site_oficial || link_fonte)
 function renderEventCard(ev,opts,staggerIdx){
   opts=opts||{};
   const dataIni=parseDate(ev.data_inicio);
@@ -1268,6 +1274,9 @@ function renderEventCard(ev,opts,staggerIdx){
   else if(opts.featured){cardClasses.push('featured');ribbonText='⭐ ALTA RELEVÂNCIA'}
   else if(isManual){cardClasses.push('manual');ribbonText='📝 MANUAL'}
   const stagger = (staggerIdx !== undefined) ? Math.min(staggerIdx, 6) : 0;
+  
+  // PATCH v6.1: link oficial usa site_oficial; cai pro link_fonte se vazio
+  const linkOficial = ev.site_oficial || ev.link_fonte || '';
   
   const tags=[];
   if(ev.vale_palestrar==='Sim')tags.push({txt:'🎤 Palestrar',cls:'gold'});
@@ -1345,7 +1354,10 @@ function renderEventCard(ev,opts,staggerIdx){
     </div>
     <div class="ec-footer">
       <div class="ec-recommend">${recomenda>0?`🎯 Recomenda <strong>${recomenda} pessoa${recomenda>1?'s':''}</strong>`:''}</div>
-      <button class="ec-cta" data-modal-event="${esc(ev.ID||'')}">Detalhes →</button>
+      <div class="ec-footer-buttons">
+        ${linkOficial?`<a href="${esc(linkOficial)}" target="_blank" rel="noopener" class="ec-cta-secondary" title="Abrir site oficial em nova aba">🔗 Site oficial</a>`:''}
+        <button class="ec-cta" data-modal-event="${esc(ev.ID||'')}">Detalhes →</button>
+      </div>
     </div>
   </div>`;
 }
@@ -1667,7 +1679,7 @@ function renderHeroMini(){
   }
 }
 
-// Modal
+// Modal — com PATCH v6.1: CTA grande usa site_oficial; cai pro link_fonte se vazio
 function openModal(eventId){
   const ev=allEvents().find(e=>String(e.ID)===String(eventId));
   if(!ev)return;
@@ -1775,14 +1787,15 @@ function openModal(eventId){
     </div>
   </div>`;
   
-  // ━━━ CTA GRANDE pra inscrever ━━━
-  if(ev.site_oficial){
+  // ━━━ CTA GRANDE pra inscrever (PATCH v6.1: fallback site_oficial || link_fonte) ━━━
+  const linkOficialModal=ev.site_oficial||ev.link_fonte;
+  if(linkOficialModal){
     body+=`<div class="mb-cta-block">
       <div class="mb-cta-content">
         <div class="mb-cta-l">Próximo passo</div>
         <div class="mb-cta-t">Quer ir? Acesse o site oficial pra se inscrever</div>
       </div>
-      <a href="${esc(ev.site_oficial)}" target="_blank" rel="noopener" class="mb-cta-btn">Site oficial →</a>
+      <a href="${esc(linkOficialModal)}" target="_blank" rel="noopener" class="mb-cta-btn">Site oficial →</a>
     </div>`;
   }
   
