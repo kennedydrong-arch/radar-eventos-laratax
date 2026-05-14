@@ -1,195 +1,253 @@
 #!/usr/bin/env node
 // ============================================================
-// PATCH-TEMPLATE-V62.JS
-// Aplica todos os patches do v6.2 (botões de track + badges)
-// no template.html v6.1.
+// PATCH-TEMPLATE-TRACKS.JS
+// Adiciona os botoes de track (LaraTax, LaraFy, Waldir) no template.
 //
 // USO:
-//   1. Salva esse script na mesma pasta do template.html
-//   2. No terminal:  node patch-template-v62.js
-//   3. Gera arquivo template-v6.2.html
-//   4. Substitui o template.html no GitHub por esse arquivo
+//   1. Baixa o template atual:
+//      curl -o template.html https://raw.githubusercontent.com/kennedydrong-arch/radar-eventos-laratax/main/template.html
+//   2. Roda esse script na mesma pasta:
+//      node patch-template-tracks.js
+//   3. Gera arquivo template-novo.html
+//   4. Substitui o template.html no GitHub por esse arquivo (renomeia pra template.html)
 // ============================================================
 
 const fs = require('fs');
-const path = require('path');
 
 const INPUT = 'template.html';
-const OUTPUT = 'template-v6.2.html';
+const OUTPUT = 'template-novo.html';
 
 if (!fs.existsSync(INPUT)) {
-  console.error(`Arquivo ${INPUT} nao encontrado nessa pasta.`);
-  console.error(`Salva o template.html aqui e roda de novo.`);
+  console.error('Arquivo template.html nao encontrado.');
+  console.error('Baixa primeiro:');
+  console.error('  curl -o template.html https://raw.githubusercontent.com/kennedydrong-arch/radar-eventos-laratax/main/template.html');
   process.exit(1);
 }
 
 let html = fs.readFileSync(INPUT, 'utf8');
-console.log(`Lido: ${html.length} bytes`);
+console.log('Template original: ' + html.length + ' bytes');
 
-let patches = 0;
+let aplicados = 0;
+const erros = [];
 
 // ============================================================
 // PATCH 1 - CSS antes de </style>
 // ============================================================
-const CSS_PATCH = `
-/* ━━━ TRACK BAR (filtro por track) ━━━ */
+const CSS_TRACK = `
+/* TRACK BAR (filtro por track) */
 .track-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 32px;position:sticky;top:147px;z-index:90;box-shadow:var(--shadow-xs)}
-.tb-wrap{max-width:1400px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tb-wrap{max-width:1480px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .tb-label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-right:6px}
 .track-btn{padding:10px 18px;border:1.5px solid var(--border);background:var(--bg);font-family:inherit;font-size:13px;font-weight:700;color:var(--text2);cursor:pointer;border-radius:11px;transition:all .25s;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .track-btn:hover{background:var(--card);color:var(--text);transform:translateY(-1px)}
-.track-btn .tb-count{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:var(--bg-warm);color:var(--text3);min-width:20px;text-align:center}
+.track-btn .tb-count{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:var(--bg2);color:var(--text3);min-width:20px;text-align:center}
 .track-btn.active{color:#fff;border-color:transparent}
 .track-btn.active .tb-count{background:rgba(255,255,255,0.22);color:#fff}
-.track-btn[data-track="todos"].active{background:var(--navy-deep)}
-.track-btn[data-track="laratax"].active{background:var(--cyan);color:var(--navy-deep)}
-.track-btn[data-track="laratax"].active .tb-count{background:rgba(10,38,56,0.18);color:var(--navy-deep)}
-.track-btn[data-track="larafy"].active{background:var(--gold)}
-.track-btn[data-track="waldir"].active{background:var(--purple)}
+.track-btn[data-track="todos"].active{background:var(--navy)}
+.track-btn[data-track="laratax"].active{background:var(--cyan2);color:#fff}
+.track-btn[data-track="larafy"].active{background:var(--gold);color:#fff}
+.track-btn[data-track="waldir"].active{background:var(--purple);color:#fff}
 .ec-track-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.ec-track-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:800;padding:3px 8px;border-radius:999px;letter-spacing:.1em;text-transform:uppercase;border:1px solid transparent}
-.ec-track-badge.laratax{background:rgba(53,185,215,0.12);color:var(--cyan-deep);border-color:rgba(53,185,215,0.3)}
+.ec-track-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:800;padding:3px 8px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase;border:1px solid transparent}
+.ec-track-badge.laratax{background:rgba(53,185,215,0.12);color:var(--cyan2);border-color:rgba(53,185,215,0.3)}
 .ec-track-badge.larafy{background:rgba(232,168,56,0.12);color:#a87317;border-color:rgba(232,168,56,0.3)}
 .ec-track-badge.waldir{background:rgba(123,97,255,0.12);color:#5a3fdc;border-color:rgba(123,97,255,0.3)}
-.event-card.upcoming .ec-track-badge{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.18)}
 @media(max-width:768px){.track-bar{padding:10px 14px;top:128px}.tb-label{display:none}.track-btn{padding:8px 12px;font-size:12px}}
 </style>`;
 
 if (html.includes('</style>')) {
-  html = html.replace('</style>', CSS_PATCH);
-  patches++;
-  console.log(`Patch 1 (CSS): OK`);
+  html = html.replace('</style>', CSS_TRACK);
+  aplicados++;
+  console.log('Patch 1 (CSS): OK');
 } else {
-  console.error(`Patch 1 (CSS): FALHOU - tag </style> nao encontrada`);
+  erros.push('Patch 1 (CSS)');
 }
 
 // ============================================================
-// PATCH 2 - HTML: barra de tracks logo apos view-switcher
+// PATCH 2 - HTML track-bar entre view-switcher e filters-panel
 // ============================================================
-const HTML_TRACKBAR = `</div></div>
+const TRACK_BAR = `</div></div>
 
 <div class="track-bar"><div class="tb-wrap">
-<span class="tb-label">🎯 Track:</span>
+<span class="tb-label">Track:</span>
 <button class="track-btn active" data-track="todos">Todos <span class="tb-count" id="tbCountTodos">0</span></button>
-<button class="track-btn" data-track="laratax">💻 LaraTax <span class="tb-count" id="tbCountLaratax">0</span></button>
-<button class="track-btn" data-track="larafy">🌾 LaraFy <span class="tb-count" id="tbCountLarafy">0</span></button>
-<button class="track-btn" data-track="waldir">🎤 Waldir <span class="tb-count" id="tbCountWaldir">0</span></button>
+<button class="track-btn" data-track="laratax">LaraTax <span class="tb-count" id="tbCountLaratax">0</span></button>
+<button class="track-btn" data-track="larafy">LaraFy <span class="tb-count" id="tbCountLarafy">0</span></button>
+<button class="track-btn" data-track="waldir">Waldir <span class="tb-count" id="tbCountWaldir">0</span></button>
 </div></div>
 
 <div class="filters-panel" id="filtersPanel">`;
 
-const ANCHOR_HTML = `</div></div>\n\n<div class="filters-panel" id="filtersPanel">`;
-if (html.includes(ANCHOR_HTML)) {
-  html = html.replace(ANCHOR_HTML, HTML_TRACKBAR);
-  patches++;
-  console.log(`Patch 2 (HTML trackbar): OK`);
+const ANCHOR_2 = '</div></div>\n\n<div class="filters-panel" id="filtersPanel">';
+if (html.includes(ANCHOR_2)) {
+  html = html.replace(ANCHOR_2, TRACK_BAR);
+  aplicados++;
+  console.log('Patch 2 (HTML trackbar): OK');
 } else {
-  console.error(`Patch 2 (HTML trackbar): FALHOU - ancora nao encontrada`);
+  erros.push('Patch 2 (HTML trackbar) - ancora exata nao encontrada');
 }
 
 // ============================================================
-// PATCH 3 - F state: adicionar track
+// PATCH 3 - State F: adiciona track
 // ============================================================
-const F_OLD = `  search: '', sort: 'data'\n};`;
-const F_NEW = `  search: '', sort: 'data', track: 'todos'\n};`;
+const F_OLD = `  search: '',
+  sort: 'data'
+};`;
+const F_NEW = `  search: '',
+  sort: 'data',
+  track: 'todos'
+};`;
 if (html.includes(F_OLD)) {
   html = html.replace(F_OLD, F_NEW);
-  patches++;
-  console.log(`Patch 3 (F state): OK`);
+  aplicados++;
+  console.log('Patch 3 (F state): OK');
 } else {
-  console.error(`Patch 3 (F state): FALHOU`);
+  erros.push('Patch 3 (F state)');
 }
 
 // ============================================================
 // PATCH 4 - filterEvents: check track
 // ============================================================
-const FILTER_OLD = `if(F.categoria!=='todos'&&ev.score_categoria!==F.categoria)return false;`;
-const FILTER_NEW = `if(F.categoria!=='todos'&&ev.score_categoria!==F.categoria)return false;
-    if(F.track!=='todos'){const evTrack=String(ev.track||'').toLowerCase();if(!evTrack.includes(F.track))return false;}`;
+const FILTER_OLD = `    if (F.categoria !== 'todos' && ev.score_categoria !== F.categoria) return false;`;
+const FILTER_NEW = `    if (F.categoria !== 'todos' && ev.score_categoria !== F.categoria) return false;
+    
+    // Filtro de track
+    if (F.track !== 'todos') {
+      const evTrack = String(ev.track || '').toLowerCase();
+      if (!evTrack.includes(F.track)) return false;
+    }`;
+
 if (html.includes(FILTER_OLD)) {
   html = html.replace(FILTER_OLD, FILTER_NEW);
-  patches++;
-  console.log(`Patch 4 (filterEvents): OK`);
+  aplicados++;
+  console.log('Patch 4 (filterEvents): OK');
 } else {
-  console.error(`Patch 4 (filterEvents): FALHOU`);
+  erros.push('Patch 4 (filterEvents)');
 }
 
 // ============================================================
-// PATCH 5 - renderEventCard: badges de track
+// PATCH 5 - renderEventCard: badges depois de ec-local
 // ============================================================
-const CARD_OLD = `      <div class="ec-local">\${ev.local_cidade?esc(ev.local_cidade):''}\${ev.local_estado?', '+esc(ev.local_estado):''}\${(!ev.local_cidade&&!ev.local_estado)?'Local não informado':''}</div>
+const CARD_OLD = `      <div class="ec-local">\${ev.local_cidade ? esc(ev.local_cidade) : ''}\${ev.local_estado ? ', '+esc(ev.local_estado) : ''}\${(!ev.local_cidade && !ev.local_estado) ? 'Local não informado' : ''}</div>
     </div>`;
-const CARD_NEW = `      <div class="ec-local">\${ev.local_cidade?esc(ev.local_cidade):''}\${ev.local_estado?', '+esc(ev.local_estado):''}\${(!ev.local_cidade&&!ev.local_estado)?'Local não informado':''}</div>
-      \${ev.track?\`<div class="ec-track-badges">\${String(ev.track).split(',').map(t=>t.trim()).filter(t=>t).map(t=>\`<span class="ec-track-badge \${esc(t)}">\${t==='laratax'?'💻 LaraTax':t==='larafy'?'🌾 LaraFy':t==='waldir'?'🎤 Waldir':esc(t)}</span>\`).join('')}</div>\`:''}
+
+const CARD_NEW = `      <div class="ec-local">\${ev.local_cidade ? esc(ev.local_cidade) : ''}\${ev.local_estado ? ', '+esc(ev.local_estado) : ''}\${(!ev.local_cidade && !ev.local_estado) ? 'Local não informado' : ''}</div>
+      \${ev.track ? \`<div class="ec-track-badges">\${String(ev.track).split(',').map(t=>t.trim()).filter(t=>t).map(t=>\`<span class="ec-track-badge \${esc(t)}">\${t==='laratax'?'LaraTax':t==='larafy'?'LaraFy':t==='waldir'?'Waldir':esc(t)}</span>\`).join('')}</div>\` : ''}
     </div>`;
+
 if (html.includes(CARD_OLD)) {
   html = html.replace(CARD_OLD, CARD_NEW);
-  patches++;
-  console.log(`Patch 5 (card badges): OK`);
+  aplicados++;
+  console.log('Patch 5 (card badges): OK');
 } else {
-  console.error(`Patch 5 (card badges): FALHOU - tentando alternativo`);
-  // Versao alternativa caso encoding seja diferente
-  const altOld = `<div class="ec-local">`;
-  if (html.indexOf(altOld) !== -1) {
-    console.log(`Encontrou alternativo - vai precisar de patch manual`);
-  }
+  erros.push('Patch 5 (card badges)');
 }
 
 // ============================================================
 // PATCH 6 - Click handler do track-btn
 // ============================================================
-const CLICK_OLD = `if(viewTab){setView(viewTab.dataset.view);return}`;
-const CLICK_NEW = `if(viewTab){setView(viewTab.dataset.view);return}
-    const trackBtn=e.target.closest('.track-btn');
-    if(trackBtn){F.track=trackBtn.dataset.track;document.querySelectorAll('.track-btn').forEach(b=>b.classList.toggle('active',b===trackBtn));render();return}`;
+const CLICK_OLD = `    // View tabs
+    const viewTab = e.target.closest('.vs-tab');
+    if (viewTab) { setView(viewTab.dataset.view); return; }`;
+
+const CLICK_NEW = `    // View tabs
+    const viewTab = e.target.closest('.vs-tab');
+    if (viewTab) { setView(viewTab.dataset.view); return; }
+    
+    // Track buttons
+    const trackBtn = e.target.closest('.track-btn');
+    if (trackBtn) {
+      F.track = trackBtn.dataset.track;
+      document.querySelectorAll('.track-btn').forEach(b => b.classList.toggle('active', b === trackBtn));
+      render();
+      return;
+    }`;
+
 if (html.includes(CLICK_OLD)) {
   html = html.replace(CLICK_OLD, CLICK_NEW);
-  patches++;
-  console.log(`Patch 6 (click handler): OK`);
+  aplicados++;
+  console.log('Patch 6 (click handler): OK');
 } else {
-  console.error(`Patch 6 (click handler): FALHOU`);
+  erros.push('Patch 6 (click handler)');
 }
 
 // ============================================================
-// PATCH 7 - render(): contadores das tracks
+// PATCH 7 - render(): chama updateTrackCounts e adiciona funcao
 // ============================================================
-const RENDER_OLD = `aBadge.textContent=approved;aBadge.style.display=approved?'inline-block':'none';\n}`;
-const RENDER_NEW = `aBadge.textContent=approved;aBadge.style.display=approved?'inline-block':'none';
+const RENDER_OLD = `function render() {
+  if (activeView === 'lista') renderLista();
+  else if (activeView === 'calendario') renderCalendario();
+  else if (activeView === 'dashboard') renderDashboard();
+  renderHeroMini();
+  updateFilterCount();
+}`;
 
-  // Contadores por track
-  const visiveis=allEvents().filter(ev=>getStatus(ev.ID)!=='descartado');
-  const tCounts={todos:visiveis.length,laratax:0,larafy:0,waldir:0};
-  visiveis.forEach(ev=>{
-    const tr=String(ev.track||'').toLowerCase();
-    if(tr.includes('laratax'))tCounts.laratax++;
-    if(tr.includes('larafy'))tCounts.larafy++;
-    if(tr.includes('waldir'))tCounts.waldir++;
+const RENDER_NEW = `function render() {
+  if (activeView === 'lista') renderLista();
+  else if (activeView === 'calendario') renderCalendario();
+  else if (activeView === 'dashboard') renderDashboard();
+  renderHeroMini();
+  updateFilterCount();
+  updateTrackCounts();
+}
+
+function updateTrackCounts() {
+  const eventos = DASH_DATA.eventos || [];
+  const counts = { todos: eventos.length, laratax: 0, larafy: 0, waldir: 0 };
+  eventos.forEach(ev => {
+    const tr = String(ev.track || '').toLowerCase();
+    if (tr.includes('laratax')) counts.laratax++;
+    if (tr.includes('larafy')) counts.larafy++;
+    if (tr.includes('waldir')) counts.waldir++;
   });
-  ['todos','laratax','larafy','waldir'].forEach(k=>{
-    const el=document.getElementById('tbCount'+k.charAt(0).toUpperCase()+k.slice(1));
-    if(el)el.textContent=tCounts[k];
+  ['todos','laratax','larafy','waldir'].forEach(k => {
+    const id = 'tbCount' + k.charAt(0).toUpperCase() + k.slice(1);
+    const el = document.getElementById(id);
+    if (el) el.textContent = counts[k];
   });
 }`;
+
 if (html.includes(RENDER_OLD)) {
   html = html.replace(RENDER_OLD, RENDER_NEW);
-  patches++;
-  console.log(`Patch 7 (contadores render): OK`);
+  aplicados++;
+  console.log('Patch 7 (track counts): OK');
 } else {
-  console.error(`Patch 7 (contadores render): FALHOU`);
+  erros.push('Patch 7 (track counts)');
 }
 
 // ============================================================
-// SALVAR
+// PATCH 8 - resetFilters: resetar track
 // ============================================================
-fs.writeFileSync(OUTPUT, html);
-console.log(``);
-console.log(`========================================`);
-console.log(`Resultado: ${patches}/7 patches aplicados`);
-console.log(`Arquivo gerado: ${OUTPUT} (${html.length} bytes)`);
-console.log(`========================================`);
+const RESET_OLD = `  F.search = '';
+  
+  document.getElementById('searchInput').value = '';`;
+const RESET_NEW = `  F.search = '';
+  F.track = 'todos';
+  
+  document.querySelectorAll('.track-btn').forEach(b => b.classList.toggle('active', b.dataset.track === 'todos'));
+  document.getElementById('searchInput').value = '';`;
+if (html.includes(RESET_OLD)) {
+  html = html.replace(RESET_OLD, RESET_NEW);
+  aplicados++;
+  console.log('Patch 8 (resetFilters): OK');
+} else {
+  erros.push('Patch 8 (resetFilters)');
+}
 
-if (patches < 7) {
-  console.log(``);
-  console.log(`AVISO: alguns patches falharam. Veja os erros acima.`);
-  console.log(`Mesmo assim o arquivo foi gerado com os patches que deram certo.`);
+// Salva
+fs.writeFileSync(OUTPUT, html);
+console.log('');
+console.log('========================================');
+console.log('Resultado: ' + aplicados + '/8 patches aplicados');
+console.log('Template novo: ' + html.length + ' bytes');
+console.log('Arquivo: ' + OUTPUT);
+console.log('========================================');
+
+if (erros.length > 0) {
+  console.log('');
+  console.log('FALHARAM:');
+  erros.forEach(e => console.log('  - ' + e));
+} else {
+  console.log('');
+  console.log('TUDO OK! Sobe ' + OUTPUT + ' no GitHub renomeando pra template.html');
 }
