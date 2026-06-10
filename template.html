@@ -1673,9 +1673,8 @@ function init(){
       showToast('💾 Salvando na planilha...');
       render();
       try{
-        const resp=await fetch(WEBHOOK_MANUAL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(evento)});
-        if(resp.ok)showToast('✅ Salvo na planilha · visível pro time');
-        else showToast('⚠️ Salvo local · falhou enviar pra planilha ('+resp.status+')');
+        await fetch(WEBHOOK_MANUAL,{method:'POST',mode:'no-cors',body:JSON.stringify(evento)});
+        showToast('✅ Enviado pra planilha · confirme na aba Eventos');
       }catch(err){showToast('⚠️ Sem conexão · salvo local, sincroniza depois')}
       setTimeout(()=>setView('lista'),1500);
     });
