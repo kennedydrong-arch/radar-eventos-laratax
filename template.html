@@ -809,6 +809,7 @@ const DASH_DATA = __DASH_DATA__;
 const STORAGE_KEY = 'radar_lfy_status_v1';
 const STORAGE_SCORE = 'radar_lfy_score_v1';
 const STORAGE_MANUAL = 'radar_lfy_manual_v1';
+const WEBHOOK_MANUAL = 'https://kennedydrong.app.n8n.cloud/webhook/radar-eventos-manual';
 
 const F = {
   periodo: 0, estado: 'todos', modalidade: 'todos', tipo: 'todos',
@@ -1629,12 +1630,13 @@ function init(){
 
   const form=document.getElementById('addEventForm');
   if(form){
-    form.addEventListener('submit',function(ev){
+    form.addEventListener('submit',async function(ev){
       ev.preventDefault();
       const nome=document.getElementById('af-nome').value.trim();
       const dataInicio=document.getElementById('af-data-inicio').value;
       if(!nome||!dataInicio){showToast('Preencha pelo menos Nome e Data de início');return}
       const id='manual_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7);
+      const score=parseInt(document.getElementById('af-score').value)||7;
       const evento={
         ID:id,nome:nome,
         instituicao:document.getElementById('af-instituicao').value.trim(),
@@ -1644,25 +1646,38 @@ function init(){
         local_cidade:document.getElementById('af-cidade').value.trim(),
         local_estado:document.getElementById('af-estado').value.trim().toUpperCase(),
         modalidade:document.getElementById('af-modalidade').value,
+        formato:document.getElementById('af-modalidade').value,
         site_oficial:document.getElementById('af-site').value.trim(),
+        link_fonte:document.getElementById('af-site').value.trim(),
         tema_central:document.getElementById('af-tema').value.trim(),
         publico_esperado:parseInt(document.getElementById('af-publico-esperado').value)||0,
         valor_inscricao:parseInt(document.getElementById('af-valor').value)||0,
         score_categoria:document.getElementById('af-categoria').value,
-        score_relevancia:parseInt(document.getElementById('af-score').value)||7,
-        aderencia_laratax:parseInt(document.getElementById('af-score').value)||7,
+        score_relevancia:score,
+        aderencia_laratax:score,
         track:document.getElementById('af-track').value,
         palestrantes_renomados:document.getElementById('af-palestrantes').value.trim(),
         justificativa_estrategica:document.getElementById('af-justificativa').value.trim(),
-        status:'ativo'
+        status:'novo',
+        tem_celebridade:'FALSE',
+        fonte_descoberto:'manual_dashboard',
+        data_descoberto:new Date().toISOString(),
+        ultima_atualizacao:new Date().toISOString(),
+        confianca_existencia:'alta',
+        data_confianca:'alta'
       };
       MANUAL.push(evento);
       saveManual(MANUAL);
       form.reset();
       document.getElementById('af-score').value=7;
-      showToast('✅ Evento adicionado ao radar');
+      showToast('💾 Salvando na planilha...');
       render();
-      setTimeout(()=>setView('lista'),800);
+      try{
+        const resp=await fetch(WEBHOOK_MANUAL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(evento)});
+        if(resp.ok)showToast('✅ Salvo na planilha · visível pro time');
+        else showToast('⚠️ Salvo local · falhou enviar pra planilha ('+resp.status+')');
+      }catch(err){showToast('⚠️ Sem conexão · salvo local, sincroniza depois')}
+      setTimeout(()=>setView('lista'),1500);
     });
     document.getElementById('af-cancel').addEventListener('click',function(){
       if(confirm('Limpar todos os campos?')){form.reset();document.getElementById('af-score').value=7}
